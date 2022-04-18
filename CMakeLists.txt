@@ -12,6 +12,7 @@ if (MSVC)
 	set(include_directory "C:\\Users\\benoit\\dev\\boost_1_79_0")
 else()
 	add_compile_options(-Wall -Wextra -pedantic -Werror)
+	target_compile_features(DnD PUBLIC cxx_std_20)
 endif()
 
 link_directories(${link_directory})
@@ -24,5 +25,3 @@ target_link_libraries(DnD PUBLIC utilities)
 target_include_directories(DnD PUBLIC
 				${include_directory}
 				"${PROJECT_SOURCE_DIR}/utilities")
-
-target_compile_features(DnD PUBLIC cxx_std_20)
