@@ -3,6 +3,8 @@ import <iostream>;
 import <fstream>;
 
 import Logger;
+import ICreature;
+import Item;
 
 int main()
 {
