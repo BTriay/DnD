@@ -13,6 +13,8 @@ add_library(character
             ICreature.cpp
             ICreature.ixx
 
+            ./race/IRace.cpp
+            ./race/IRace.ixx
             ./race/Dragonborn.cpp
             ./race/Dragonborn.ixx
             ./race/Dwarf.cpp
@@ -32,6 +34,8 @@ add_library(character
             ./race/Tiefling.cpp
             ./race/Tiefling.ixx
 
+            ./class/IClass.cpp
+            ./class/IClass.ixx
             ./class/Barbarian.cpp
             ./class/Barbarian.ixx
             ./class/Bard.cpp
