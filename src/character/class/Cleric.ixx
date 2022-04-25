@@ -6,7 +6,11 @@ import IClass;
 export class Cleric : protected IClass
 {
 public:
-	Cleric();
+	Cleric() : IClass(HitDice::eight)
+	{
+		std::vector<Ability> saving_throw{ Ability::wisdom, Ability::charisma };
+		set_saving_throw(saving_throw);
+	}
 
 private:
 	;
