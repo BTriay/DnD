@@ -4,17 +4,15 @@ import <vector>;
 import <map>;
 import enumeration;
 import IRace;
+import ICreature;
 
-class Dwarf : public IRace
+class Dwarf : public ICreature, public IRace
 {
 public:
-	
+	Dwarf() : ICreature(25, 0, 0, 0, 60), IRace() {}
 
 private:
 
-	int m_speed_land = 25;
-	int m_darkvision = 60;
-	std::vector<Damage> resistances{ Damage::poison };
 };
 
 
