@@ -1,6 +1,7 @@
 export module ICreature;
 
 import <map>;
+import <vector>;
 import enumeration;
 
 export class ICreature // attributes common to players, NPC, monsters
@@ -16,6 +17,7 @@ public:
 
 	void set_ability_score(Ability ability, int score);
 	void set_skill_score(Skill skill, int score);
+	void add_resistance(Damage resistance);
 	virtual void set_hit_points_max(int hp);
 
 	virtual int armor_class() = 0;
@@ -24,6 +26,7 @@ public:
 private:
 	std::map<Ability, int> m_ability_score;
 	std::map<Skill, int> m_skill_score; // if different from teh ability-implied score
+	std::vector<Damage> m_resistance;
 
 	int m_speed_land;
 	int m_speed_climb;

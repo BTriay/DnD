@@ -18,6 +18,11 @@ void ICreature::set_hit_points_max(int hp)
 	m_hit_points_current = hp;
 }
 
+void ICreature::add_resistance(Damage resistance)
+{
+	m_resistance.push_back(resistance);
+}
+
 /* END OF PUBLIC MEMBER FUNCTIONS */
 
 
