@@ -9,7 +9,11 @@ import ICreature;
 class Dwarf : public ICreature, public IRace
 {
 public:
-	Dwarf() : ICreature(25, 0, 0, 0, 60), IRace() {}
+	Dwarf() : ICreature(25, 0, 0, 0, 60), IRace()
+	{
+		ability_score_increase(Ability::constitution, 2);
+		add_resistance(Damage::poison);
+	}
 
 private:
 
