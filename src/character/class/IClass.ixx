@@ -6,14 +6,13 @@ import enumeration;
 export class IClass
 {
 public:
-	IClass();
+	IClass(HitDice hit_dice) : m_hit_dice(hit_dice) {}
 
 	void add_skill(Skill skill);
 
 	virtual int proficiency_bonus() = 0;
 
 protected:
-	void set_hit_dice(HitDice hit_dice);
 	void set_saving_throw(std::vector<Ability> saving_throw);
 
 private:

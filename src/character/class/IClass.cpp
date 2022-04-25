@@ -13,11 +13,6 @@ void IClass::add_skill(Skill skill)
 
 /* PROTECTED MEMBER FUNCTIONS */
 
-void IClass::set_hit_dice(HitDice hit_dice)
-{
-	m_hit_dice = hit_dice;
-}
-
 void IClass::set_saving_throw(std::vector<Ability> saving_throw)
 {
 	m_saving_throw = saving_throw;
