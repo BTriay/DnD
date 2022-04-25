@@ -13,16 +13,15 @@ export enum class ToolProficiency { artisan, disguise  /* etc */ };
 export class ICreature
 {
 public:
-	
-	template <is_ability T>
+	template <Ability T>
 	uint8_t modifier();
 
-	//virtual uint8_t strength_modifier() = 0;
-	//virtual uint8_t dexterity_modifier() = 0;
-	//virtual uint8_t constitution_modifier() = 0;
-	//virtual uint8_t intelligence_modifier() = 0;
-	//virtual uint8_t wisdom_modifier() = 0;
-	//virtual uint8_t charisma_modifier() = 0;
+	template <> virtual uint8_t modifier<Ability::charisma>();
+	template <> virtual uint8_t modifier<Ability::constitution>();
+	template <> virtual uint8_t modifier<Ability::dexterity>();
+	template <> virtual uint8_t modifier<Ability::intelligence>();
+	template <> virtual uint8_t modifier<Ability::strength>();
+	template <> virtual uint8_t modifier<Ability::wisdom>();
 
 	virtual uint8_t proficiency_bonus() = 0;
 	virtual uint8_t armor_class() = 0;
