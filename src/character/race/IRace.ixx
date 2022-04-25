@@ -6,6 +6,7 @@ import enumeration;
 export class IRace
 {
 public:
+	IRace() = default;
 	void ability_score_increase(Ability ability, int increase);
 
 private:
