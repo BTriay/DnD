@@ -1,8 +1,17 @@
 export module enumeration;
 
+import <array>;
+
 export enum class Ability
 {	
-	strength, dexterity, constitution, intelligence, wisdom, charisma 
+	charisma, constitution, dexterity, intelligence, strength, wisdom
+};
+
+export constexpr std::array<Ability, 6> abilities =
+{
+	Ability::charisma, Ability::constitution,
+	Ability::dexterity,	Ability::intelligence,
+	Ability::strength, Ability::wisdom
 };
 
 export enum class Damage
