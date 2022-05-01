@@ -7,10 +7,10 @@ import enumeration;
 export class ICreature // attributes common to players, NPC, monsters
 {
 public:
-	ICreature(int speed_land, int speed_climb, int speed_air,
-		int speed_water, int darkvision) : 
-		m_speed_land(speed_land), m_speed_climb(speed_climb), m_speed_air(speed_air),
-		m_speed_water(speed_water), m_darkvision(darkvision) {}
+	ICreature(int darkvision, int speed_land, int speed_climb, int speed_air,
+		int speed_water) : 
+		m_darkvision(darkvision), m_speed_land(speed_land), m_speed_climb(speed_climb), 
+		m_speed_air(speed_air), m_speed_water(speed_water) {}
 
 	template <Ability T>
 	int modifier();
