@@ -10,6 +10,8 @@ endif()
 link_directories(${link_directory})
 
 add_library(character
+            Hero.cpp
+            Hero.ixx
             ICreature.cpp
             ICreature.ixx
 

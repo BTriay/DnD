@@ -3,11 +3,13 @@ import <iostream>;
 import <fstream>;
 
 import Logger;
-import ICreature;
-import Item;
+
+import Hero;
 
 int main()
 {
-    Logger logger{ "dnd.logs" };
-    logger.info("this is a log");
+    //Logger logger{ "dnd.logs" };
+    //logger.info("this is a log");
+    
+    Hero<Cleric, HillDwarf> helgret{};
 }

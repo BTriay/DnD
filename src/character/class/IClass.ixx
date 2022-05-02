@@ -10,7 +10,7 @@ public:
 
 	void add_skill(Skill skill);
 
-	virtual int proficiency_bonus() = 0;
+	//virtual int proficiency_bonus();
 
 protected:
 	void set_saving_throw(std::vector<Ability> saving_throw);
