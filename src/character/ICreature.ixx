@@ -25,6 +25,11 @@ public:
 	void set_skill_score(Skill skill, int score); /*!< Get the ability score of the creature */
 	void add_resistance(Damage resistance); /*!< Add resistance to the creature */
 	virtual void set_hit_points_max(int hp);
+	
+	void set_speed_land(int speed_land);
+	void set_speed_climb(int speed_climb);
+	void set_speed_air(int speed_air);
+	void set_speed_water(int speed_water);
 
 	//virtual int armor_class() = 0;
 	//virtual int difficulty_class() = 0;

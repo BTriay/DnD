@@ -33,6 +33,26 @@ void ICreature::add_resistance(Damage resistance)
 	m_resistance.push_back(resistance);
 }
 
+void ICreature::set_speed_land(int speed_land)
+{
+	m_speed_land = speed_land;
+}
+
+void ICreature::set_speed_climb(int speed_climb)
+{
+	m_speed_climb = speed_climb;
+}
+
+void ICreature::set_speed_air(int speed_air)
+{
+	m_speed_air = speed_air;
+}
+
+void ICreature::set_speed_water(int speed_water)
+{
+	m_speed_water = speed_water;
+}
+
 /* END OF PUBLIC MEMBER FUNCTIONS */
 
 
