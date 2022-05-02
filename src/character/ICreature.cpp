@@ -2,6 +2,11 @@ module ICreature;
 
 /* PUBLIC MEMBER FUNCTIONS */
 
+int ICreature::ability_score(Ability ability) const
+{ 
+	return m_ability_score.at(ability);
+}
+
 void ICreature::set_ability_score(Ability ability, int score)
 {
 	m_ability_score[ability] = score;
@@ -31,4 +36,12 @@ void ICreature::add_resistance(Damage resistance)
 
 
 /* PRIVATE MEMBER FUNCTIONS */
+
+void ICreature::set_default_ability_scores()
+{
+	for (auto& ability : abilities)
+	{
+		set_ability_score(ability, 10);
+	}	
+}
 /* END OF PRIVATE MEMBER FUNCTIONS */
