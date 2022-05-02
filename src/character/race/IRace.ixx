@@ -8,6 +8,7 @@ export class IRace
 public:
 	IRace() = default;
 	
+	int ability_score_increase(Ability ability) const;
 	void set_ability_score_increase(Ability ability, int increase);
 	
 private:
