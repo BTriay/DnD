@@ -26,6 +26,7 @@ public:
 	void add_resistance(Damage resistance); /*!< Add resistance to the creature */
 	virtual void set_hit_points_max(int hp);
 	
+	void set_darkvision(int darkvision_distance);
 	void set_speed_land(int speed_land);
 	void set_speed_climb(int speed_climb);
 	void set_speed_air(int speed_air);

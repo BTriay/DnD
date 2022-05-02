@@ -33,6 +33,11 @@ void ICreature::add_resistance(Damage resistance)
 	m_resistance.push_back(resistance);
 }
 
+void ICreature::set_darkvision(int darkvision_distance)
+{
+	m_darkvision = darkvision_distance;
+}
+
 void ICreature::set_speed_land(int speed_land)
 {
 	m_speed_land = speed_land;
