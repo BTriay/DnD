@@ -4,7 +4,10 @@ module IRace;
 
 int IRace::ability_score_increase(Ability ability) const
 {
-	return m_ability_score_increase.at(ability);
+	if (m_ability_score_increase.find(ability) != std::end(m_ability_score_increase))
+		return m_ability_score_increase.at(ability);
+	
+	return 0;
 }
 
 void IRace::set_ability_score_increase(Ability ability, int increase)
