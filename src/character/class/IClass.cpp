@@ -9,6 +9,11 @@ void IClass::add_skill(Skill skill)
 	m_skill.push_back(skill);
 }
 
+int IClass::level() const
+{
+	return m_level;
+}
+
 /* END OF PUBLIC MEMBER FUNCTIONS */
 
 /* PROTECTED MEMBER FUNCTIONS */

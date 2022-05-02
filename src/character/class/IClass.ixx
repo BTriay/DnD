@@ -8,7 +8,8 @@ export class IClass
 public:
 	IClass(HitDice hit_dice) : m_hit_dice(hit_dice) {}
 
-	void add_skill(Skill skill);
+	void add_skill(Skill skill); /*!< Give a skill to the hero */
+	int level() const; /*!< Get the hero's level */
 
 	//virtual int proficiency_bonus();
 
