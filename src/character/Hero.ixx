@@ -7,22 +7,36 @@ import IClass;
 import IRace;
 import enumeration;
 
+import Cleric;
+import Dwarf;
+
+
 export template <typename C, typename R>
     requires std::is_base_of_v<IClass, C>&& std::is_base_of_v<IRace, R>
 class Hero : public C, public R
 {
 public:
+    /*! Build a hero! */
     Hero(const std::string& name) : m_name(name), C(), R() {}
 
+    /*! Get the name of the hero */
     const std::string& name() const { return m_name; }
+    /*! Get the ability modifier of the hero */
     int ability_modifier(Ability ability) const override
     {
         return (R::ability_score_increase(ability) + R::ability_score(ability) - 10) / 2;
     }
 
+    /*! Override the ICreature's set_hit_points_max member function 
+        to include the constitution bonus
+    */
     void set_hit_points_max(int hp) override
     {
-        R::set_hit_points_max(hp + C::level());
+        auto hildwarf_additional_hp = 
+            std::is_same_v< HillDwarf, R> ? 1 : 0;
+        
+        R::set_hit_points_max(hp + (C::level() + hildwarf_additional_hp)
+            * ability_modifier(Ability::constitution));
     }
 
 private:
@@ -45,10 +59,6 @@ std::ostream& operator<<(std::ostream& os, const Hero<C, R>& hero)
     return os;
 }
 
-
-// is this really the best way to do this?
-import Cleric;
-import Dwarf;
 
 template class Hero<Cleric, HillDwarf>;
 template class Hero<Cleric, MountainDwarf>;
