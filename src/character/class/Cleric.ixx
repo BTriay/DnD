@@ -3,7 +3,7 @@ export module Cleric;
 import enumeration;
 import IClass;
 
-export class Cleric : protected IClass
+export class Cleric : public IClass
 {
 public:
 	Cleric() : IClass(HitDice::eight)

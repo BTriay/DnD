@@ -20,6 +20,11 @@ public:
         return (R::ability_score_increase(ability) + R::ability_score(ability) - 10) / 2;
     }
 
+    void set_hit_points_max(int hp) override
+    {
+        R::set_hit_points_max(hp + C::level());
+    }
+
 private:
     const std::string m_name;
 };
@@ -28,7 +33,8 @@ export template <typename C, typename R>
     requires std::is_base_of_v<IClass, C>&& std::is_base_of_v<IRace, R>
 std::ostream& operator<<(std::ostream& os, const Hero<C, R>& hero)
 {
-    os << hero.name() << " has the following abilities:\n";
+    os << hero.name() << " is level " << hero.level() 
+        << " and has the following abilities:\n";
     os << "\tcharisma: " << hero.ability_modifier(Ability::charisma) << '\n';
     os << "\tconstitution: " << hero.ability_modifier(Ability::constitution) << '\n';
     os << "\tdexterity: " << hero.ability_modifier(Ability::dexterity) << '\n';
