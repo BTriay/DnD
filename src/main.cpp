@@ -1,6 +1,6 @@
 import <string>;
 import <iostream>;
-import <fstream>;
+import <sstream>;
 
 import Logger;
 
@@ -9,9 +9,13 @@ import enumeration;
 
 int main()
 {
-    //Logger logger{ "dnd.logs" };
-    //logger.info("this is a log");
-    
     Hero<Cleric, HillDwarf> helgret{"Helgret"};
-    std::cout << helgret.ability_modifier(Ability::wisdom) << '\n';
+    helgret.set_ability_score(Ability::charisma, 10);
+    helgret.set_ability_score(Ability::constitution, 13);
+    helgret.set_ability_score(Ability::dexterity, 8);
+    helgret.set_ability_score(Ability::intelligence, 12);
+    helgret.set_ability_score(Ability::strength, 14);
+    helgret.set_ability_score(Ability::wisdom, 15);
+    
+    std::cout << helgret << '\n';
 }

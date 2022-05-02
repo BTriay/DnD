@@ -4,7 +4,11 @@ import <map>;
 import <vector>;
 import enumeration;
 
-export class ICreature // attributes common to players, NPC, monsters
+/*!
+Class common to all the creatures of the DnD world:
+heroes, NPC, monsters
+*/
+export class ICreature
 {
 public:
 	ICreature(int darkvision, int speed_land, int speed_climb, int speed_air,
