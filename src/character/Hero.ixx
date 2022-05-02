@@ -7,8 +7,19 @@ import IClass;
 import IRace;
 import enumeration;
 
+// classes
 import Cleric;
+
+// races
 import Dwarf;
+import Elf;
+import Halfling;
+import Human;
+import Dragonborn;
+import Gnome;
+import HalfElf;
+import HalfOrc;
+import Tiefling;
 
 
 export template <typename C, typename R>
@@ -62,3 +73,17 @@ std::ostream& operator<<(std::ostream& os, const Hero<C, R>& hero)
 
 template class Hero<Cleric, HillDwarf>;
 template class Hero<Cleric, MountainDwarf>;
+template class Hero<Cleric, HighElf>;
+template class Hero<Cleric, WoodElf>;
+template class Hero<Cleric, DarkElf>;
+template class Hero<Cleric, Lightfoot>;
+template class Hero<Cleric, Stout>;
+
+// is_base_of_v<IRace, Human> == false ! nned to find a solution to that
+//template class Hero<Cleric, Human>;
+//template class Hero<Cleric, Dragonborn>;
+template class Hero<Cleric, ForestGnome>;
+template class Hero<Cleric, RockGnome>;
+//template class Hero<Cleric, HalfElf>;
+//template class Hero<Cleric, HalfOrc>;
+//template class Hero<Cleric, Tiefling>;

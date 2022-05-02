@@ -12,8 +12,6 @@ public:
 	Elf() : ICreature(60, Size::medium, 30, 0, 0, 0), IRace()
 	{
 		set_ability_score_increase(Ability::dexterity, 2);
-
-		add_resistance(Damage::poison);
 	}
 
 private:
