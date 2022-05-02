@@ -11,9 +11,9 @@ heroes, NPC, monsters
 export class ICreature
 {
 public:
-	ICreature(int darkvision, int speed_land, int speed_climb, int speed_air,
+	ICreature(int darkvision, Size size, int speed_land, int speed_climb, int speed_air,
 		int speed_water) : 
-		m_darkvision(darkvision), m_speed_land(speed_land), m_speed_climb(speed_climb), 
+		m_darkvision(darkvision), m_size(size), m_speed_land(speed_land), m_speed_climb(speed_climb),
 		m_speed_air(speed_air), m_speed_water(speed_water)
 	{
 		set_default_ability_scores();
@@ -31,9 +31,10 @@ public:
 
 private:
 	
-	int m_darkvision; /*!< Darkvision, in feet */	
-	int m_speed_land; /*!< Walking speed, in feet per turn */	
-	int m_speed_climb; /*!< Climbing speed, in feet per turn */	
+	int m_darkvision; /*!< Darkvision, in feet */
+	Size m_size; /*!< Tiny, Small, etc */
+	int m_speed_land; /*!< Walking speed, in feet per turn */
+	int m_speed_climb; /*!< Climbing speed, in feet per turn */
 	int m_speed_air; /*!< Flying speed, in feet per turn */
 	int m_speed_water; /*!< Swimming speed, in feet per turn */
 
