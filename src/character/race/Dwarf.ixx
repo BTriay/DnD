@@ -11,7 +11,8 @@ class Dwarf : public ICreature, public IRace
 public:
 	Dwarf() : ICreature(60, 25, 0, 0, 0), IRace()
 	{
-		ability_score_increase(Ability::constitution, 2);
+		set_ability_score_increase(Ability::constitution, 2);
+
 		add_resistance(Damage::poison);
 	}
 
@@ -23,7 +24,7 @@ private:
 export class HillDwarf : public Dwarf
 {
 public:
-	HillDwarf() { ability_score_increase(Ability::wisdom, 1); }
+	HillDwarf() { set_ability_score_increase(Ability::wisdom, 1); }
 
 private:
 
@@ -33,7 +34,7 @@ private:
 export class MountainDwarf : public Dwarf
 {
 public:
-	MountainDwarf() { ability_score_increase(Ability::strength, 2); }
+	MountainDwarf() { set_ability_score_increase(Ability::strength, 2); }
 
 private:
 };
