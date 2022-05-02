@@ -15,7 +15,7 @@ public:
     Hero(const std::string& name) : m_name(name), C(), R() {}
 
     const std::string& name() const { return m_name; }
-    int ability_modifier(Ability ability) const
+    int ability_modifier(Ability ability) const override
     {
         return (R::ability_score_increase(ability) + R::ability_score(ability) - 10) / 2;
     }

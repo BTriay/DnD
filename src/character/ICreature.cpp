@@ -7,6 +7,11 @@ int ICreature::ability_score(Ability ability) const
 	return m_ability_score.at(ability);
 }
 
+int ICreature::ability_modifier(Ability ability) const
+{
+	return (m_ability_score.at(ability) - 10) / 2;
+}
+
 void ICreature::set_ability_score(Ability ability, int score)
 {
 	m_ability_score[ability] = score;

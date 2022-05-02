@@ -19,24 +19,32 @@ public:
 		set_default_ability_scores();
 	}
 
-	int ability_score(Ability ability) const;
-	void set_ability_score(Ability ability, int score);
-
-	void set_skill_score(Skill skill, int score);
-	void add_resistance(Damage resistance);
+	int ability_score(Ability ability) const; /*!< Get the ability score of the creature */
+	virtual int ability_modifier(Ability ability) const; /*!< Get the ability modifier of the creature */
+	void set_ability_score(Ability ability, int score); /*!< Set the ability score of the creature */
+	void set_skill_score(Skill skill, int score); /*!< Get the ability score of the creature */
+	void add_resistance(Damage resistance); /*!< Add resistance to the creature */
 	virtual void set_hit_points_max(int hp);
 
 	//virtual int armor_class() = 0;
 	//virtual int difficulty_class() = 0;
 
 private:
-	int m_darkvision;
-	int m_speed_land;
-	int m_speed_climb;
-	int m_speed_air;
-	int m_speed_water;
+	
+	int m_darkvision; /*!< Darkvision, in feet */	
+	int m_speed_land; /*!< Walking speed, in feet per turn */	
+	int m_speed_climb; /*!< Climbing speed, in feet per turn */	
+	int m_speed_air; /*!< Flying speed, in feet per turn */
+	int m_speed_water; /*!< Swimming speed, in feet per turn */
 
-	int m_hit_points_max_without_constit; // i.e. exclude constitution bonus
+	/*!
+	The maximum hit points, excluding the hp gained by the constitution modifier on each level
+	*/
+	int m_hit_points_max_without_constit;
+	/*!
+	Current hp. It includes the hp gained by the constitution modifier on each level,
+	so it can be higher than m_hit_points_max_without_constit
+	*/
 	int m_hit_points_current;
 
 	std::map<Ability, int> m_ability_score;
