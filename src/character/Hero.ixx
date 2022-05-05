@@ -9,6 +9,15 @@ import enumeration;
 
 // classes
 import Cleric;
+import Druid;
+import Fighter;
+import Monk;
+import Paladin;
+import Ranger;
+import Rogue;
+import Sorcerer;
+import Warlock;
+import Wizard;
 
 // races
 import Dwarf;
@@ -32,6 +41,7 @@ public:
 
     /*! Get the name of the hero */
     const std::string& name() const { return m_name; }
+
     /*! Get the ability modifier of the hero */
     int ability_modifier(Ability ability) const override
     {
@@ -85,3 +95,138 @@ template class Hero<Cleric, RockGnome>;
 template class Hero<Cleric, HalfElf>;
 template class Hero<Cleric, HalfOrc>;
 template class Hero<Cleric, Tiefling>;
+
+template class Hero<Druid, HillDwarf>;
+template class Hero<Druid, MountainDwarf>;
+template class Hero<Druid, HighElf>;
+template class Hero<Druid, WoodElf>;
+template class Hero<Druid, DarkElf>;
+template class Hero<Druid, Lightfoot>;
+template class Hero<Druid, Stout>;
+template class Hero<Druid, Human>;
+template class Hero<Druid, Dragonborn>;
+template class Hero<Druid, ForestGnome>;
+template class Hero<Druid, RockGnome>;
+template class Hero<Druid, HalfElf>;
+template class Hero<Druid, HalfOrc>;
+template class Hero<Druid, Tiefling>;
+
+template class Hero<Fighter, HillDwarf>;
+template class Hero<Fighter, MountainDwarf>;
+template class Hero<Fighter, HighElf>;
+template class Hero<Fighter, WoodElf>;
+template class Hero<Fighter, DarkElf>;
+template class Hero<Fighter, Lightfoot>;
+template class Hero<Fighter, Stout>;
+template class Hero<Fighter, Human>;
+template class Hero<Fighter, Dragonborn>;
+template class Hero<Fighter, ForestGnome>;
+template class Hero<Fighter, RockGnome>;
+template class Hero<Fighter, HalfElf>;
+template class Hero<Fighter, HalfOrc>;
+template class Hero<Fighter, Tiefling>;
+
+template class Hero<Monk, HillDwarf>;
+template class Hero<Monk, MountainDwarf>;
+template class Hero<Monk, HighElf>;
+template class Hero<Monk, WoodElf>;
+template class Hero<Monk, DarkElf>;
+template class Hero<Monk, Lightfoot>;
+template class Hero<Monk, Stout>;
+template class Hero<Monk, Human>;
+template class Hero<Monk, Dragonborn>;
+template class Hero<Monk, ForestGnome>;
+template class Hero<Monk, RockGnome>;
+template class Hero<Monk, HalfElf>;
+template class Hero<Monk, HalfOrc>;
+template class Hero<Monk, Tiefling>;
+
+template class Hero<Paladin, HillDwarf>;
+template class Hero<Paladin, MountainDwarf>;
+template class Hero<Paladin, HighElf>;
+template class Hero<Paladin, WoodElf>;
+template class Hero<Paladin, DarkElf>;
+template class Hero<Paladin, Lightfoot>;
+template class Hero<Paladin, Stout>;
+template class Hero<Paladin, Human>;
+template class Hero<Paladin, Dragonborn>;
+template class Hero<Paladin, ForestGnome>;
+template class Hero<Paladin, RockGnome>;
+template class Hero<Paladin, HalfElf>;
+template class Hero<Paladin, HalfOrc>;
+template class Hero<Paladin, Tiefling>;
+
+template class Hero<Ranger, HillDwarf>;
+template class Hero<Ranger, MountainDwarf>;
+template class Hero<Ranger, HighElf>;
+template class Hero<Ranger, WoodElf>;
+template class Hero<Ranger, DarkElf>;
+template class Hero<Ranger, Lightfoot>;
+template class Hero<Ranger, Stout>;
+template class Hero<Ranger, Human>;
+template class Hero<Ranger, Dragonborn>;
+template class Hero<Ranger, ForestGnome>;
+template class Hero<Ranger, RockGnome>;
+template class Hero<Ranger, HalfElf>;
+template class Hero<Ranger, HalfOrc>;
+template class Hero<Ranger, Tiefling>;
+
+template class Hero<Rogue, HillDwarf>;
+template class Hero<Rogue, MountainDwarf>;
+template class Hero<Rogue, HighElf>;
+template class Hero<Rogue, WoodElf>;
+template class Hero<Rogue, DarkElf>;
+template class Hero<Rogue, Lightfoot>;
+template class Hero<Rogue, Stout>;
+template class Hero<Rogue, Human>;
+template class Hero<Rogue, Dragonborn>;
+template class Hero<Rogue, ForestGnome>;
+template class Hero<Rogue, RockGnome>;
+template class Hero<Rogue, HalfElf>;
+template class Hero<Rogue, HalfOrc>;
+template class Hero<Rogue, Tiefling>;
+
+template class Hero<Sorcerer, HillDwarf>;
+template class Hero<Sorcerer, MountainDwarf>;
+template class Hero<Sorcerer, HighElf>;
+template class Hero<Sorcerer, WoodElf>;
+template class Hero<Sorcerer, DarkElf>;
+template class Hero<Sorcerer, Lightfoot>;
+template class Hero<Sorcerer, Stout>;
+template class Hero<Sorcerer, Human>;
+template class Hero<Sorcerer, Dragonborn>;
+template class Hero<Sorcerer, ForestGnome>;
+template class Hero<Sorcerer, RockGnome>;
+template class Hero<Sorcerer, HalfElf>;
+template class Hero<Sorcerer, HalfOrc>;
+template class Hero<Sorcerer, Tiefling>;
+
+template class Hero<Warlock, HillDwarf>;
+template class Hero<Warlock, MountainDwarf>;
+template class Hero<Warlock, HighElf>;
+template class Hero<Warlock, WoodElf>;
+template class Hero<Warlock, DarkElf>;
+template class Hero<Warlock, Lightfoot>;
+template class Hero<Warlock, Stout>;
+template class Hero<Warlock, Human>;
+template class Hero<Warlock, Dragonborn>;
+template class Hero<Warlock, ForestGnome>;
+template class Hero<Warlock, RockGnome>;
+template class Hero<Warlock, HalfElf>;
+template class Hero<Warlock, HalfOrc>;
+template class Hero<Warlock, Tiefling>;
+
+template class Hero<Wizard, HillDwarf>;
+template class Hero<Wizard, MountainDwarf>;
+template class Hero<Wizard, HighElf>;
+template class Hero<Wizard, WoodElf>;
+template class Hero<Wizard, DarkElf>;
+template class Hero<Wizard, Lightfoot>;
+template class Hero<Wizard, Stout>;
+template class Hero<Wizard, Human>;
+template class Hero<Wizard, Dragonborn>;
+template class Hero<Wizard, ForestGnome>;
+template class Hero<Wizard, RockGnome>;
+template class Hero<Wizard, HalfElf>;
+template class Hero<Wizard, HalfOrc>;
+template class Hero<Wizard, Tiefling>;
