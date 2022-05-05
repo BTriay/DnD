@@ -6,7 +6,7 @@ import enumeration;
 import IRace;
 import ICreature;
 
-class Tiefling : public ICreature, public IRace
+export class Tiefling : public ICreature, public IRace
 {
 public:
 	Tiefling() : ICreature(60, Size::medium, 25, 0, 0, 0), IRace()

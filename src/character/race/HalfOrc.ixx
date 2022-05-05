@@ -6,7 +6,7 @@ import enumeration;
 import IRace;
 import ICreature;
 
-class HalfOrc : public ICreature, public IRace
+export class HalfOrc : public ICreature, public IRace
 {
 public:
 	HalfOrc() : ICreature(60, Size::medium, 30, 0, 0, 0), IRace()

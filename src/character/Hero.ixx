@@ -23,7 +23,7 @@ import Tiefling;
 
 
 export template <typename C, typename R>
-    requires std::is_base_of_v<IClass, C>&& std::is_base_of_v<IRace, R>
+    requires std::is_base_of_v<IClass, C> && std::is_base_of_v<IRace, R>
 class Hero : public C, public R
 {
 public:
@@ -55,7 +55,7 @@ private:
 };
 
 export template <typename C, typename R>
-    requires std::is_base_of_v<IClass, C>&& std::is_base_of_v<IRace, R>
+    requires std::is_base_of_v<IClass, C> && std::is_base_of_v<IRace, R>
 std::ostream& operator<<(std::ostream& os, const Hero<C, R>& hero)
 {
     os << hero.name() << " is level " << hero.level() 
@@ -78,12 +78,10 @@ template class Hero<Cleric, WoodElf>;
 template class Hero<Cleric, DarkElf>;
 template class Hero<Cleric, Lightfoot>;
 template class Hero<Cleric, Stout>;
-
-// is_base_of_v<IRace, Human> == false ! nned to find a solution to that
-//template class Hero<Cleric, Human>;
-//template class Hero<Cleric, Dragonborn>;
+template class Hero<Cleric, Human>;
+template class Hero<Cleric, Dragonborn>;
 template class Hero<Cleric, ForestGnome>;
 template class Hero<Cleric, RockGnome>;
-//template class Hero<Cleric, HalfElf>;
-//template class Hero<Cleric, HalfOrc>;
-//template class Hero<Cleric, Tiefling>;
+template class Hero<Cleric, HalfElf>;
+template class Hero<Cleric, HalfOrc>;
+template class Hero<Cleric, Tiefling>;
