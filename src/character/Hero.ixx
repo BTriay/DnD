@@ -6,6 +6,7 @@ import <iostream>;
 import IClass;
 import IRace;
 import enumeration;
+import Armor;
 
 // classes
 import Cleric;
@@ -60,8 +61,20 @@ public:
             * ability_modifier(Ability::constitution));
     }
 
+    void don_armor(Armor& armor) { m_armor = armor; }
+    void doff_armor()
+    {
+        m_armor = armor_creator(ArmorType::none);
+    }
+
+    int armor_class() const
+    { 
+        return m_armor.armor_class(ability_modifier(Ability::dexterity));
+    }
+
 private:
     const std::string m_name;
+    Armor m_armor;
 };
 
 export template <typename C, typename R>
@@ -76,6 +89,7 @@ std::ostream& operator<<(std::ostream& os, const Hero<C, R>& hero)
     os << "\tintelligence: " << hero.ability_modifier(Ability::intelligence) << '\n';
     os << "\tstrength: " << hero.ability_modifier(Ability::strength) << '\n';
     os << "\twisdom: " << hero.ability_modifier(Ability::wisdom) << '\n';
+    os << hero.name() << " has an AC of " << hero.armor_class() << '\n';
 
     return os;
 }

@@ -64,9 +64,10 @@ add_library(character
             ./class/Wizard.ixx
             )
 
-target_link_libraries(character PRIVATE common)
+target_link_libraries(character PRIVATE common equipment)
 
 target_include_directories(character PUBLIC
             ${include_directory}
             "${PROJECT_SOURCE_DIR}/common"
+            "${PROJECT_SOURCE_DIR}/equipment"
             )

@@ -43,3 +43,16 @@ export enum class HitDice
 {
 	six = 4, eight = 5, ten = 6, twelve = 7
 };
+
+export enum class ArmorProtection
+{
+	none, light, medium, heavy
+};
+
+export enum class ArmorType
+{
+	none,
+	padded, leather, studded_leather,
+	hide, chain_shirt, scale_mail, breastplate, half_plate,
+	ring_mail, chain_mail, splint, plate
+};
