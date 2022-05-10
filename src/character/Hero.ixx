@@ -38,7 +38,8 @@ class Hero : public C, public R
 {
 public:
     /*! Build a hero! */
-    Hero(const std::string& name) : m_name(name), C(), R() {}
+    Hero(const std::string& name) : 
+        m_name(name), m_has_shield(false), C(), R() {}
 
     /*! Get the name of the hero */
     const std::string& name() const { return m_name; }
@@ -70,10 +71,15 @@ public:
 
     int armor_class() const
     { 
-        return m_armor.armor_class(ability_modifier(Ability::dexterity));
+        return m_armor.armor_class(ability_modifier(Ability::dexterity))
+            + (m_has_shield ? 2 : 0);
     }
 
+    void don_shield() { m_has_shield = true; }
+    void doff_shield() { m_has_shield = false; }
+
 private:
+    bool m_has_shield;
     const std::string m_name;
     Armor m_armor;
 };
