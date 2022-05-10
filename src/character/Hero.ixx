@@ -62,6 +62,7 @@ public:
     }
 
     void don_armor(Armor& armor) { m_armor = armor; }
+    void don_armor(ArmorType armor_type) { m_armor = armor_creator(armor_type); }
     void doff_armor()
     {
         m_armor = armor_creator(ArmorType::none);
