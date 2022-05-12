@@ -47,7 +47,8 @@ public:
     /*! Get the ability modifier of the hero */
     int ability_modifier(Ability ability) const override
     {
-        return (R::ability_score_increase(ability) + R::ability_score(ability) - 10) / 2;
+        return (R::ability_score_increase(ability) + R::ability_score(ability) 
+            + m_armor.ability_score_increase(ability) - 10) / 2;
     }
 
     /*! Override the ICreature's set_hit_points_max member function 

@@ -2,15 +2,16 @@ export module Armor;
 
 import <stdexcept>;
 import enumeration;
+import Item;
 
-export class Armor
+export class Armor : public Item
 {
 public:
 	Armor() : Armor(ArmorProtection::none, 10) {}
 
 	Armor(ArmorProtection type, int base_armor_class, 
 		bool stealth_disadvantage = false, int strength_required = 0): 
-		m_type(type), m_base_armor_class(base_armor_class), 
+		Item(), m_type(type), m_base_armor_class(base_armor_class),
 		m_stealth_disadvantage(stealth_disadvantage),
 		m_strength_required(strength_required) {}
 
