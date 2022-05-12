@@ -69,7 +69,7 @@ export enum class WeaponReach
 
 export enum class WeaponProperty
 {
-	Finesse, Heavy, Light, Loading, Range,
-	Reach, Thrown, TwoHanded, Versatile
+	none, finesse, heavy, light, loading, range,
+	reach, thrown, twoHanded, versatile
 };
 

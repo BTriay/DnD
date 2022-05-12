@@ -10,6 +10,8 @@ endif()
 link_directories(${link_directory})
 
 add_library(common
+            Die.cpp
+            Die.ixx
             enumeration.cpp
             enumeration.ixx
             )
