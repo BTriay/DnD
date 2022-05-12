@@ -56,3 +56,20 @@ export enum class ArmorType
 	hide, chain_shirt, scale_mail, breastplate, half_plate,
 	ring_mail, chain_mail, splint, plate
 };
+
+export enum class WeaponProficiency
+{
+	Simple, Martial
+};
+
+export enum class WeaponReach
+{
+	Melee, Ranged
+};
+
+export enum class WeaponProperty
+{
+	Finesse, Heavy, Light, Loading, Range,
+	Reach, Thrown, TwoHanded, Versatile
+};
+
