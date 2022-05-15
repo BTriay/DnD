@@ -80,6 +80,11 @@ public:
     void don_shield() { m_has_shield = true; }
     void doff_shield() { m_has_shield = false; }
 
+    void add_weapon_one(const Weapon& weapon) { m_weapon_1 = weapon; }
+    void drop_weapon_one() { m_weapon_1 = {}; }
+    void add_weapon_two(Weapon& weapon) { m_weapon_2 = weapon; }
+    void drop_weapon_two() { m_weapon_2 = {}; }
+
 private:
     bool m_has_shield;
     const std::string m_name;
