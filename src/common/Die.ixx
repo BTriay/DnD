@@ -10,6 +10,18 @@ export enum class DieFaces
 export class Die
 {
 public:
+	Die(int number_dice, DieFaces df, int bonus):
+		m_number_dice(number_dice), m_df(df), m_bonus(bonus) {}
+	Die(const Die& die) = default;
+	Die(Die&& die) = default;
+	Die& operator=(const Die& die) = default;
+	Die& operator=(Die&& die) = default;
+
+	int roll() const
+	{
+		return gen(m_number_dice, m_df, m_bonus);
+	}
+	
 	static int gen(int number_dice, DieFaces df, const int bonus)
 	{
 		std::random_device dev;
@@ -47,4 +59,8 @@ public:
 		return sum;
 	}
 
+private:
+	const int m_number_dice;
+	const DieFaces m_df;
+	const int m_bonus;
 };
