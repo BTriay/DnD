@@ -11,7 +11,9 @@ This is to attach extra abilities to these items
 export class Item
 {
 public:
-	
+	Item() = default;
+	Item& operator=(const Item&) = default;
+
 	int ability_score_increase(Ability ability) const;
 	void set_ability_score_increase(Ability ability, int increase);
 
