@@ -12,10 +12,8 @@ export class Die
 public:
 	Die(int number_dice, DieFaces df, int bonus):
 		m_number_dice(number_dice), m_df(df), m_bonus(bonus) {}
-	Die(const Die& die) = default;
-	Die(Die&& die) = default;
-	Die& operator=(const Die& die) = default;
-	Die& operator=(Die&& die) = default;
+	
+	Die& operator=(const Die& rhs);
 
 	int roll() const
 	{
@@ -60,7 +58,7 @@ public:
 	}
 
 private:
-	const int m_number_dice;
-	const DieFaces m_df;
-	const int m_bonus;
+	int m_number_dice;
+	DieFaces m_df;
+	int m_bonus;
 };
