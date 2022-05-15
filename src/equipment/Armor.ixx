@@ -15,9 +15,6 @@ public:
 		m_stealth_disadvantage(stealth_disadvantage),
 		m_strength_required(strength_required) {}
 
-	Armor& operator=(const Armor& armor) = default;
-	Armor& operator=(Armor&& armor) = default;
-
 	int armor_class(int dexterity_modifier) const;
 	ArmorProtection armor_type() const { return m_type; }
 	bool stealth_disadvantage() const { return m_stealth_disadvantage; }
