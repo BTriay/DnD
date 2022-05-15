@@ -12,9 +12,10 @@ public:
 	Weapon(WeaponProficiency weapon_proficiency, WeaponReach weapon_reach,
 		Damage damage, Die die, WeaponProperty weapon_property = WeaponProperty::none):
 
-		m_weapon_proficiency(weapon_proficiency), m_weapon_reach(weapon_reach),
+		Item(), m_weapon_proficiency(weapon_proficiency), m_weapon_reach(weapon_reach),
 		m_damage(damage), m_die(die), m_weapon_property(weapon_property) {}
 
+	Weapon& operator=(const Weapon& rhs);
 
 private:
 	WeaponProficiency m_weapon_proficiency;
