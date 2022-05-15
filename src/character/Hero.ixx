@@ -7,6 +7,7 @@ import IClass;
 import IRace;
 import enumeration;
 import Armor;
+import Weapon;
 
 // classes
 import Cleric;
@@ -83,6 +84,8 @@ private:
     bool m_has_shield;
     const std::string m_name;
     Armor m_armor;
+    Weapon m_weapon_1;
+    Weapon m_weapon_2;
 };
 
 export template <typename C, typename R>
