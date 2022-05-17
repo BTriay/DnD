@@ -59,17 +59,28 @@ export enum class ArmorType
 
 export enum class WeaponProficiency
 {
-	Simple, Martial
+	simple, martial
 };
 
 export enum class WeaponReach
 {
-	Melee, Ranged
+	melee, ranged
 };
 
 export enum class WeaponProperty
 {
 	none, finesse, heavy, light, loading, range,
-	reach, thrown, twoHanded, versatile
+	reach, thrown, two_handed, versatile
 };
 
+export enum class WeaponType
+{
+	none,
+	club, dagger, great_club, handaxe, javelin, light_hammer, 
+	mace, quarterstaff, sickle, spear,
+	light_crossbow, dart, shortbow, sling,
+	battleaxe, flail, glaive, greataxe, greatsword, halberd,
+	lance, longsword, maul, morningstar, pike, rapier, scimitar,
+	shortsword, trident, war_pick, warhammer, whip,
+	blowgun, hand_crossbow, heavy_crossbow, longbow
+};
