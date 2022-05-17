@@ -4,12 +4,12 @@ module ICreature;
 
 int ICreature::ability_score(Ability ability) const
 { 
-	return m_ability_score.at(ability);
+	return m_ability_score.at(ability) + m_armor.ability_score_increase(ability);
 }
 
 int ICreature::ability_modifier(Ability ability) const
 {
-	return (m_ability_score.at(ability) - 10) / 2;
+	return (m_ability_score.at(ability) + m_armor.ability_score_increase(ability) - 10) / 2;
 }
 
 void ICreature::set_ability_score(Ability ability, int score)

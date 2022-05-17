@@ -4,9 +4,9 @@ import <string>;
 import <iostream>;
 
 import IClass;
+import ICreature;
 import IRace;
 import enumeration;
-import Armor;
 import Weapon;
 
 // classes
@@ -34,13 +34,15 @@ import Tiefling;
 
 
 export template <typename C, typename R>
-    requires std::is_base_of_v<IClass, C> && std::is_base_of_v<IRace, R>
+    requires std::is_base_of_v<IClass, C>
+        && std::is_base_of_v<IRace, R>
+        && std::is_base_of_v<ICreature, R>
 class Hero : public C, public R
 {
 public:
     /*! Build a hero! */
     Hero(const std::string& name) : 
-        m_name(name), m_has_shield(false), C(), R() {}
+        m_name(name), C(), R() {}
 
     /*! Get the name of the hero */
     const std::string& name() const { return m_name; }
@@ -49,7 +51,7 @@ public:
     int ability_modifier(Ability ability) const override
     {
         return (R::ability_score_increase(ability) + R::ability_score(ability) 
-            + m_armor.ability_score_increase(ability) - 10) / 2;
+            - 10) / 2;
     }
 
     /*! Override the ICreature's set_hit_points_max member function 
@@ -64,31 +66,13 @@ public:
             * ability_modifier(Ability::constitution));
     }
 
-    void don_armor(Armor& armor) { m_armor = armor; }
-    void don_armor(ArmorType armor_type) { m_armor = armor_creator(armor_type); }
-    void doff_armor()
-    {
-        m_armor = armor_creator(ArmorType::none);
-    }
-
-    int armor_class() const
-    { 
-        return m_armor.armor_class(ability_modifier(Ability::dexterity))
-            + (m_has_shield ? 2 : 0);
-    }
-
-    void don_shield() { m_has_shield = true; }
-    void doff_shield() { m_has_shield = false; }
-
     void add_weapon_one(const Weapon& weapon) { m_weapon_1 = weapon; }
     void drop_weapon_one() { m_weapon_1 = {}; }
     void add_weapon_two(Weapon& weapon) { m_weapon_2 = weapon; }
     void drop_weapon_two() { m_weapon_2 = {}; }
 
 private:
-    bool m_has_shield;
     const std::string m_name;
-    Armor m_armor;
     Weapon m_weapon_1;
     Weapon m_weapon_2;
 };

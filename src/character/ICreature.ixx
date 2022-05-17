@@ -3,6 +3,7 @@ export module ICreature;
 import <map>;
 import <vector>;
 import enumeration;
+import Armor;
 
 /*!
 Class common to all the creatures of the DnD world:
@@ -14,7 +15,7 @@ public:
 	ICreature(int darkvision, Size size, int speed_land, int speed_climb = 0, 
 		int speed_air = 0, int speed_water = 0) : 
 		m_darkvision(darkvision), m_size(size), m_speed_land(speed_land), m_speed_climb(speed_climb),
-		m_speed_air(speed_air), m_speed_water(speed_water)
+		m_speed_air(speed_air), m_speed_water(speed_water), m_has_shield(false)
 	{
 		set_default_ability_scores();
 	}
@@ -31,6 +32,22 @@ public:
 	void set_speed_climb(int speed_climb);
 	void set_speed_air(int speed_air);
 	void set_speed_water(int speed_water);
+
+	void don_armor(Armor& armor) { m_armor = armor; }
+	void don_armor(ArmorType armor_type) { m_armor = armor_creator(armor_type); }
+	void doff_armor()
+	{
+		m_armor = armor_creator(ArmorType::none);
+	}
+
+	virtual int armor_class() const
+	{
+		return m_armor.armor_class(ability_modifier(Ability::dexterity))
+			+ (m_has_shield ? 2 : 0);
+	}
+
+	void don_shield() { m_has_shield = true; }
+	void doff_shield() { m_has_shield = false; }
 
 	//virtual int armor_class() = 0;
 	//virtual int difficulty_class() = 0;
@@ -60,11 +77,6 @@ private:
 
 	void set_default_ability_scores();
 
-	// TODO:
-	//	armor
-	//	vector<Weapon> weapons; // how to know which weapon(s) is being used, vs which is in pack?
-	//	Item& shield;
-	//	vector<Item&> m_rings;
-	//	vector<Item&> m_amulets;
-	//	vector<item> // magical items: gloves, helmet, belt, etc.
+	bool m_has_shield;
+	Armor m_armor;
 };

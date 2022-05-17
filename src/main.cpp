@@ -21,10 +21,15 @@ int main()
     
     std::cout << helgret << '\n';
 
+
     auto armor = armor_creator(ArmorType::chain_mail);
-    armor.set_ability_score_increase(Ability::constitution, 1);
-    armor.set_ability_score_increase(Ability::wisdom, 4);
-    
+    helgret.don_armor(armor);
+    std::cout << helgret << '\n';
+
     auto warhammer = weapon_creator(WeaponType::warhammer);
     helgret.add_weapon_one(warhammer);
+
+    helgret.don_shield();
+    std::cout << helgret << '\n';
+
 }
