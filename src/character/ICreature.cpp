@@ -2,21 +2,31 @@ module ICreature;
 
 /* PUBLIC MEMBER FUNCTIONS */
 
+/*! Get the ability score of the creature.
+This includes bonuses from magical items (armor, weapon, rings, etc).
+*/
 int ICreature::ability_score(Ability ability) const
 { 
 	return m_ability_score.at(ability) + m_armor.ability_score_increase(ability);
 }
 
+/*! Get the ability modifier of the creature.
+This includes bonuses from magical items (armor, weapon, rings, etc).
+*/
 int ICreature::ability_modifier(Ability ability) const
 {
 	return (m_ability_score.at(ability) + m_armor.ability_score_increase(ability) - 10) / 2;
 }
 
+/*! Set the ability score of the creature.
+This does not affect the magical items worn by the creature.
+*/
 void ICreature::set_ability_score(Ability ability, int score)
 {
 	m_ability_score[ability] = score;
 }
 
+/*! Set the skill score of the creature */
 void ICreature::set_skill_score(Skill skill, int score)
 {
 	m_skill_score[skill] = score;
@@ -28,6 +38,7 @@ void ICreature::set_hit_points_max(int hp)
 	m_hit_points_current = hp;
 }
 
+/*! Add resistance to the creature */
 void ICreature::add_resistance(Damage resistance)
 {
 	m_resistance.push_back(resistance);

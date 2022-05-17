@@ -20,12 +20,12 @@ public:
 		set_default_ability_scores();
 	}
 
-	int ability_score(Ability ability) const; /*!< Get the ability score of the creature */
-	virtual int ability_modifier(Ability ability) const; /*!< Get the ability modifier of the creature */
-	void set_ability_score(Ability ability, int score); /*!< Set the ability score of the creature */
-	void set_skill_score(Skill skill, int score); /*!< Get the ability score of the creature */
-	void add_resistance(Damage resistance); /*!< Add resistance to the creature */
+	int ability_score(Ability ability) const;
+	virtual int ability_modifier(Ability ability) const;
+	void set_ability_score(Ability ability, int score);
+	void set_skill_score(Skill skill, int score);
 	virtual void set_hit_points_max(int hp);
+	void add_resistance(Damage resistance);
 	
 	void set_darkvision(int darkvision_distance);
 	void set_speed_land(int speed_land);
@@ -49,7 +49,6 @@ public:
 	void don_shield() { m_has_shield = true; }
 	void doff_shield() { m_has_shield = false; }
 
-	//virtual int armor_class() = 0;
 	//virtual int difficulty_class() = 0;
 
 private:
