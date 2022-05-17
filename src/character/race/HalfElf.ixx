@@ -9,7 +9,7 @@ import ICreature;
 export class HalfElf : public ICreature, public IRace
 {
 public:
-	HalfElf() : ICreature(60, Size::medium, 30, 0, 0, 0), IRace()
+	HalfElf() : ICreature(60, Size::medium, 30), IRace()
 	{
 		set_ability_score_increase(Ability::charisma, 2);
 		

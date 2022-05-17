@@ -9,7 +9,7 @@ import ICreature;
 class Gnome : public ICreature, public IRace
 {
 public:
-	Gnome() : ICreature(60, Size::small, 25, 0, 0, 0), IRace()
+	Gnome() : ICreature(60, Size::small, 25), IRace()
 	{
 		set_ability_score_increase(Ability::intelligence, 2);
 	}

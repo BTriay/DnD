@@ -9,7 +9,7 @@ import ICreature;
 class Elf : public ICreature, public IRace
 {
 public:
-	Elf() : ICreature(60, Size::medium, 30, 0, 0, 0), IRace()
+	Elf() : ICreature(60, Size::medium, 30), IRace()
 	{
 		set_ability_score_increase(Ability::dexterity, 2);
 	}

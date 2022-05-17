@@ -11,8 +11,8 @@ heroes, NPC, monsters
 export class ICreature
 {
 public:
-	ICreature(int darkvision, Size size, int speed_land, int speed_climb, int speed_air,
-		int speed_water) : 
+	ICreature(int darkvision, Size size, int speed_land, int speed_climb = 0, 
+		int speed_air = 0, int speed_water = 0) : 
 		m_darkvision(darkvision), m_size(size), m_speed_land(speed_land), m_speed_climb(speed_climb),
 		m_speed_air(speed_air), m_speed_water(speed_water)
 	{
