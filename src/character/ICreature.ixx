@@ -4,6 +4,7 @@ import <map>;
 import <vector>;
 import enumeration;
 import Armor;
+import Weapon;
 
 /*!
 Class common to all the creatures of the DnD world:
@@ -49,7 +50,10 @@ public:
 	void don_shield() { m_has_shield = true; }
 	void doff_shield() { m_has_shield = false; }
 
-	//virtual int difficulty_class() = 0;
+	void add_weapon_one(const Weapon& weapon) { m_weapon_1 = weapon; }
+	void drop_weapon_one() { m_weapon_1 = {}; }
+	void add_weapon_two(Weapon& weapon) { m_weapon_2 = weapon; }
+	void drop_weapon_two() { m_weapon_2 = {}; }
 
 private:
 	
@@ -78,4 +82,6 @@ private:
 
 	bool m_has_shield;
 	Armor m_armor;
+	Weapon m_weapon_1;
+	Weapon m_weapon_2;
 };

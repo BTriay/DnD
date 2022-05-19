@@ -7,7 +7,6 @@ import IClass;
 import ICreature;
 import IRace;
 import enumeration;
-import Weapon;
 
 // classes
 import Cleric;
@@ -66,15 +65,9 @@ public:
             * ability_modifier(Ability::constitution));
     }
 
-    void add_weapon_one(const Weapon& weapon) { m_weapon_1 = weapon; }
-    void drop_weapon_one() { m_weapon_1 = {}; }
-    void add_weapon_two(Weapon& weapon) { m_weapon_2 = weapon; }
-    void drop_weapon_two() { m_weapon_2 = {}; }
-
 private:
     const std::string m_name;
-    Weapon m_weapon_1;
-    Weapon m_weapon_2;
+
 };
 
 export template <typename C, typename R>

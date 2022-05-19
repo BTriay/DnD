@@ -7,7 +7,10 @@ This includes bonuses from magical items (armor, weapon, rings, etc).
 */
 int ICreature::ability_score(Ability ability) const
 { 
-	return m_ability_score.at(ability) + m_armor.ability_score_increase(ability);
+	return m_ability_score.at(ability) 
+		+ m_armor.ability_score_increase(ability)
+		+ m_weapon_1.ability_score_increase(ability)
+		+ m_weapon_2.ability_score_increase(ability);
 }
 
 /*! Get the ability modifier of the creature.
