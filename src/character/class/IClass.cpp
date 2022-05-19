@@ -14,6 +14,11 @@ int IClass::level() const
 	return m_level;
 }
 
+void IClass::gain_level()
+{
+	++m_level;
+}
+
 /* END OF PUBLIC MEMBER FUNCTIONS */
 
 /* PROTECTED MEMBER FUNCTIONS */
