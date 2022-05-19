@@ -10,7 +10,7 @@ export enum class DieFaces
 export class Die
 {
 public:
-	Die(int number_dice, DieFaces df, int bonus):
+	Die(int number_dice, DieFaces df, int bonus = 0):
 		m_number_dice(number_dice), m_df(df), m_bonus(bonus) {}
 	
 	Die& operator=(const Die& rhs);
@@ -20,7 +20,7 @@ public:
 		return gen(m_number_dice, m_df, m_bonus);
 	}
 	
-	static int gen(int number_dice, DieFaces df, const int bonus)
+	static int gen(int number_dice, DieFaces df, const int bonus = 0)
 	{
 		std::random_device dev;
 		std::mt19937 rng(dev());

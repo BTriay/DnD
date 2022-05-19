@@ -26,12 +26,12 @@ Weapon weapon_creator(WeaponType model)
 
 	case WeaponType::club:
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::bludgeoning, Die::Die(1, DieFaces::four, 0), WeaponProperty::light);
+			Damage::bludgeoning, Die::Die(1, DieFaces::four), WeaponProperty::light);
 
 	case WeaponType::dagger:
 	{
 		Weapon weapon{ model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::piercing, Die::Die(1, DieFaces::four, 0) };
+			Damage::piercing, Die::Die(1, DieFaces::four) };
 		weapon.add_property(WeaponProperty::finesse);
 		weapon.add_property(WeaponProperty::light);
 		weapon.add_property(WeaponProperty::thrown);
@@ -40,12 +40,12 @@ Weapon weapon_creator(WeaponType model)
 
 	case WeaponType::great_club:
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::bludgeoning, Die::Die(1, DieFaces::eight, 0), WeaponProperty::two_handed);
+			Damage::bludgeoning, Die::Die(1, DieFaces::eight), WeaponProperty::two_handed);
 
 	case WeaponType::handaxe:
 	{
 		Weapon weapon{ model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, DieFaces::six, 0) };
+			Damage::slashing, Die::Die(1, DieFaces::six) };
 		weapon.add_property(WeaponProperty::light);
 		weapon.add_property(WeaponProperty::thrown);
 		return weapon;
@@ -53,12 +53,12 @@ Weapon weapon_creator(WeaponType model)
 
 	case WeaponType::javelin:
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::piercing, Die::Die(1, DieFaces::six, 0), WeaponProperty::thrown);
+			Damage::piercing, Die::Die(1, DieFaces::six), WeaponProperty::thrown);
 
 	case WeaponType::light_hammer:
 	{
 		Weapon weapon{ model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::bludgeoning, Die::Die(1, DieFaces::four, 0) };
+			Damage::bludgeoning, Die::Die(1, DieFaces::four) };
 		weapon.add_property(WeaponProperty::light);
 		weapon.add_property(WeaponProperty::thrown);
 		return weapon;
@@ -66,25 +66,25 @@ Weapon weapon_creator(WeaponType model)
 
 	case WeaponType::mace:
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::bludgeoning, Die::Die(1, DieFaces::six, 0));
+			Damage::bludgeoning, Die::Die(1, DieFaces::six));
 
 	case WeaponType::quarterstaff: // missing versatile property
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::bludgeoning, Die::Die(1, DieFaces::six, 0));
+			Damage::bludgeoning, Die::Die(1, DieFaces::six));
 
 	case WeaponType::sickle:
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, DieFaces::four, 0), WeaponProperty::light);
+			Damage::slashing, Die::Die(1, DieFaces::four), WeaponProperty::light);
 
 	case WeaponType::spear: // missing versatile property
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::piercing, Die::Die(1, DieFaces::six, 0), WeaponProperty::thrown);
+			Damage::piercing, Die::Die(1, DieFaces::six), WeaponProperty::thrown);
 	
 
 	case WeaponType::light_crossbow:
 	{
 		Weapon weapon{ model, WeaponProficiency::simple, WeaponReach::ranged,
-			Damage::piercing, Die::Die(1, DieFaces::eight, 0) };
+			Damage::piercing, Die::Die(1, DieFaces::eight) };
 		weapon.add_property(WeaponProperty::loading);
 		weapon.add_property(WeaponProperty::two_handed);
 		return weapon;
@@ -93,7 +93,7 @@ Weapon weapon_creator(WeaponType model)
 	case WeaponType::dart:
 	{
 		Weapon weapon{ model, WeaponProficiency::simple, WeaponReach::ranged,
-			Damage::piercing, Die::Die(1, DieFaces::four, 0) };
+			Damage::piercing, Die::Die(1, DieFaces::four) };
 		weapon.add_property(WeaponProperty::finesse);
 		weapon.add_property(WeaponProperty::thrown);
 		return weapon;
@@ -101,25 +101,25 @@ Weapon weapon_creator(WeaponType model)
 
 	case WeaponType::shortbow:
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::ranged,
-			Damage::piercing, Die::Die(1, DieFaces::six, 0), WeaponProperty::two_handed);
+			Damage::piercing, Die::Die(1, DieFaces::six), WeaponProperty::two_handed);
 
 	case WeaponType::sling:
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::ranged,
-			Damage::bludgeoning, Die::Die(1, DieFaces::four, 0));
+			Damage::bludgeoning, Die::Die(1, DieFaces::four));
 
 
 	case WeaponType::battleaxe: // missing versatile property
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, DieFaces::eight, 0));
+			Damage::slashing, Die::Die(1, DieFaces::eight));
 
 	case WeaponType::flail:
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::bludgeoning, Die::Die(1, DieFaces::eight, 0));
+			Damage::bludgeoning, Die::Die(1, DieFaces::eight));
 
 	case WeaponType::glaive:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, DieFaces::ten, 0) };
+			Damage::slashing, Die::Die(1, DieFaces::ten) };
 		weapon.add_property(WeaponProperty::heavy);
 		weapon.add_property(WeaponProperty::reach);
 		weapon.add_property(WeaponProperty::two_handed);
@@ -129,7 +129,7 @@ Weapon weapon_creator(WeaponType model)
 	case WeaponType::greataxe:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, DieFaces::twelve, 0) };
+			Damage::slashing, Die::Die(1, DieFaces::twelve) };
 		weapon.add_property(WeaponProperty::heavy);
 		weapon.add_property(WeaponProperty::two_handed);
 		return weapon;
@@ -138,7 +138,7 @@ Weapon weapon_creator(WeaponType model)
 	case WeaponType::greatsword:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::slashing, Die::Die(2, DieFaces::six, 0) };
+			Damage::slashing, Die::Die(2, DieFaces::six) };
 		weapon.add_property(WeaponProperty::heavy);
 		weapon.add_property(WeaponProperty::two_handed);
 		return weapon;
@@ -147,7 +147,7 @@ Weapon weapon_creator(WeaponType model)
 	case WeaponType::halberd:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, DieFaces::ten, 0) };
+			Damage::slashing, Die::Die(1, DieFaces::ten) };
 		weapon.add_property(WeaponProperty::heavy);
 		weapon.add_property(WeaponProperty::reach);
 		weapon.add_property(WeaponProperty::two_handed);
@@ -156,16 +156,16 @@ Weapon weapon_creator(WeaponType model)
 
 	case WeaponType::lance:
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::piercing, Die::Die(1, DieFaces::twelve, 0), WeaponProperty::reach);
+			Damage::piercing, Die::Die(1, DieFaces::twelve), WeaponProperty::reach);
 
 	case WeaponType::longsword: // missing versatile property
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, DieFaces::eight, 0));
+			Damage::slashing, Die::Die(1, DieFaces::eight));
 
 	case WeaponType::maul:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::bludgeoning, Die::Die(2, DieFaces::six, 0) };
+			Damage::bludgeoning, Die::Die(2, DieFaces::six) };
 		weapon.add_property(WeaponProperty::heavy);
 		weapon.add_property(WeaponProperty::two_handed);
 		return weapon;
@@ -173,12 +173,12 @@ Weapon weapon_creator(WeaponType model)
 
 	case WeaponType::morningstar:
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::piercing, Die::Die(1, DieFaces::eight, 0));
+			Damage::piercing, Die::Die(1, DieFaces::eight));
 
 	case WeaponType::pike:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, DieFaces::ten, 0) };
+			Damage::slashing, Die::Die(1, DieFaces::ten) };
 		weapon.add_property(WeaponProperty::heavy);
 		weapon.add_property(WeaponProperty::reach);
 		weapon.add_property(WeaponProperty::two_handed);
@@ -187,12 +187,12 @@ Weapon weapon_creator(WeaponType model)
 
 	case WeaponType::rapier:
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::piercing, Die::Die(1, DieFaces::eight, 0), WeaponProperty::finesse);
+			Damage::piercing, Die::Die(1, DieFaces::eight), WeaponProperty::finesse);
 
 	case WeaponType::scimitar:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, DieFaces::six, 0) };
+			Damage::slashing, Die::Die(1, DieFaces::six) };
 		weapon.add_property(WeaponProperty::finesse);
 		weapon.add_property(WeaponProperty::light);
 		return weapon;
@@ -201,7 +201,7 @@ Weapon weapon_creator(WeaponType model)
 	case WeaponType::shortsword:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::piercing, Die::Die(1, DieFaces::six, 0) };
+			Damage::piercing, Die::Die(1, DieFaces::six) };
 		weapon.add_property(WeaponProperty::finesse);
 		weapon.add_property(WeaponProperty::light);
 		return weapon;
@@ -209,20 +209,20 @@ Weapon weapon_creator(WeaponType model)
 
 	case WeaponType::trident: // missing versatile property
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::piercing, Die::Die(1, DieFaces::six, 0), WeaponProperty::thrown);
+			Damage::piercing, Die::Die(1, DieFaces::six), WeaponProperty::thrown);
 
 	case WeaponType::war_pick:
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::piercing, Die::Die(1, DieFaces::eight, 0));
+			Damage::piercing, Die::Die(1, DieFaces::eight));
 
 	case WeaponType::warhammer: // missing versatile property
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::bludgeoning, Die::Die(1, DieFaces::eight, 0));
+			Damage::bludgeoning, Die::Die(1, DieFaces::eight));
 
 	case WeaponType::whip:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, DieFaces::four, 0) };
+			Damage::slashing, Die::Die(1, DieFaces::four) };
 		weapon.add_property(WeaponProperty::finesse);
 		weapon.add_property(WeaponProperty::reach);
 		return weapon;
@@ -240,7 +240,7 @@ Weapon weapon_creator(WeaponType model)
 	case WeaponType::hand_crossbow:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::ranged,
-			Damage::piercing, Die::Die(1, DieFaces::six, 0) };
+			Damage::piercing, Die::Die(1, DieFaces::six) };
 		weapon.add_property(WeaponProperty::light);
 		weapon.add_property(WeaponProperty::loading);
 		return weapon;
@@ -249,7 +249,7 @@ Weapon weapon_creator(WeaponType model)
 	case WeaponType::heavy_crossbow:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::ranged,
-			Damage::piercing, Die::Die(1, DieFaces::ten, 0) };
+			Damage::piercing, Die::Die(1, DieFaces::ten) };
 		weapon.add_property(WeaponProperty::heavy);
 		weapon.add_property(WeaponProperty::loading);
 		weapon.add_property(WeaponProperty::two_handed);
@@ -259,7 +259,7 @@ Weapon weapon_creator(WeaponType model)
 	case WeaponType::longbow:
 	{
 		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::ranged,
-			Damage::piercing, Die::Die(1, DieFaces::eight, 0) };
+			Damage::piercing, Die::Die(1, DieFaces::eight) };
 		weapon.add_property(WeaponProperty::heavy);
 		weapon.add_property(WeaponProperty::two_handed);
 		return weapon;
