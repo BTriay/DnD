@@ -38,6 +38,20 @@ void ICreature::set_skill_score(Skill skill, int score)
 void ICreature::set_hit_points_max(int hp)
 {
 	m_hit_points_max_without_constit = hp;
+}
+
+int ICreature::hit_points_max() const
+{
+	return m_hit_points_max_without_constit;
+}
+
+void ICreature::restore_current_hp_to_max()
+{
+	m_hit_points_current = m_hit_points_max_without_constit;
+}
+
+void ICreature::set_current_hp(int hp)
+{
 	m_hit_points_current = hp;
 }
 
@@ -88,4 +102,5 @@ void ICreature::set_default_ability_scores()
 		set_ability_score(ability, 10);
 	}	
 }
+
 /* END OF PRIVATE MEMBER FUNCTIONS */

@@ -25,7 +25,12 @@ public:
 	virtual int ability_modifier(Ability ability) const;
 	void set_ability_score(Ability ability, int score);
 	void set_skill_score(Skill skill, int score);
-	virtual void set_hit_points_max(int hp);
+
+	void set_hit_points_max(int hp);
+	int hit_points_max() const; 
+	virtual void restore_current_hp_to_max();
+	void set_current_hp(int hp);
+
 	void add_resistance(Damage resistance);
 	
 	void set_darkvision(int darkvision_distance);
@@ -36,10 +41,7 @@ public:
 
 	void don_armor(Armor& armor) { m_armor = armor; }
 	void don_armor(ArmorType armor_type) { m_armor = armor_creator(armor_type); }
-	void doff_armor()
-	{
-		m_armor = armor_creator(ArmorType::none);
-	}
+	void doff_armor() { m_armor = armor_creator(ArmorType::none); }
 
 	virtual int armor_class() const
 	{
