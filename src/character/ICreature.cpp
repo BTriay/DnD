@@ -55,6 +55,16 @@ void ICreature::set_current_hp(int hp)
 	m_hit_points_current = hp;
 }
 
+void ICreature::short_rest()
+{
+
+}
+
+void ICreature::long_rest()
+{
+	restore_current_hp_to_max();
+}
+
 /*! Add resistance to the creature */
 void ICreature::add_resistance(Damage resistance)
 {

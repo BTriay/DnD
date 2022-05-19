@@ -31,6 +31,9 @@ public:
 	virtual void restore_current_hp_to_max();
 	void set_current_hp(int hp);
 
+	virtual void short_rest();
+	virtual void long_rest();
+
 	void add_resistance(Damage resistance);
 	
 	void set_darkvision(int darkvision_distance);
