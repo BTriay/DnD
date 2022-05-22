@@ -55,6 +55,11 @@ void ICreature::set_current_hp(int hp)
 	m_hit_points_current = hp;
 }
 
+int ICreature::current_hit_points() const
+{
+	return m_hit_points_current;
+}
+
 void ICreature::short_rest()
 {
 
