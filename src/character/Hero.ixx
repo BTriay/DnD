@@ -41,7 +41,11 @@ class Hero : public C, public R
 {
 public:
     /*! Build a hero! */
-    Hero(const std::string& name) : m_name(name), C(), R() {}
+    Hero(const std::string& name) : m_name(name), C(), R()
+    {
+        R::set_hit_points_max(static_cast<int>(C::hit_dice()));
+        restore_current_hp_to_max();
+    }
 
     /*! Get the name of the hero */
     const std::string& name() const { return m_name; }
@@ -59,9 +63,9 @@ public:
         auto hilldwarf_additional_hp =
             std::is_same_v< HillDwarf, R> ? 1 : 0;
 
-        R::set_current_hp((R::hit_points_max()
-            + (C::level() + hilldwarf_additional_hp)
-            * ability_modifier(Ability::constitution)));
+        R::set_current_hp(R::hit_points_max()
+            + C::level() * (hilldwarf_additional_hp
+            + ability_modifier(Ability::constitution)));
     }
 
     void gain_level(bool add_default_hp)
@@ -92,7 +96,7 @@ std::ostream& operator<<(std::ostream& os, const Hero<C, R>& hero)
     os << "\tintelligence: " << hero.ability_modifier(Ability::intelligence) << '\n';
     os << "\tstrength: " << hero.ability_modifier(Ability::strength) << '\n';
     os << "\twisdom: " << hero.ability_modifier(Ability::wisdom) << '\n';
-    os << hero.name() << " has an AC of " << hero.armor_class() << '\n';
+    os << hero.name() << " has an AC of " << hero.armor_class();
     os << " and " << hero.current_hit_points() << " hit points" << '\n';
 
     return os;
