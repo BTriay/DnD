@@ -9,7 +9,7 @@ import ICreature;
 class Dwarf : public ICreature, public IRace
 {
 public:
-	Dwarf() : ICreature(60, Size::medium, 25), IRace()
+	Dwarf() : ICreature(1, 60, Size::medium, 25), IRace()
 	{
 		set_ability_score_increase(Ability::constitution, 2);
 

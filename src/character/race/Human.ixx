@@ -9,7 +9,7 @@ import ICreature;
 export class Human : public ICreature, public IRace
 {
 public:
-	Human() : ICreature(0, Size::medium, 30), IRace()
+	Human() : ICreature(1, 0, Size::medium, 30), IRace()
 	{
 		set_ability_score_increase(Ability::charisma, 1);
 		set_ability_score_increase(Ability::constitution, 1);

@@ -13,12 +13,14 @@ heroes, NPC, monsters
 export class ICreature
 {
 public:
-	ICreature(int darkvision, Size size, int speed_land, int speed_climb = 0, 
-		int speed_air = 0, int speed_water = 0) : 
+	ICreature(int hit_points_max, int darkvision, Size size, int speed_land, int speed_climb = 0, 
+		int speed_air = 0, int speed_water = 0) :
+		m_hit_points_max_without_constit(hit_points_max),
 		m_darkvision(darkvision), m_size(size), m_speed_land(speed_land), m_speed_climb(speed_climb),
 		m_speed_air(speed_air), m_speed_water(speed_water), m_has_shield(false)
 	{
 		set_default_ability_scores();
+		restore_current_hp_to_max();
 	}
 
 	int ability_score(Ability ability) const;

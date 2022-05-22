@@ -9,7 +9,7 @@ import ICreature;
 export class Tiefling : public ICreature, public IRace
 {
 public:
-	Tiefling() : ICreature(60, Size::medium, 25), IRace()
+	Tiefling() : ICreature(1, 60, Size::medium, 25), IRace()
 	{
 		set_ability_score_increase(Ability::intelligence, 1);
 		set_ability_score_increase(Ability::charisma, 2);
