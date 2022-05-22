@@ -4,6 +4,11 @@ import enumeration;
 
 /* PUBLIC MEMBER FUNCTIONS */
 
+HitDice IClass::hit_dice() const
+{
+	return m_hit_dice;
+}
+
 void IClass::add_skill(Skill skill)
 {
 	m_skill.push_back(skill);
