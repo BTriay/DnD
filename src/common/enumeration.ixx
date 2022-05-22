@@ -41,7 +41,8 @@ export enum class ToolProficiency
 
 export enum class HitDice
 {
-	six = 4, eight = 5, ten = 6, twelve = 7
+	four = 4, six = 6, eight = 8, ten = 10, 
+	twelve = 12, twenty = 20, hundred = 100
 };
 
 export enum class ArmorProtection

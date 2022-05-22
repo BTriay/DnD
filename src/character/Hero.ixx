@@ -68,29 +68,10 @@ public:
     {
         C::gain_level();
 
-        auto extra_hp = 0;
-        if (add_default_hp)
-        {
-           extra_hp = static_cast<int>(C::hit_dice());
-        }
-        else
-        {
-            switch (C::hit_dice())
-            {
-                case (HitDice::six):
-                    extra_hp = Die::gen(1, DieFaces::six);
-                    break;
-                case (HitDice::eight):
-                    extra_hp = Die::gen(1, DieFaces::eight);
-                    break;
-                case (HitDice::ten):
-                    extra_hp = Die::gen(1, DieFaces::ten);
-                    break;
-                case (HitDice::twelve):
-                    extra_hp = Die::gen(1, DieFaces::twelve);
-                    break;
-            }
-        }
+        auto extra_hp = add_default_hp ? 
+            (static_cast<int>(C::hit_dice()) + 2) / 2 :
+            Die::gen(1, C::hit_dice());
+
         R::set_hit_points_max(R::hit_points_max() + extra_hp);
     }
     
