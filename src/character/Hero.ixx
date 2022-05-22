@@ -6,6 +6,7 @@ import <iostream>;
 import IClass;
 import ICreature;
 import IRace;
+import Die;
 import enumeration;
 
 // classes
@@ -63,6 +64,36 @@ public:
             * ability_modifier(Ability::constitution)));
     }
 
+    void gain_level(bool add_default_hp)
+    {
+        C::gain_level();
+
+        auto extra_hp = 0;
+        if (add_default_hp)
+        {
+           extra_hp = static_cast<int>(C::hit_dice());
+        }
+        else
+        {
+            switch (C::hit_dice())
+            {
+                case (HitDice::six):
+                    extra_hp = Die::gen(1, DieFaces::six);
+                    break;
+                case (HitDice::eight):
+                    extra_hp = Die::gen(1, DieFaces::eight);
+                    break;
+                case (HitDice::ten):
+                    extra_hp = Die::gen(1, DieFaces::ten);
+                    break;
+                case (HitDice::twelve):
+                    extra_hp = Die::gen(1, DieFaces::twelve);
+                    break;
+            }
+        }
+        R::set_hit_points_max(R::hit_points_max() + extra_hp);
+    }
+    
 private:
     const std::string m_name;
 
@@ -81,6 +112,7 @@ std::ostream& operator<<(std::ostream& os, const Hero<C, R>& hero)
     os << "\tstrength: " << hero.ability_modifier(Ability::strength) << '\n';
     os << "\twisdom: " << hero.ability_modifier(Ability::wisdom) << '\n';
     os << hero.name() << " has an AC of " << hero.armor_class() << '\n';
+    os << " and " << hero.current_hit_points() << " hit points" << '\n';
 
     return os;
 }
