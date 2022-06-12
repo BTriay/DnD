@@ -2,6 +2,11 @@ export module enumeration;
 
 import <array>;
 
+export namespace serialization_versions
+{
+	const auto die = 1;
+}
+
 export enum class Ability
 {	
 	charisma, constitution, dexterity, intelligence, strength, wisdom

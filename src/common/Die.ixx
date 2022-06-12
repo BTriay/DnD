@@ -54,4 +54,4 @@ private:
 	int m_bonus;
 };
 
-BOOST_CLASS_VERSION(Die, 1)
+BOOST_CLASS_VERSION(Die, serialization_versions::die)
