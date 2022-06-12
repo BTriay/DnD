@@ -1,3 +1,9 @@
+module;
+
+#include <boost/archive/xml_oarchive.hpp>
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/serialization/version.hpp>
+
 export module Die;
 
 import <random>;
@@ -6,6 +12,7 @@ import enumeration;
 export class Die
 {
 public:
+	Die() : Die(0, HitDice::six) {} // necessary for serialization
 	Die(int number_dice, HitDice hit_dice, int bonus = 0):
 		m_number_dice(number_dice), m_hit_dice(hit_dice), m_bonus(bonus) {}
 	
@@ -33,7 +40,18 @@ public:
 	}
 
 private:
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
+	{
+		ar& BOOST_SERIALIZATION_NVP(m_number_dice);
+		ar& BOOST_SERIALIZATION_NVP(m_hit_dice);
+		ar& BOOST_SERIALIZATION_NVP(m_bonus);
+	}
+
 	int m_number_dice;
 	HitDice m_hit_dice;
 	int m_bonus;
 };
+
+BOOST_CLASS_VERSION(Die, 1)
