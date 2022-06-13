@@ -9,6 +9,7 @@ export namespace serialization_versions
 	const auto weapon = 1;
 	const auto armor = 1;
 	const auto icreature = 1;
+	const auto iclass = 1;
 }
 
 export enum class Ability
