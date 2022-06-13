@@ -5,6 +5,8 @@ import <array>;
 export namespace serialization_versions
 {
 	const auto die = 1;
+	const auto item = 1;
+	const auto weapon = 1;
 }
 
 export enum class Ability
