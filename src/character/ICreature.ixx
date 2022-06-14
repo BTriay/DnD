@@ -21,8 +21,6 @@ heroes, NPC, monsters
 export class ICreature
 {
 public:
-	ICreature() : ICreature(1, 0, Size::medium, 0) {} // for serialization
-
 	ICreature(int hit_points_max, int darkvision, Size size, int speed_land, int speed_climb = 0, 
 		int speed_air = 0, int speed_water = 0) :
 		m_hit_points_max_without_constit(hit_points_max),
@@ -72,6 +70,9 @@ public:
 	void drop_weapon_one() { m_weapon_1 = {}; }
 	void add_weapon_two(Weapon& weapon) { m_weapon_2 = weapon; }
 	void drop_weapon_two() { m_weapon_2 = {}; }
+
+protected:
+	ICreature() : ICreature(1, 0, Size::medium, 0) {} // for serialization
 
 private:
 	friend class boost::serialization::access;

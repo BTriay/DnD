@@ -12,7 +12,6 @@ import enumeration;
 export class Die
 {
 public:
-	Die() : Die(0, HitDice::six) {} // necessary for serialization
 	Die(int number_dice, HitDice hit_dice, int bonus = 0):
 		m_number_dice(number_dice), m_hit_dice(hit_dice), m_bonus(bonus) {}
 	
@@ -38,6 +37,9 @@ public:
 		}
 		return sum;
 	}
+
+protected:
+	Die() : Die(0, HitDice::six) {} // necessary for serialization
 
 private:
 	friend class boost::serialization::access;

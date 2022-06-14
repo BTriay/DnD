@@ -13,7 +13,6 @@ import enumeration;
 export class IClass
 {
 public:
-	IClass() = default; // for serialization
 	IClass(HitDice hit_dice, int level = 1) : m_hit_dice(hit_dice), m_level(level) {}
 
 	HitDice hit_dice() const;
@@ -24,6 +23,7 @@ public:
 	//virtual int proficiency_bonus();
 
 protected:
+	IClass() = default; // for serialization
 	void set_saving_throw(std::vector<Ability> saving_throw);
 
 private:
