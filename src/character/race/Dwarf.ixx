@@ -1,3 +1,10 @@
+module;
+
+#include <boost/archive/xml_oarchive.hpp>
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/serialization/version.hpp>
+#include <boost/serialization/vector.hpp>
+
 export module Dwarf;
 
 import <vector>;
@@ -17,6 +24,13 @@ public:
 	}
 
 private:
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
+	{
+		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(ICreature);
+		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(IRace);
+	}
 
 };
 
@@ -27,6 +41,12 @@ public:
 	HillDwarf() { set_ability_score_increase(Ability::wisdom, 1); }
 
 private:
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
+	{
+		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(Dwarf);
+	}
 
 };
 
@@ -37,4 +57,10 @@ public:
 	MountainDwarf() { set_ability_score_increase(Ability::strength, 2); }
 
 private:
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
+	{
+		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(Dwarf);
+	}
 };

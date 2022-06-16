@@ -1,3 +1,9 @@
+module;
+
+#include <boost/archive/xml_oarchive.hpp>
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/serialization/version.hpp>
+
 export module Hero;
 
 import <string>;
@@ -80,8 +86,44 @@ public:
     }
     
 private:
-    const std::string m_name;
+    friend class boost::serialization::access;
+    template<class Archive>
+    void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
+    {
+        auto c_name = ""; // there must be a better way to do this
+        if (std::is_same_v<C, Cleric>) c_name = "Cleric";
+        if (std::is_same_v<C, Druid>) c_name = "Druid";
+        if (std::is_same_v<C, Fighter>) c_name = "Fighter";
+        if (std::is_same_v<C, Monk>) c_name = "Monk";
+        if (std::is_same_v<C, Paladin>) c_name = "Paladin";
+        if (std::is_same_v<C, Ranger>) c_name = "Ranger";
+        if (std::is_same_v<C, Rogue>) c_name = "Rogue";
+        if (std::is_same_v<C, Sorcerer>) c_name = "Sorcerer";
+        if (std::is_same_v<C, Warlock>) c_name = "Warlock";
+        if (std::is_same_v<C, Wizard>) c_name = "Wizard";
 
+        auto r_name = "";
+        if (std::is_same_v<R, HillDwarf>) r_name = "HillDwarf";
+        if (std::is_same_v<R, MountainDwarf>) r_name = "MountainDwarf";
+        if (std::is_same_v<R, HighElf>) r_name = "HighElf";
+        if (std::is_same_v<R, WoodElf>) r_name = "WoodElf";
+        if (std::is_same_v<R, DarkElf>) r_name = "DarkElf";
+        if (std::is_same_v<R, Lightfoot>) r_name = "Lightfoot";
+        if (std::is_same_v<R, Stout>) r_name = "Stout";
+        if (std::is_same_v<R, Human>) r_name = "Human";
+        if (std::is_same_v<R, Dragonborn>) r_name = "Dragonborn";
+        if (std::is_same_v<R, ForestGnome>) r_name = "ForestGnome";
+        if (std::is_same_v<R, RockGnome>) r_name = "RockGnome";
+        if (std::is_same_v<R, HalfElf>) r_name = "HalfElf";
+        if (std::is_same_v<R, HalfOrc>) r_name = "HalfOrc";
+        if (std::is_same_v<R, Tiefling>) r_name = "Tiefling";
+
+        ar& boost::serialization::make_nvp(c_name, boost::serialization::base_object<C>(*this));
+        ar& boost::serialization::make_nvp(r_name, boost::serialization::base_object<R>(*this));
+        ar& BOOST_SERIALIZATION_NVP(m_name);
+    }
+
+    const std::string m_name;
 };
 
 export template <typename C, typename R>
@@ -101,7 +143,6 @@ std::ostream& operator<<(std::ostream& os, const Hero<C, R>& hero)
 
     return os;
 }
-
 
 template class Hero<Cleric, HillDwarf>;
 template class Hero<Cleric, MountainDwarf>;
