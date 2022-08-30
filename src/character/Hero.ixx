@@ -123,8 +123,10 @@ private:
         ar& BOOST_SERIALIZATION_NVP(m_name);
     }
 
-    const std::string m_name;
+    std::string m_name;
 };
+
+BOOST_CLASS_VERSION(Item, serialization_versions::hero)
 
 export template <typename C, typename R>
     requires std::is_base_of_v<IClass, C> && std::is_base_of_v<IRace, R>
