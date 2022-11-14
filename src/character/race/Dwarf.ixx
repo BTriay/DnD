@@ -3,12 +3,9 @@ module;
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/serialization/version.hpp>
-#include <boost/serialization/vector.hpp>
 
 export module Dwarf;
 
-import <vector>;
-import <map>;
 import enumeration;
 import IRace;
 import ICreature;
