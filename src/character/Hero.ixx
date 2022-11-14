@@ -53,6 +53,9 @@ public:
         restore_current_hp_to_max();
     }
 
+    const std::string class_name() const { return c_name; }
+    const std::string race_name() const { return r_name; }
+
     /*! Get the name of the hero */
     const std::string& name() const { return m_name; }
 
@@ -90,7 +93,6 @@ private:
     template<class Archive>
     void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
     {
-        auto c_name = ""; // there must be a better way to do this
         if (std::is_same_v<C, Cleric>) c_name = "Cleric";
         if (std::is_same_v<C, Druid>) c_name = "Druid";
         if (std::is_same_v<C, Fighter>) c_name = "Fighter";
@@ -102,7 +104,6 @@ private:
         if (std::is_same_v<C, Warlock>) c_name = "Warlock";
         if (std::is_same_v<C, Wizard>) c_name = "Wizard";
 
-        auto r_name = "";
         if (std::is_same_v<R, HillDwarf>) r_name = "HillDwarf";
         if (std::is_same_v<R, MountainDwarf>) r_name = "MountainDwarf";
         if (std::is_same_v<R, HighElf>) r_name = "HighElf";
@@ -118,11 +119,18 @@ private:
         if (std::is_same_v<R, HalfOrc>) r_name = "HalfOrc";
         if (std::is_same_v<R, Tiefling>) r_name = "Tiefling";
 
-        ar& boost::serialization::make_nvp(c_name, boost::serialization::base_object<C>(*this));
-        ar& boost::serialization::make_nvp(r_name, boost::serialization::base_object<R>(*this));
+        ar& boost::serialization::make_nvp(c_name.c_str(), 
+            boost::serialization::base_object<C>(*this));
+        ar& boost::serialization::make_nvp(r_name.c_str(), 
+            boost::serialization::base_object<R>(*this));
+        
+        ar& BOOST_SERIALIZATION_NVP(c_name);
+        ar& BOOST_SERIALIZATION_NVP(r_name);
         ar& BOOST_SERIALIZATION_NVP(m_name);
     }
 
+    std::string c_name;
+    std::string r_name;
     std::string m_name;
 };
 
@@ -132,7 +140,8 @@ export template <typename C, typename R>
     requires std::is_base_of_v<IClass, C> && std::is_base_of_v<IRace, R>
 std::ostream& operator<<(std::ostream& os, const Hero<C, R>& hero)
 {
-    os << hero.name() << " is level " << hero.level() 
+    os << hero.name() << " is a " << hero.class_name() << " "
+        << hero.race_name() << " of level " << hero.level() 
         << " and has the following abilities:\n";
     os << "\tcharisma: " << hero.ability_modifier(Ability::charisma) << '\n';
     os << "\tconstitution: " << hero.ability_modifier(Ability::constitution) << '\n';
