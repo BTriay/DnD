@@ -11,6 +11,8 @@ endif()
 link_directories(${link_directory})
 
 add_library(utilities
+            io.cpp
+            io.ixx
             Logger.cpp
             Logger.ixx
             )
