@@ -155,6 +155,19 @@ std::ostream& operator<<(std::ostream& os, const Hero<C, R>& hero)
     return os;
 }
 
+namespace hero {
+
+    export template <typename C, typename R>
+        requires std::is_base_of_v<IClass, C>&& std::is_base_of_v<IRace, R>
+    void serialize(const Hero<C, R>& hero, const std::string& filename)
+    {
+        std::ofstream fs1{ filename };
+        boost::archive::xml_oarchive oa(fs1);
+        oa << BOOST_SERIALIZATION_NVP(hero);
+    }
+
+}
+
 template class Hero<Cleric, HillDwarf>;
 template class Hero<Cleric, MountainDwarf>;
 template class Hero<Cleric, HighElf>;
