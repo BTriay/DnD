@@ -47,17 +47,17 @@ class Hero : public C, public R
 {
 public:
     /*! Build a hero! */
-    Hero(const std::string& name) : m_name(name), C(), R()
+    Hero(const std::string& name) : m_hero_name(name), C(), R()
     {
         R::set_hit_points_max(static_cast<int>(C::hit_dice()));
         restore_current_hp_to_max();
     }
 
-    const std::string class_name() const { return c_name; }
-    const std::string race_name() const { return r_name; }
+    const std::string class_name() const { return m_class_name; }
+    const std::string race_name() const { return m_race_name; }
 
     /*! Get the name of the hero */
-    const std::string& name() const { return m_name; }
+    const std::string& name() const { return m_hero_name; }
 
     /*! Get the ability modifier of the hero */
     int ability_modifier(Ability ability) const override
@@ -93,45 +93,45 @@ private:
     template<class Archive>
     void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
     {
-        if (std::is_same_v<C, Cleric>) c_name = "Cleric";
-        if (std::is_same_v<C, Druid>) c_name = "Druid";
-        if (std::is_same_v<C, Fighter>) c_name = "Fighter";
-        if (std::is_same_v<C, Monk>) c_name = "Monk";
-        if (std::is_same_v<C, Paladin>) c_name = "Paladin";
-        if (std::is_same_v<C, Ranger>) c_name = "Ranger";
-        if (std::is_same_v<C, Rogue>) c_name = "Rogue";
-        if (std::is_same_v<C, Sorcerer>) c_name = "Sorcerer";
-        if (std::is_same_v<C, Warlock>) c_name = "Warlock";
-        if (std::is_same_v<C, Wizard>) c_name = "Wizard";
+        if (std::is_same_v<C, Cleric>) m_class_name = "Cleric";
+        if (std::is_same_v<C, Druid>) m_class_name = "Druid";
+        if (std::is_same_v<C, Fighter>) m_class_name = "Fighter";
+        if (std::is_same_v<C, Monk>) m_class_name = "Monk";
+        if (std::is_same_v<C, Paladin>) m_class_name = "Paladin";
+        if (std::is_same_v<C, Ranger>) m_class_name = "Ranger";
+        if (std::is_same_v<C, Rogue>) m_class_name = "Rogue";
+        if (std::is_same_v<C, Sorcerer>) m_class_name = "Sorcerer";
+        if (std::is_same_v<C, Warlock>) m_class_name = "Warlock";
+        if (std::is_same_v<C, Wizard>) m_class_name = "Wizard";
 
-        if (std::is_same_v<R, HillDwarf>) r_name = "HillDwarf";
-        if (std::is_same_v<R, MountainDwarf>) r_name = "MountainDwarf";
-        if (std::is_same_v<R, HighElf>) r_name = "HighElf";
-        if (std::is_same_v<R, WoodElf>) r_name = "WoodElf";
-        if (std::is_same_v<R, DarkElf>) r_name = "DarkElf";
-        if (std::is_same_v<R, Lightfoot>) r_name = "Lightfoot";
-        if (std::is_same_v<R, Stout>) r_name = "Stout";
-        if (std::is_same_v<R, Human>) r_name = "Human";
-        if (std::is_same_v<R, Dragonborn>) r_name = "Dragonborn";
-        if (std::is_same_v<R, ForestGnome>) r_name = "ForestGnome";
-        if (std::is_same_v<R, RockGnome>) r_name = "RockGnome";
-        if (std::is_same_v<R, HalfElf>) r_name = "HalfElf";
-        if (std::is_same_v<R, HalfOrc>) r_name = "HalfOrc";
-        if (std::is_same_v<R, Tiefling>) r_name = "Tiefling";
+        if (std::is_same_v<R, HillDwarf>) m_race_name = "HillDwarf";
+        if (std::is_same_v<R, MountainDwarf>) m_race_name = "MountainDwarf";
+        if (std::is_same_v<R, HighElf>) m_race_name = "HighElf";
+        if (std::is_same_v<R, WoodElf>) m_race_name = "WoodElf";
+        if (std::is_same_v<R, DarkElf>) m_race_name = "DarkElf";
+        if (std::is_same_v<R, Lightfoot>) m_race_name = "Lightfoot";
+        if (std::is_same_v<R, Stout>) m_race_name = "Stout";
+        if (std::is_same_v<R, Human>) m_race_name = "Human";
+        if (std::is_same_v<R, Dragonborn>) m_race_name = "Dragonborn";
+        if (std::is_same_v<R, ForestGnome>) m_race_name = "ForestGnome";
+        if (std::is_same_v<R, RockGnome>) m_race_name = "RockGnome";
+        if (std::is_same_v<R, HalfElf>) m_race_name = "HalfElf";
+        if (std::is_same_v<R, HalfOrc>) m_race_name = "HalfOrc";
+        if (std::is_same_v<R, Tiefling>) m_race_name = "Tiefling";
 
-        ar& boost::serialization::make_nvp(c_name.c_str(), 
+        ar& boost::serialization::make_nvp(m_class_name.c_str(), 
             boost::serialization::base_object<C>(*this));
-        ar& boost::serialization::make_nvp(r_name.c_str(), 
+        ar& boost::serialization::make_nvp(m_race_name.c_str(), 
             boost::serialization::base_object<R>(*this));
         
-        ar& BOOST_SERIALIZATION_NVP(c_name);
-        ar& BOOST_SERIALIZATION_NVP(r_name);
-        ar& BOOST_SERIALIZATION_NVP(m_name);
+        ar& BOOST_SERIALIZATION_NVP(m_class_name);
+        ar& BOOST_SERIALIZATION_NVP(m_race_name);
+        ar& BOOST_SERIALIZATION_NVP(m_hero_name);
     }
 
-    std::string c_name;
-    std::string r_name;
-    std::string m_name;
+    std::string m_class_name;
+    std::string m_race_name;
+    std::string m_hero_name;
 };
 
 BOOST_CLASS_VERSION(Item, serialization_versions::hero)
