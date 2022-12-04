@@ -1,15 +1,12 @@
 export module Halfling;
 
-import <vector>;
-import <map>;
 import enumeration;
-import IRace;
-import ICreature;
+import RaceCreature;
 
-class Halfling : public ICreature, public IRace
+class Halfling : public RaceCreature
 {
 public:
-	Halfling() : ICreature(1, 0, Size::small, 25), IRace()
+	Halfling() : RaceCreature(1, 0, Size::small, 25)
 	{
 		set_ability_score_increase(Ability::dexterity, 2);		
 	}

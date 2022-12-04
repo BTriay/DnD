@@ -7,13 +7,12 @@ module;
 export module Elf;
 
 import enumeration;
-import IRace;
-import ICreature;
+import RaceCreature;
 
-class Elf : public ICreature, public IRace
+class Elf : public RaceCreature
 {
 public:
-	Elf() : ICreature(1, 60, Size::medium, 30), IRace()
+	Elf() : RaceCreature(1, 60, Size::medium, 30)
 	{
 		set_ability_score_increase(Ability::dexterity, 2);
 	}
@@ -23,8 +22,7 @@ private:
 	template<class Archive>
 	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
 	{
-		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(ICreature);
-		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(IRace);
+		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(RaceCreature);
 	}
 
 };

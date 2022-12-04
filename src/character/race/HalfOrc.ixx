@@ -1,19 +1,15 @@
 export module HalfOrc;
 
-import <vector>;
-import <map>;
 import enumeration;
-import IRace;
-import ICreature;
+import RaceCreature;
 
-export class HalfOrc : public ICreature, public IRace
+export class HalfOrc : public RaceCreature
 {
 public:
-	HalfOrc() : ICreature(1, 60, Size::medium, 30), IRace()
+	HalfOrc() : RaceCreature(1, 60, Size::medium, 30)
 	{
 		set_ability_score_increase(Ability::strength, 2);
 		set_ability_score_increase(Ability::constitution, 1);
-
 	}
 
 private:

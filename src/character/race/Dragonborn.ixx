@@ -1,15 +1,12 @@
 export module Dragonborn;
 
-import <vector>;
-import <map>;
 import enumeration;
-import IRace;
-import ICreature;
+import RaceCreature;
 
-export class Dragonborn : public ICreature, public IRace
+export class Dragonborn : public RaceCreature
 {
 public:
-	Dragonborn() : ICreature(1, 0, Size::medium, 30), IRace()
+	Dragonborn() : RaceCreature(1, 0, Size::medium, 30)
 	{
 		set_ability_score_increase(Ability::charisma, 1);
 		set_ability_score_increase(Ability::strength, 2);

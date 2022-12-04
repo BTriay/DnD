@@ -7,26 +7,24 @@ module;
 export module Dwarf;
 
 import enumeration;
-import IRace;
-import ICreature;
+import RaceCreature;
 
-class Dwarf : public ICreature, public IRace
+class Dwarf : public RaceCreature
 {
 public:
-	Dwarf() : ICreature(1, 60, Size::medium, 25), IRace()
+	Dwarf() : RaceCreature(1, 60, Size::medium, 25)
 	{
 		set_ability_score_increase(Ability::constitution, 2);
 
 		add_resistance(Damage::poison);
 	}
-
+	
 private:
 	friend class boost::serialization::access;
 	template<class Archive>
 	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
 	{
-		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(ICreature);
-		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(IRace);
+		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(RaceCreature);
 	}
 
 };
