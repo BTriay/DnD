@@ -10,6 +10,7 @@ export namespace serialization_versions
 	const auto armor = 1;
 	const auto icreature = 1;
 	const auto iclass = 1;
+	const auto race_creature = 1;
 	const auto irace = 1;
 	const auto hero = 1;
 }

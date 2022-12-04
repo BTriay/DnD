@@ -32,4 +32,4 @@ private:
 	}
 };
 
-//BOOST_CLASS_VERSION(RaceCreature, serialization_versions::race_creature)
+BOOST_CLASS_VERSION(RaceCreature, serialization_versions::race_creature)
