@@ -15,8 +15,8 @@ export class IRace
 public:
 	IRace() = default;
 	
-	int ability_score_increase(Ability ability) const;
-	void set_ability_score_increase(Ability ability, int increase);
+	virtual int ability_score_increase(Ability ability) const;
+	virtual void set_ability_score_increase(Ability ability, int increase);
 	
 private:
 	friend class boost::serialization::access;
