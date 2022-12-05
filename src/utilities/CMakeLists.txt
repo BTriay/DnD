@@ -17,5 +17,8 @@ add_library(utilities
             Logger.ixx
             )
 
+target_link_libraries(utilities PRIVATE character)
+
 target_include_directories(utilities PUBLIC
-            ${include_directory})
+            ${include_directory}
+            "${PROJECT_SOURCE_DIR}/character")
