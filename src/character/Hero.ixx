@@ -126,17 +126,23 @@ private:
 
         if (auto dp = dynamic_cast<HillDwarf*>(m_race_creature))
         {
+            m_race_name = "HillDwarf";
             ar& boost::serialization::make_nvp("HillDwarf", dp);
         }
 
         if (auto dp = dynamic_cast<Cleric*>(m_class))
         {
+            m_class_name = "Cleric";
             ar& boost::serialization::make_nvp("Cleric", dp);
         }
 
+        ar& BOOST_SERIALIZATION_NVP(m_race_name);
+        ar& BOOST_SERIALIZATION_NVP(m_class_name);
     }
 
     std::string m_hero_name;
+    std::string m_race_name;
+    std::string m_class_name;
     RaceCreature* m_race_creature;
     IClass* m_class;
 };
