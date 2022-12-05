@@ -12,18 +12,17 @@ namespace io
 {
 	namespace xml
 	{
-		namespace pt = boost::property_tree;
 
 		export std::string get_class_name(const std::string& filename,
-			const std::string& member_name)
-		{
+			const std::string& member_name);
+		/*{
 			const auto xml_path = "boost_serialization.hero." + member_name;
 
 			pt::ptree tree;
 			pt::read_xml(filename, tree);
 
 			return tree.get<std::string>(xml_path);
-		}
+		}*/
 
 	}
 }
