@@ -14,5 +14,7 @@ namespace io
 
 		export void serialize(const Hero& hero, const std::string& filename);
 
+		export Hero deserialize(const std::string& filename);
+
 	}
 }

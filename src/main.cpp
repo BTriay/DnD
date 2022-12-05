@@ -39,29 +39,14 @@ int main()
 
 //    std::cout << helgret << '\n';
     
-    //hero::serialize(helgret, filename);
-
     io::xml::serialize(helgret, filename);
-    
-    Hero h2{ "hero", new HillDwarf, new Cleric };
-    {
-        std::ifstream fs2{ filename };
-        boost::archive::xml_iarchive ia{ fs2 };
-        ia >> BOOST_SERIALIZATION_NVP(h2);
-    }
-    
-    
-    /*
-    auto race = io::xml::get_class_name(filename, "m_race_name");
-    auto dnd_class = io::xml::get_class_name(filename, "m_class_name");
 
-    std::cout << "race: " << race << '\n';
-    std::cout << "class: " << dnd_class << '\n';
-    */
+    auto helgret_reborn = io::xml::deserialize(filename);
+    std::cout << helgret_reborn.name() << '\n';
 
+    
     //helgret.add_weapon_one(weapon_creator(WeaponType::warhammer));
     //helgret.don_shield();
-    //std::cout << helgret << '\n';    
-        
+    //std::cout << helgret << '\n';
 
 }
