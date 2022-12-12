@@ -9,10 +9,9 @@ module;
 export module RaceCreature;
 
 import ICreature;
-import IRace;
 import enumeration;
 
-export class RaceCreature : public IRace, public ICreature
+export class RaceCreature : public ICreature
 {
 public:
 	/*
@@ -71,15 +70,13 @@ private:
 		int speed_land, int speed_climb = 0,
 		int speed_air = 0, int speed_water = 0) :
 		ICreature(hit_points_max, darkvision, size, speed_land,
-			speed_climb, speed_air, speed_water),
-		IRace()
+			speed_climb, speed_air, speed_water)
 	{}
 
 	friend class boost::serialization::access;
 	template<class Archive>
 	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
 	{
-		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(IRace);
 		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(ICreature);
 		
 		ar& BOOST_SERIALIZATION_NVP(m_race);

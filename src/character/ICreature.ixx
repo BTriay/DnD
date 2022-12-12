@@ -36,6 +36,9 @@ public:
 	void set_ability_score(Ability ability, int score);
 	void set_skill_score(Skill skill, int score);
 
+	virtual int ability_score_increase(Ability ability) const;
+	virtual void set_ability_score_increase(Ability ability, int increase);
+
 	void set_hit_points_max(int hp);
 	int hit_points_max() const; 
 	virtual void restore_current_hp_to_max();
@@ -114,6 +117,7 @@ private:
 	int m_hit_points_current;
 
 	std::map<Ability, int> m_ability_score;
+	std::map<Ability, int> m_ability_score_increase;
 	std::map<Skill, int> m_skill_score; // if different from the ability-implied score
 	std::vector<Damage> m_resistance;
 

@@ -17,9 +17,6 @@ add_library(character
             RaceCreature.cpp
             RaceCreature.ixx
 
-            ./race/IRace.cpp
-            ./race/IRace.ixx
-
             ./class/IClass.cpp
             ./class/IClass.ixx
             ./class/Barbarian.cpp

@@ -71,7 +71,8 @@ public:
     /*! Get the ability modifier of the hero */
     int ability_modifier(Ability ability) const
     {
-        return (m_race_creature->ability_score_increase(ability) + m_race_creature->ability_score(ability)
+        return (m_race_creature->ability_score_increase(ability) 
+            + m_race_creature->ability_score(ability)
             - 10) / 2;
     }
 

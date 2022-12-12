@@ -35,6 +35,19 @@ void ICreature::set_skill_score(Skill skill, int score)
 	m_skill_score[skill] = score;
 }
 
+int ICreature::ability_score_increase(Ability ability) const
+{
+	if (m_ability_score_increase.find(ability) != std::end(m_ability_score_increase))
+		return m_ability_score_increase.at(ability);
+
+	return 0;
+}
+
+void ICreature::set_ability_score_increase(Ability ability, int increase)
+{
+	m_ability_score_increase[ability] = increase;
+}
+
 void ICreature::set_hit_points_max(int hp)
 {
 	m_hit_points_max_without_constit = hp;
