@@ -12,12 +12,12 @@ import RaceCreature;
 class Dwarf : public RaceCreature
 {
 public:
-	Dwarf() : RaceCreature(1, 60, Size::medium, 25)
-	{
-		set_ability_score_increase(Ability::constitution, 2);
+	//Dwarf() : RaceCreature(1, 60, Size::medium, 25)
+	//{
+	//	set_ability_score_increase(Ability::constitution, 2);
 
-		add_resistance(Damage::poison);
-	}
+	//	add_resistance(Damage::poison);
+	//}
 	
 private:
 	friend class boost::serialization::access;
@@ -33,7 +33,7 @@ private:
 export class HillDwarf : public Dwarf
 {
 public:
-	HillDwarf() { set_ability_score_increase(Ability::wisdom, 1); }
+	//HillDwarf() { set_ability_score_increase(Ability::wisdom, 1); }
 
 private:
 	friend class boost::serialization::access;
@@ -49,7 +49,7 @@ private:
 export class MountainDwarf : public Dwarf
 {
 public:
-	MountainDwarf() { set_ability_score_increase(Ability::strength, 2); }
+	//MountainDwarf() { set_ability_score_increase(Ability::strength, 2); }
 
 private:
 	friend class boost::serialization::access;

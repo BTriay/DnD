@@ -17,6 +17,7 @@ import <fstream>;
 import Hero;
 import Dwarf;
 import Cleric;
+import enumeration;
 
 std::string io::xml::get_class_name(const std::string& filename,
 	const std::string& member_name)
@@ -41,11 +42,13 @@ void io::xml::serialize(const Hero& hero, const std::string& filename)
 Hero io::xml::deserialize(const std::string& filename)
 {
 	Hero hero{"bidule"};
-	auto race = io::xml::get_class_name(filename, "m_race_name");
+	//auto race = io::xml::get_class_name(filename, "m_race_name");
 	auto cclass = io::xml::get_class_name(filename, "m_class_name");
 
-	if (!race.compare("HillDwarf"))
-		hero.set_race_creature(new HillDwarf);
+	//if (!race.compare("HillDwarf"))
+//		hero.set_race_creature(new HillDwarf);
+	//hero.set_race_creature(new RaceCreature{ Race::HillDwarf });
+	hero.set_race_creature(new RaceCreature);
 
 	if (!cclass.compare("Cleric"))
 		hero.set_class(new Cleric);

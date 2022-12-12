@@ -12,10 +12,10 @@ import RaceCreature;
 class Elf : public RaceCreature
 {
 public:
-	Elf() : RaceCreature(1, 60, Size::medium, 30)
-	{
-		set_ability_score_increase(Ability::dexterity, 2);
-	}
+	//Elf() : RaceCreature(1, 60, Size::medium, 30)
+	//{
+	//	set_ability_score_increase(Ability::dexterity, 2);
+	//}
 
 private:
 	friend class boost::serialization::access;
@@ -31,7 +31,7 @@ private:
 export class HighElf: public Elf
 {
 public:
-	HighElf() { set_ability_score_increase(Ability::intelligence, 1); }
+	//HighElf() { set_ability_score_increase(Ability::intelligence, 1); }
 
 private:
 	friend class boost::serialization::access;
@@ -47,11 +47,11 @@ private:
 export class WoodElf: public Elf
 {
 public:
-	WoodElf()
-	{
-		set_speed_land(35);
-		set_ability_score_increase(Ability::wisdom, 1); 
-	}
+	//WoodElf()
+	//{
+	//	set_speed_land(35);
+	//	set_ability_score_increase(Ability::wisdom, 1); 
+	//}
 
 private:
 	friend class boost::serialization::access;
@@ -66,11 +66,11 @@ private:
 export class DarkElf : public Elf
 {
 public:
-	DarkElf()
-	{
-		set_darkvision(120);
-		set_ability_score_increase(Ability::charisma, 1);
-	}
+	//DarkElf()
+	//{
+	//	set_darkvision(120);
+	//	set_ability_score_increase(Ability::charisma, 1);
+	//}
 
 private:
 	friend class boost::serialization::access;

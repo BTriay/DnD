@@ -6,10 +6,10 @@ import RaceCreature;
 class Gnome : public RaceCreature
 {
 public:
-	Gnome() : RaceCreature(1, 60, Size::small, 25)
-	{
-		set_ability_score_increase(Ability::intelligence, 2);
-	}
+	//Gnome() : RaceCreature(1, 60, Size::small, 25)
+	//{
+	//	set_ability_score_increase(Ability::intelligence, 2);
+	//}
 
 private:
 
@@ -19,7 +19,7 @@ private:
 export class ForestGnome : public Gnome
 {
 public:
-	ForestGnome() { set_ability_score_increase(Ability::dexterity, 1); }
+	//ForestGnome() { set_ability_score_increase(Ability::dexterity, 1); }
 
 private:
 
@@ -29,7 +29,7 @@ private:
 export class RockGnome : public Gnome
 {
 public:
-	RockGnome() { set_ability_score_increase(Ability::constitution, 1); }
+	//RockGnome() { set_ability_score_increase(Ability::constitution, 1); }
 
 private:
 };

@@ -49,6 +49,12 @@ public:
     Hero(const std::string& name, RaceCreature* race_creature, IClass* cclass) : 
         m_hero_name(name), m_race_creature(race_creature), m_class(cclass) {}
 
+    Hero(const std::string& name, Race race) :
+        m_hero_name(name), m_class(nullptr)
+    {
+        m_race_creature = new RaceCreature{ race };
+    }
+
     ~Hero()
     {
         if (m_race_creature) delete m_race_creature;
@@ -123,12 +129,7 @@ private:
         }
 
         ar& BOOST_SERIALIZATION_NVP(m_hero_name);
-
-        if (auto dp = dynamic_cast<HillDwarf*>(m_race_creature))
-        {
-            m_race_name = "HillDwarf";
-            ar& boost::serialization::make_nvp("HillDwarf", dp);
-        }
+        ar& BOOST_SERIALIZATION_NVP(m_race_creature);
 
         if (auto dp = dynamic_cast<Cleric*>(m_class))
         {
@@ -136,12 +137,10 @@ private:
             ar& boost::serialization::make_nvp("Cleric", dp);
         }
 
-        ar& BOOST_SERIALIZATION_NVP(m_race_name);
         ar& BOOST_SERIALIZATION_NVP(m_class_name);
     }
 
     std::string m_hero_name;
-    std::string m_race_name;
     std::string m_class_name;
     RaceCreature* m_race_creature;
     IClass* m_class;
