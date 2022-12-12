@@ -1,15 +1,12 @@
 export module HalfElf;
 
-import <vector>;
-import <map>;
 import enumeration;
-import IRace;
-import ICreature;
+import RaceCreature;
 
-export class HalfElf : public ICreature, public IRace
+export class HalfElf : public RaceCreature
 {
 public:
-	HalfElf() : ICreature(1, 60, Size::medium, 30), IRace()
+	HalfElf() : RaceCreature(1, 60, Size::medium, 30)
 	{
 		set_ability_score_increase(Ability::charisma, 2);
 		

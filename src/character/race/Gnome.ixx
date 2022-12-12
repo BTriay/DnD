@@ -1,15 +1,12 @@
 export module Gnome;
 
-import <vector>;
-import <map>;
 import enumeration;
-import IRace;
-import ICreature;
+import RaceCreature;
 
-class Gnome : public ICreature, public IRace
+class Gnome : public RaceCreature
 {
 public:
-	Gnome() : ICreature(1, 60, Size::small, 25), IRace()
+	Gnome() : RaceCreature(1, 60, Size::small, 25)
 	{
 		set_ability_score_increase(Ability::intelligence, 2);
 	}

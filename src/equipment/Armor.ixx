@@ -1,3 +1,9 @@
+module;
+
+#include <boost/archive/xml_oarchive.hpp>
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/serialization/version.hpp>
+
 export module Armor;
 
 import <stdexcept>;
@@ -21,11 +27,22 @@ public:
 
 	virtual ~Armor() = default;
 private:
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
+	{
+		ar& BOOST_SERIALIZATION_NVP(m_type);
+		ar& BOOST_SERIALIZATION_NVP(m_base_armor_class);
+		ar& BOOST_SERIALIZATION_NVP(m_strength_required);
+		ar& BOOST_SERIALIZATION_NVP(m_stealth_disadvantage);
+	}
+
 	ArmorProtection m_type;
 	int m_base_armor_class;
 	int m_strength_required;
 	bool m_stealth_disadvantage;
 };
 
+BOOST_CLASS_VERSION(Armor, serialization_versions::armor)
 
 export Armor armor_creator(ArmorType model);

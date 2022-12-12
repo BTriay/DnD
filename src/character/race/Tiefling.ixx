@@ -1,15 +1,12 @@
 export module Tiefling;
 
-import <vector>;
-import <map>;
 import enumeration;
-import IRace;
-import ICreature;
+import RaceCreature;
 
-export class Tiefling : public ICreature, public IRace
+export class Tiefling : public RaceCreature
 {
 public:
-	Tiefling() : ICreature(1, 60, Size::medium, 25), IRace()
+	Tiefling() : RaceCreature(1, 60, Size::medium, 25)
 	{
 		set_ability_score_increase(Ability::intelligence, 1);
 		set_ability_score_increase(Ability::charisma, 2);

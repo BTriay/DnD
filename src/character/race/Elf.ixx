@@ -1,20 +1,29 @@
+module;
+
+#include <boost/archive/xml_oarchive.hpp>
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/serialization/version.hpp>
+
 export module Elf;
 
-import <vector>;
-import <map>;
 import enumeration;
-import IRace;
-import ICreature;
+import RaceCreature;
 
-class Elf : public ICreature, public IRace
+class Elf : public RaceCreature
 {
 public:
-	Elf() : ICreature(1, 60, Size::medium, 30), IRace()
+	Elf() : RaceCreature(1, 60, Size::medium, 30)
 	{
 		set_ability_score_increase(Ability::dexterity, 2);
 	}
 
 private:
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
+	{
+		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(RaceCreature);
+	}
 
 };
 
@@ -25,6 +34,12 @@ public:
 	HighElf() { set_ability_score_increase(Ability::intelligence, 1); }
 
 private:
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
+	{
+		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(Elf);
+	}
 
 };
 
@@ -39,6 +54,12 @@ public:
 	}
 
 private:
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
+	{
+		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(Elf);
+	}
 };
 
 
@@ -52,4 +73,10 @@ public:
 	}
 
 private:
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
+	{
+		ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(Elf);
+	}
 };

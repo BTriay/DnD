@@ -1,3 +1,11 @@
+module;
+
+#include <boost/archive/xml_oarchive.hpp>
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/serialization/version.hpp>
+#include <boost/serialization/map.hpp>
+#include <boost/serialization/vector.hpp>
+
 export module ICreature;
 
 import <map>;
@@ -63,8 +71,31 @@ public:
 	void add_weapon_two(Weapon& weapon) { m_weapon_2 = weapon; }
 	void drop_weapon_two() { m_weapon_2 = {}; }
 
+protected:
+	ICreature() : ICreature(1, 0, Size::medium, 0) {} // for serialization
+
 private:
-	
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
+	{
+		ar& BOOST_SERIALIZATION_NVP(m_darkvision);
+		ar& BOOST_SERIALIZATION_NVP(m_size);
+		ar& BOOST_SERIALIZATION_NVP(m_speed_land);
+		ar& BOOST_SERIALIZATION_NVP(m_speed_climb);
+		ar& BOOST_SERIALIZATION_NVP(m_speed_air);
+		ar& BOOST_SERIALIZATION_NVP(m_speed_water);
+		ar& BOOST_SERIALIZATION_NVP(m_hit_points_max_without_constit);
+		ar& BOOST_SERIALIZATION_NVP(m_hit_points_current);
+		ar& BOOST_SERIALIZATION_NVP(m_ability_score);
+		ar& BOOST_SERIALIZATION_NVP(m_skill_score);
+		ar& BOOST_SERIALIZATION_NVP(m_resistance);
+		ar& BOOST_SERIALIZATION_NVP(m_has_shield);
+		ar& BOOST_SERIALIZATION_NVP(m_armor);
+		ar& BOOST_SERIALIZATION_NVP(m_weapon_1);
+		ar& BOOST_SERIALIZATION_NVP(m_weapon_2);
+	}
+
 	int m_darkvision; /*!< Darkvision, in feet */
 	Size m_size; /*!< Tiny, Small, etc */
 	int m_speed_land; /*!< Walking speed, in feet per turn */
@@ -93,3 +124,5 @@ private:
 	Weapon m_weapon_1;
 	Weapon m_weapon_2;
 };
+
+BOOST_CLASS_VERSION(ICreature, serialization_versions::icreature)

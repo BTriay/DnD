@@ -2,6 +2,19 @@ export module enumeration;
 
 import <array>;
 
+export namespace serialization_versions
+{
+	const auto die = 1;
+	const auto item = 1;
+	const auto weapon = 1;
+	const auto armor = 1;
+	const auto icreature = 1;
+	const auto iclass = 1;
+	const auto race_creature = 1;
+	const auto irace = 1;
+	const auto hero = 1;
+}
+
 export enum class Ability
 {	
 	charisma, constitution, dexterity, intelligence, strength, wisdom
