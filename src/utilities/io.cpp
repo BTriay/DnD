@@ -44,7 +44,7 @@ Hero io::xml::deserialize(const std::string& filename)
 	//auto race = io::xml::get_class_name(filename, "m_race_name");
 	auto cclass = io::xml::get_class_name(filename, "m_class_name");
 
-	hero.set_race_creature(new RaceCreature);
+	hero.set_race_creature(new HeroicCreature);
 
 	if (!cclass.compare("Cleric"))
 		hero.set_class(new Cleric);

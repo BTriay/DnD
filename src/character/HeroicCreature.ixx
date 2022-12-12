@@ -6,12 +6,12 @@ module;
 #include <boost/serialization/map.hpp>
 #include <boost/serialization/vector.hpp>
 
-export module RaceCreature;
+export module HeroicCreature;
 
 import ICreature;
 import enumeration;
 
-export class RaceCreature : public ICreature
+export class HeroicCreature : public ICreature
 {
 public:
 	/*
@@ -26,20 +26,20 @@ public:
 	Tiefling
 	*/
 
-	RaceCreature(Race race = Race::HillDwarf) : m_race(race)
+	HeroicCreature(Race race = Race::HillDwarf) : m_race(race)
 	{
 		// main races
 		switch (race)
 		{
 		case (Race::HillDwarf):
 		case (Race::MountainDwarf):
-			RaceCreature(1, 60, Size::medium, 25);
+			HeroicCreature(1, 60, Size::medium, 25);
 			set_ability_score_increase(Ability::constitution, 2);
 			add_resistance(Damage::poison);
 			break;
 
 		case (Race::Dragonborn):
-			RaceCreature(1, 0, Size::medium, 30);
+			HeroicCreature(1, 0, Size::medium, 30);
 			set_ability_score_increase(Ability::charisma, 1);
 			set_ability_score_increase(Ability::strength, 2);
 
@@ -66,7 +66,7 @@ public:
 	Race race() const { return m_race; }
 
 private:
-	RaceCreature(int hit_points_max, int darkvision, Size size,
+	HeroicCreature(int hit_points_max, int darkvision, Size size,
 		int speed_land, int speed_climb = 0,
 		int speed_air = 0, int speed_water = 0) :
 		ICreature(hit_points_max, darkvision, size, speed_land,
@@ -85,4 +85,4 @@ private:
 	Race m_race;
 };
 
-BOOST_CLASS_VERSION(RaceCreature, serialization_versions::race_creature)
+BOOST_CLASS_VERSION(HeroicCreature, serialization_versions::race_creature)

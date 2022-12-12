@@ -19,7 +19,7 @@ import Weapon;
 import enumeration;
 
 import Cleric;
-import RaceCreature;
+import HeroicCreature;
 
 int main()
 {
@@ -50,7 +50,7 @@ int main()
     std::cout << helgret_reborn.name() << '\n';
 
     /*
-    RaceCreature rc{Race::HillDwarf}, rc2;
+    HeroicCreature rc{Race::HillDwarf}, rc2;
     rc.set_ability_score(Ability::wisdom, 15);
     {
         std::ofstream fs1{ filename };

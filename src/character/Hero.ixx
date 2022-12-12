@@ -11,7 +11,7 @@ import <string>;
 import <fstream>;
 import <iostream>;
 
-import RaceCreature;
+import HeroicCreature;
 import IClass;
 import Die;
 import enumeration;
@@ -35,13 +35,13 @@ public:
     /*! Build a hero! */
     Hero(const std::string& name) : Hero(name, nullptr, nullptr) {}
 
-    Hero(const std::string& name, RaceCreature* race_creature, IClass* cclass) : 
+    Hero(const std::string& name, HeroicCreature* race_creature, IClass* cclass) : 
         m_hero_name(name), m_race_creature(race_creature), m_class(cclass) {}
 
     Hero(const std::string& name, Race race) :
         m_hero_name(name), m_class(nullptr)
     {
-        m_race_creature = new RaceCreature{ race };
+        m_race_creature = new HeroicCreature{ race };
     }
 
     ~Hero()
@@ -50,7 +50,7 @@ public:
         if (m_class) delete m_class;
     }
 
-    void set_race_creature(RaceCreature* race_creature)
+    void set_race_creature(HeroicCreature* race_creature)
     {
         m_race_creature = race_creature;
     }
@@ -132,7 +132,7 @@ private:
 
     std::string m_hero_name;
     std::string m_class_name;
-    RaceCreature* m_race_creature;
+    HeroicCreature* m_race_creature;
     IClass* m_class;
 };
 

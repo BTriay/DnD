@@ -14,8 +14,8 @@ add_library(character
             Hero.ixx
             ICreature.cpp
             ICreature.ixx
-            RaceCreature.cpp
-            RaceCreature.ixx
+            HeroicCreature.cpp
+            HeroicCreature.ixx
 
             ./class/IClass.cpp
             ./class/IClass.ixx
