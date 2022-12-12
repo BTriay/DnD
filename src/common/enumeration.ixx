@@ -98,3 +98,16 @@ export enum class WeaponType
 	shortsword, trident, war_pick, warhammer, whip,
 	blowgun, hand_crossbow, heavy_crossbow, longbow
 };
+
+export enum class Race
+{
+	HillDwarf, MountainDwarf,
+	Dragonborn,
+	HighElf, WoodElf, DarkElf,
+	ForestGnome, RockGnome,
+	HalfElf,
+	Lightfoot, Stout,
+	HalfOrc,
+	Human,
+	Tiefling
+};
