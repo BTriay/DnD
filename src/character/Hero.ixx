@@ -28,17 +28,6 @@ import Sorcerer;
 import Warlock;
 import Wizard;
 
-// races
-import Dwarf;
-import Elf;
-import Halfling;
-import Human;
-import Dragonborn;
-import Gnome;
-import HalfElf;
-import HalfOrc;
-import Tiefling;
-
 
 export class Hero
 {

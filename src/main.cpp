@@ -19,7 +19,6 @@ import Weapon;
 import enumeration;
 
 import Cleric;
-import Dwarf;
 import RaceCreature;
 
 int main()
