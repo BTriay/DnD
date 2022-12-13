@@ -14,29 +14,8 @@ add_library(character
             Hero.ixx
             ICreature.cpp
             ICreature.ixx
-            RaceCreature.cpp
-            RaceCreature.ixx
-
-            ./race/IRace.cpp
-            ./race/IRace.ixx
-            ./race/Dragonborn.cpp
-            ./race/Dragonborn.ixx
-            ./race/Dwarf.cpp
-            ./race/Dwarf.ixx
-            ./race/Elf.cpp
-            ./race/Elf.ixx
-            ./race/Gnome.cpp
-            ./race/Gnome.ixx
-            ./race/HalfElf.cpp
-            ./race/HalfElf.ixx
-            ./race/Halfling.cpp
-            ./race/Halfling.ixx
-            ./race/HalfOrc.cpp
-            ./race/HalfOrc.ixx
-            ./race/Human.cpp
-            ./race/Human.ixx
-            ./race/Tiefling.cpp
-            ./race/Tiefling.ixx
+            HeroicCreature.cpp
+            HeroicCreature.ixx
 
             ./class/IClass.cpp
             ./class/IClass.ixx

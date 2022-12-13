@@ -10,7 +10,7 @@ export namespace serialization_versions
 	const auto armor = 1;
 	const auto icreature = 1;
 	const auto iclass = 1;
-	const auto race_creature = 1;
+	const auto heroic_creature = 1;
 	const auto irace = 1;
 	const auto hero = 1;
 }
@@ -97,4 +97,17 @@ export enum class WeaponType
 	lance, longsword, maul, morningstar, pike, rapier, scimitar,
 	shortsword, trident, war_pick, warhammer, whip,
 	blowgun, hand_crossbow, heavy_crossbow, longbow
+};
+
+export enum class Race
+{
+	HillDwarf, MountainDwarf,
+	Dragonborn,
+	HighElf, WoodElf, DarkElf,
+	ForestGnome, RockGnome,
+	HalfElf,
+	Lightfoot, Stout,
+	HalfOrc,
+	Human,
+	Tiefling
 };

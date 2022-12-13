@@ -19,32 +19,36 @@ import Weapon;
 import enumeration;
 
 import Cleric;
-import Dwarf;
+import HeroicCreature;
 
 int main()
 {
     [[maybe_unused]] const auto filename = "dnd_serialization.xml";
 
-    Hero helgret{ "Helgret", new HillDwarf, new Cleric };
+    
+    Hero helgret{ "Helgret", Race::Dragonborn };
+    helgret.set_class(new Cleric);
+
     helgret.set_ability_score(Ability::charisma, 10);
-    helgret.add_skill(Skill::medicine);
     helgret.set_ability_score(Ability::constitution, 13);
     helgret.set_ability_score(Ability::dexterity, 8);
     helgret.set_ability_score(Ability::intelligence, 12);
     helgret.set_ability_score(Ability::strength, 14);
     helgret.set_ability_score(Ability::wisdom, 15);
+    helgret.add_skill(Skill::medicine);
 
     //auto armor = armor_creator(ArmorType::chain_mail);
     //helgret.don_armor(armor);
 
-//    std::cout << helgret << '\n';
-    
+    std::cout << "helgret before:\n";
+    std::cout << helgret<< '\n';
+
     io::xml::serialize(helgret, filename);
-
     auto helgret_reborn = io::xml::deserialize(filename);
-    std::cout << helgret_reborn.name() << '\n';
 
-    
+    std::cout << "helgret reborn:\n";
+    std::cout << helgret_reborn << '\n';
+
     //helgret.add_weapon_one(weapon_creator(WeaponType::warhammer));
     //helgret.don_shield();
     //std::cout << helgret << '\n';
