@@ -21,11 +21,11 @@ void Hero::set_race_creature(HeroicCreature* race_creature)
     m_heroic_creature = race_creature;
 }
 
-void Hero::set_class(IClass* cclass)
-{
-    m_class = cclass;
-    restore_current_hp_to_max();
-}
+//void Hero::set_class(IClass* cclass)
+//{
+//    m_class = cclass;
+//    restore_current_hp_to_max();
+//}
 
 void Hero::set_ability_score(Ability ability, int score)
 {
@@ -37,9 +37,9 @@ const std::string Hero::name() const
     return m_hero_name;
 }
 
-const std::string Hero::class_name() const
+std::string Hero::class_name() const
 {
-    return "some class \\o/";
+    return m_class_name;
 }
 
 const std::string Hero::race_name() const

@@ -15,7 +15,6 @@ import <string>;
 import <fstream>;
 
 import Hero;
-import Cleric;
 import enumeration;
 
 std::string io::xml::get_class_name(const std::string& filename,
@@ -40,12 +39,9 @@ void io::xml::serialize(const Hero& hero, const std::string& filename)
 
 Hero io::xml::deserialize(const std::string& filename)
 {
-	Hero hero{"Aragorn", Race::Human};
-
 	auto cclass = io::xml::get_class_name(filename, "m_class_name");
 
-	if (!cclass.compare("Cleric"))
-		hero.set_class(new Cleric);
+	Hero hero{"Aragorn", Race::Human, cclass };
 
 	std::ifstream fs2{ filename };
 	boost::archive::xml_iarchive ia{ fs2 };
