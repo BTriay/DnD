@@ -40,11 +40,10 @@ void io::xml::serialize(const Hero& hero, const std::string& filename)
 
 Hero io::xml::deserialize(const std::string& filename)
 {
-	Hero hero{"Aragorn"};
-
-	hero.set_race_creature(new HeroicCreature);
+	Hero hero{"Aragorn", Race::Human};
 
 	auto cclass = io::xml::get_class_name(filename, "m_class_name");
+
 	if (!cclass.compare("Cleric"))
 		hero.set_class(new Cleric);
 
