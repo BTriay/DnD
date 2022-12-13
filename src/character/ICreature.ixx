@@ -39,6 +39,9 @@ public:
 	virtual int ability_score_increase(Ability ability) const;
 	virtual void set_ability_score_increase(Ability ability, int increase);
 
+	void set_size(Size size);
+	Size size() const;
+
 	void set_hit_points_max(int hp);
 	int hit_points_max() const; 
 	virtual void restore_current_hp_to_max();
@@ -50,11 +53,13 @@ public:
 
 	void add_resistance(Damage resistance);
 	
+	int darkvision() const;
 	void set_darkvision(int darkvision_distance);
 	void set_speed_land(int speed_land);
 	void set_speed_climb(int speed_climb);
 	void set_speed_air(int speed_air);
 	void set_speed_water(int speed_water);
+
 
 	void don_armor(Armor& armor) { m_armor = armor; }
 	void don_armor(ArmorType armor_type) { m_armor = armor_creator(armor_type); }
@@ -76,6 +81,7 @@ public:
 
 protected:
 	ICreature() : ICreature(1, 0, Size::medium, 0) {} // for serialization
+	void set_default_ability_scores();
 
 private:
 	friend class boost::serialization::access;
@@ -91,6 +97,7 @@ private:
 		ar& BOOST_SERIALIZATION_NVP(m_hit_points_max_without_constit);
 		ar& BOOST_SERIALIZATION_NVP(m_hit_points_current);
 		ar& BOOST_SERIALIZATION_NVP(m_ability_score);
+		ar& BOOST_SERIALIZATION_NVP(m_ability_score_increase);
 		ar& BOOST_SERIALIZATION_NVP(m_skill_score);
 		ar& BOOST_SERIALIZATION_NVP(m_resistance);
 		ar& BOOST_SERIALIZATION_NVP(m_has_shield);
@@ -121,7 +128,6 @@ private:
 	std::map<Skill, int> m_skill_score; // if different from the ability-implied score
 	std::vector<Damage> m_resistance;
 
-	void set_default_ability_scores();
 
 	bool m_has_shield;
 	Armor m_armor;

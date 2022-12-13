@@ -48,6 +48,16 @@ void ICreature::set_ability_score_increase(Ability ability, int increase)
 	m_ability_score_increase[ability] = increase;
 }
 
+void ICreature::set_size(Size size)
+{
+	m_size = size;
+}
+
+Size ICreature::size() const
+{
+	return m_size;
+}
+
 void ICreature::set_hit_points_max(int hp)
 {
 	m_hit_points_max_without_constit = hp;
@@ -87,6 +97,11 @@ void ICreature::long_rest()
 void ICreature::add_resistance(Damage resistance)
 {
 	m_resistance.push_back(resistance);
+}
+
+int ICreature::darkvision() const
+{
+	return m_darkvision;
 }
 
 void ICreature::set_darkvision(int darkvision_distance)
