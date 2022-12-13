@@ -123,8 +123,8 @@ private:
 	*/
 	int m_hit_points_current;
 
-	std::map<Ability, int> m_ability_score;
-	std::map<Ability, int> m_ability_score_increase;
+	std::map<Ability, int> m_ability_score; /*!< Chosen by the player */
+	std::map<Ability, int> m_ability_score_increase; /*!< From the race */
 	std::map<Skill, int> m_skill_score; // if different from the ability-implied score
 	std::vector<Damage> m_resistance;
 
