@@ -28,20 +28,14 @@ import Sorcerer;
 import Warlock;
 import Wizard;
 
-
 export class Hero
 {
 public:
     /*! Build a hero! */
-    Hero(const std::string& name, 
-        HeroicCreature* race_creature = nullptr, 
-        IClass* cclass = nullptr) :
-        m_hero_name(name), m_race_creature(race_creature), m_class(cclass) {}
-
     Hero(const std::string& name, Race race) :
         m_hero_name(name), m_class(nullptr)
     {
-        m_race_creature = new HeroicCreature{ race };
+        m_heroic_creature = new HeroicCreature{ race };
     }
 
     Hero(const Hero& rhs) = delete;
@@ -67,6 +61,7 @@ public:
 
     /*! Override ICreature's set_hit_points_max to include the constitution bonus */
     void restore_current_hp_to_max();
+    int current_hit_points() const;
 
     /* functions pointing to IClass */
     HitDice hit_dice() const;
@@ -80,13 +75,13 @@ private:
     template<class Archive>
     void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
     {
-        if (!m_race_creature || !m_class)
+        if (!m_heroic_creature || !m_class)
         {
-            throw std::invalid_argument("uninitialized m_race_creature or m_class");
+            throw std::invalid_argument("uninitialized m_heroic_creature or m_class");
         }
 
         ar& BOOST_SERIALIZATION_NVP(m_hero_name);
-        ar& BOOST_SERIALIZATION_NVP(m_race_creature);
+        ar& BOOST_SERIALIZATION_NVP(m_heroic_creature);
 
         if (auto dp = dynamic_cast<Cleric*>(m_class))
         {
@@ -99,7 +94,7 @@ private:
 
     std::string m_hero_name;
     std::string m_class_name;
-    HeroicCreature* m_race_creature;
+    HeroicCreature* m_heroic_creature;
     IClass* m_class;
 };
 
@@ -117,7 +112,7 @@ export std::ostream& operator<<(std::ostream& os, const Hero& hero)
     os << "\tstrength: " << hero.ability_modifier(Ability::strength) << '\n';
     os << "\twisdom: " << hero.ability_modifier(Ability::wisdom) << '\n';
     //os << hero.name() << " has an AC of " << hero.armor_class();
-    //os << " and " << hero.current_hit_points() << " hit points" << '\n';
+    os << " and " << hero.current_hit_points() << " hit points" << '\n';
 
     return os;
 }
