@@ -6,6 +6,8 @@ module;
 
 export module HeroicCreature;
 
+import <string>;
+
 import ICreature;
 import enumeration;
 
@@ -15,15 +17,12 @@ public:
 
 	HeroicCreature(Race race = Race::HillDwarf);
 
-	Race race() const { return m_race; }
+	const std::string race() const;
 
 private:
-	HeroicCreature(int hit_points_max, int darkvision, Size size,
+	void init(int hit_points_max, int darkvision, Size size,
 		int speed_land, int speed_climb = 0,
-		int speed_air = 0, int speed_water = 0) :
-		ICreature(hit_points_max, darkvision, size, speed_land,
-			speed_climb, speed_air, speed_water)
-	{}
+		int speed_air = 0, int speed_water = 0);
 
 	friend class boost::serialization::access;
 	template<class Archive>
@@ -38,3 +37,12 @@ private:
 };
 
 BOOST_CLASS_VERSION(HeroicCreature, serialization_versions::heroic_creature)
+
+/*
+std::ostream& operator<<(ostream& os, const HeroicCreature& hc)
+{
+	os << hc.
+
+	return os;
+}
+*/

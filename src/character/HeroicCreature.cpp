@@ -1,5 +1,7 @@
 module HeroicCreature;
 
+/* PUBLIC MEMBER FUNCTIONS */
+
 HeroicCreature::HeroicCreature(Race race) : m_race(race)
 {
 	// main races
@@ -7,49 +9,50 @@ HeroicCreature::HeroicCreature(Race race) : m_race(race)
 	{
 	case (Race::HillDwarf):
 	case (Race::MountainDwarf):
-		HeroicCreature(1, 60, Size::medium, 25);
+		init(1, 60, Size::medium, 25);
 		set_ability_score_increase(Ability::constitution, 2);
 		add_resistance(Damage::poison);
 		break;
 
 	case (Race::Dragonborn):
-		HeroicCreature(1, 0, Size::medium, 30);
+		init(1, 0, Size::medium, 30);
 		set_ability_score_increase(Ability::charisma, 1);
 		set_ability_score_increase(Ability::strength, 2);
+		break;
 
 	case (Race::HighElf):
 	case (Race::WoodElf):
 	case (Race::DarkElf):
-		HeroicCreature(1, 60, Size::medium, 30);
+		init(1, 60, Size::medium, 30);
 		set_ability_score_increase(Ability::dexterity, 2);
 		break;
 
 	case (Race::ForestGnome):
 	case (Race::RockGnome):
-		HeroicCreature(1, 60, Size::small, 25);
+		init(1, 60, Size::small, 25);
 		set_ability_score_increase(Ability::intelligence, 2);
 		break;
 
 	case (Race::HalfElf):
-		HeroicCreature(1, 60, Size::medium, 30);
+		init(1, 60, Size::medium, 30);
 		set_ability_score_increase(Ability::charisma, 2);
 		// + 2 abilities chosen by the player (+1 each)
 		break;
 
 	case (Race::Lightfoot):
 	case (Race::Stout):
-		HeroicCreature(1, 0, Size::small, 25);
+		init(1, 0, Size::small, 25);
 		set_ability_score_increase(Ability::dexterity, 2);
 		break;
 
 	case (Race::HalfOrc):
-		HeroicCreature(1, 60, Size::medium, 30);
+		init(1, 60, Size::medium, 30);
 		set_ability_score_increase(Ability::constitution, 1);
 		set_ability_score_increase(Ability::strength, 2);
 		break;
 
 	case (Race::Human):
-		HeroicCreature(1, 0, Size::medium, 30);
+		init(1, 0, Size::medium, 30);
 		set_ability_score_increase(Ability::charisma, 1);
 		set_ability_score_increase(Ability::constitution, 1);
 		set_ability_score_increase(Ability::dexterity, 1);
@@ -59,7 +62,7 @@ HeroicCreature::HeroicCreature(Race race) : m_race(race)
 		break;
 
 	case (Race::Tiefling):
-		HeroicCreature(1, 60, Size::medium, 30);
+		init(1, 60, Size::medium, 30);
 		set_ability_score_increase(Ability::charisma, 2);
 		set_ability_score_increase(Ability::intelligence, 1);
 		break;
@@ -106,3 +109,78 @@ HeroicCreature::HeroicCreature(Race race) : m_race(race)
 	}
 
 }
+
+const std::string HeroicCreature::race() const
+{
+	switch (m_race)
+	{
+	case (Race::HillDwarf):
+		return "HillDwarf";
+		break;
+	case (Race::MountainDwarf):
+		return "MountainDwarf";
+		break;
+	case (Race::Dragonborn):
+		return "Dragonborn";
+		break;
+	case (Race::HighElf):
+		return "HighElf";
+		break;
+	case (Race::WoodElf):
+		return "WoodElf";
+		break;
+	case (Race::DarkElf):
+		return "DarkElf";
+		break;
+	case (Race::ForestGnome):
+		return "ForestGnome";
+		break;
+	case (Race::RockGnome):
+		return "RockGnome";
+		break;
+	case (Race::HalfElf):
+		return "HalfElf";
+		break;
+	case (Race::Lightfoot):
+		return "Lightfoot";
+		break;
+	case (Race::Stout):
+		return "Stout";
+		break;
+	case (Race::HalfOrc):
+		return "HalfOrc";
+		break;
+	case (Race::Human):
+		return "Human";
+		break;
+	case (Race::Tiefling):
+		return "Tiefling";
+		break;
+	default:
+		return "problem, unknown race";
+	}
+}
+
+/* END OF PUBLIC MEMBER FUNCTIONS */
+
+
+/* PRIVATE MEMBER FUNCTIONS */
+
+void HeroicCreature::init(int hit_points_max, int darkvision, Size size,
+	int speed_land, int speed_climb, int speed_air, int speed_water)
+{
+	set_hit_points_max(hit_points_max);
+	set_darkvision(darkvision);
+	
+	set_size(size);
+	set_speed_land(speed_land);
+	set_speed_climb(speed_climb);
+	set_speed_air(speed_air);
+	set_speed_water(speed_water);
+
+	set_default_ability_scores();
+	restore_current_hp_to_max();
+}
+
+
+/* END OF PRIVATE MEMBER FUNCTIONS */
