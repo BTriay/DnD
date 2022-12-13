@@ -18,16 +18,13 @@ import Armor;
 import Weapon;
 import enumeration;
 
-import Cleric;
-import HeroicCreature;
-
 int main()
 {
     [[maybe_unused]] const auto filename = "dnd_serialization.xml";
+    [[maybe_unused]] const auto filename2 = "dnd_serialization2.xml";
 
     
-    Hero helgret{ "Helgret", Race::Dragonborn };
-    helgret.set_class(new Cleric);
+    Hero helgret{ "Helgret", Race::Dragonborn, "Warlock"};
 
     helgret.set_ability_score(Ability::charisma, 10);
     helgret.set_ability_score(Ability::constitution, 13);
@@ -49,6 +46,8 @@ int main()
 
     std::cout << "helgret reborn:\n";
     std::cout << helgret_reborn << '\n';
+
+    io::xml::serialize(helgret_reborn, filename2);
 
     //helgret.add_weapon_one(weapon_creator(WeaponType::warhammer));
     //helgret.don_shield();
