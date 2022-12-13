@@ -116,46 +116,32 @@ const std::string HeroicCreature::race() const
 	{
 	case (Race::HillDwarf):
 		return "HillDwarf";
-		break;
 	case (Race::MountainDwarf):
 		return "MountainDwarf";
-		break;
 	case (Race::Dragonborn):
 		return "Dragonborn";
-		break;
 	case (Race::HighElf):
 		return "HighElf";
-		break;
 	case (Race::WoodElf):
 		return "WoodElf";
-		break;
 	case (Race::DarkElf):
 		return "DarkElf";
-		break;
 	case (Race::ForestGnome):
 		return "ForestGnome";
-		break;
 	case (Race::RockGnome):
 		return "RockGnome";
-		break;
 	case (Race::HalfElf):
 		return "HalfElf";
-		break;
 	case (Race::Lightfoot):
 		return "Lightfoot";
-		break;
 	case (Race::Stout):
 		return "Stout";
-		break;
 	case (Race::HalfOrc):
 		return "HalfOrc";
-		break;
 	case (Race::Human):
 		return "Human";
-		break;
 	case (Race::Tiefling):
 		return "Tiefling";
-		break;
 	default:
 		return "problem, unknown race";
 	}
