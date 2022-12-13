@@ -49,9 +49,7 @@ const std::string Hero::race_name() const
 
 int Hero::ability_modifier(Ability ability) const
 {
-    return (m_heroic_creature->ability_score_increase(ability)
-        + m_heroic_creature->ability_score(ability)
-        - 10) / 2;
+    return m_heroic_creature->ability_modifier(ability);
 }
 
 void Hero::restore_current_hp_to_max()
@@ -61,7 +59,8 @@ void Hero::restore_current_hp_to_max()
 
     m_heroic_creature->set_current_hp(m_heroic_creature->hit_points_max()
         + m_class->level() * (hilldwarf_additional_hp
-        + m_heroic_creature->ability_modifier(Ability::constitution)));
+        + ability_modifier(Ability::constitution)));
+
 }
 
 int Hero::current_hit_points() const

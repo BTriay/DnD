@@ -36,6 +36,7 @@ int main()
     helgret.set_ability_score(Ability::strength, 14);
     helgret.set_ability_score(Ability::wisdom, 15);
     helgret.add_skill(Skill::medicine);
+    helgret.restore_current_hp_to_max();
 
     //auto armor = armor_creator(ArmorType::chain_mail);
     //helgret.don_armor(armor);
