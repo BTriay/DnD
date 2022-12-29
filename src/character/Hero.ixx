@@ -6,7 +6,6 @@ module;
 
 export module Hero;
 
-import <stdexcept>;
 import <string>;
 import <fstream>;
 import <iostream>;
@@ -92,77 +91,36 @@ public:
     int level() const; /*!< Get the hero's level */
 
     void gain_level(bool add_default_hp);
+
+    void don_armor(Armor& armor);
+    void don_armor(ArmorType armor_type);
     
 private:
     friend class boost::serialization::access;
+
     template<class Archive>
     void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
     {
-        if (!m_heroic_creature || !m_class)
-        {
-            throw std::invalid_argument("uninitialized m_heroic_creature or m_class");
-        }
+        ar.template register_type<Cleric>();
+        ar.template register_type<Druid>();
+        ar.template register_type<Fighter>();
+        ar.template register_type<Monk>();
+        ar.template register_type<Paladin>();
+        ar.template register_type<Ranger>();
+        ar.template register_type<Rogue>();
+        ar.template register_type<Sorcerer>();
+        ar.template register_type<Warlock>();
+        ar.template register_type<Wizard>();
 
         ar& BOOST_SERIALIZATION_NVP(m_hero_name);
         ar& BOOST_SERIALIZATION_NVP(m_heroic_creature);
-
-        if (auto dp = dynamic_cast<Cleric*>(m_class))
-        {
-            m_class_name = "Cleric";
-            ar& boost::serialization::make_nvp(m_class_name.c_str(), dp);
-        }
-        else if (auto dp = dynamic_cast<Druid*>(m_class))
-        {
-            m_class_name = "Druid";
-            ar& boost::serialization::make_nvp(m_class_name.c_str(), dp);
-        }
-        else if (auto dp = dynamic_cast<Fighter*>(m_class))
-        {
-            m_class_name = "Fighter";
-            ar& boost::serialization::make_nvp(m_class_name.c_str(), dp);
-        }
-        else if (auto dp = dynamic_cast<Monk*>(m_class))
-        {
-            m_class_name = "Monk";
-            ar& boost::serialization::make_nvp(m_class_name.c_str(), dp);
-        }
-        else if (auto dp = dynamic_cast<Paladin*>(m_class))
-        {
-            m_class_name = "Paladin";
-            ar& boost::serialization::make_nvp(m_class_name.c_str(), dp);
-        }
-        else if (auto dp = dynamic_cast<Ranger*>(m_class))
-        {
-            m_class_name = "Ranger";
-            ar& boost::serialization::make_nvp(m_class_name.c_str(), dp);
-        }
-        else if (auto dp = dynamic_cast<Rogue*>(m_class))
-        {
-            m_class_name = "Rogue";
-            ar& boost::serialization::make_nvp(m_class_name.c_str(), dp);
-        }
-        else if (auto dp = dynamic_cast<Sorcerer*>(m_class))
-        {
-            m_class_name = "Sorcerer";
-            ar& boost::serialization::make_nvp(m_class_name.c_str(), dp);
-        }
-        else if (auto dp = dynamic_cast<Warlock*>(m_class))
-        {
-            m_class_name = "Warlock";
-            ar& boost::serialization::make_nvp(m_class_name.c_str(), dp);
-        }
-        else if (auto dp = dynamic_cast<Wizard*>(m_class))
-        {
-            m_class_name = "Wizard";
-            ar& boost::serialization::make_nvp(m_class_name.c_str(), dp);
-        }
-
         ar& BOOST_SERIALIZATION_NVP(m_class_name);
+        ar& BOOST_SERIALIZATION_NVP(m_class);
     }
 
     std::string m_hero_name;
-    mutable std::string m_class_name;
     HeroicCreature* m_heroic_creature;
+    std::string m_class_name;
     IClass* m_class;
 };
 

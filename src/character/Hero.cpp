@@ -21,12 +21,6 @@ void Hero::set_race_creature(HeroicCreature* race_creature)
     m_heroic_creature = race_creature;
 }
 
-//void Hero::set_class(IClass* cclass)
-//{
-//    m_class = cclass;
-//    restore_current_hp_to_max();
-//}
-
 void Hero::set_ability_score(Ability ability, int score)
 {
     m_heroic_creature->set_ability_score(ability, score);
@@ -93,4 +87,14 @@ void Hero::gain_level(bool add_default_hp)
 
     m_heroic_creature->set_hit_points_max(m_heroic_creature->hit_points_max()
         + extra_hp);
+}
+
+void Hero::don_armor(Armor& armor)
+{
+    m_heroic_creature->don_armor(armor);
+}
+
+void Hero::don_armor(ArmorType armor_type)
+{
+    m_heroic_creature->don_armor(armor_type);
 }
