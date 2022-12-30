@@ -14,7 +14,7 @@ export class Paladin : public IClass
 public:
 	Paladin() : IClass(HitDice::eight)
 	{
-		std::vector<Ability> saving_throw{ Ability::constitution, Ability::strength };
+		std::vector<Ability> saving_throw{ Ability::wisdom, Ability::charisma};
 		set_saving_throw(saving_throw);
 	}
 
