@@ -16,6 +16,7 @@ import Die;
 import enumeration;
 
 // classes
+import Barbarian;
 import Cleric;
 import Druid;
 import Fighter;
@@ -39,6 +40,8 @@ public:
         m_class_name = cclass;
         if (!cclass.compare("Cleric"))
             m_class = new Cleric;
+        else if (!cclass.compare("Barbarian"))
+            m_class = new Barbarian;
         else if (!cclass.compare("Druid"))
             m_class = new Druid;
         else if (!cclass.compare("Fighter"))
@@ -100,7 +103,8 @@ private:
 
     template<class Archive>
     void serialize(Archive& ar, [[maybe_unused]] const unsigned int version)
-    {
+    {        
+        ar.template register_type<Barbarian>();
         ar.template register_type<Cleric>();
         ar.template register_type<Druid>();
         ar.template register_type<Fighter>();
