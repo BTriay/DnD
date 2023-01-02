@@ -39,8 +39,8 @@ int main()
     std::cout << "Gained " << hp << " hp when levelling up\n";
     hp = helgret.gain_level(false);
     std::cout << "Gained " << hp << " hp when levelling up\n";
-    hp = helgret.gain_level(false);
-    std::cout << "Gained " << hp << " hp when levelling up\n\n";
+    //hp = helgret.gain_level(false);
+    //std::cout << "Gained " << hp << " hp when levelling up\n\n";
 
     helgret.restore_current_hp_to_max();
 
@@ -48,16 +48,12 @@ int main()
     helgret.don_armor(armor);
 
     std::cout << "helgret before:\n";
-    std::cout << helgret<< '\n';
-
-    
+    std::cout << helgret<< '\n';        
     io::xml::serialize(helgret, filename);
     
-    auto helgret_reborn = io::xml::deserialize(filename);
-        
+    auto helgret_reborn = io::xml::deserialize(filename);        
     std::cout << "helgret reborn:\n";
     std::cout << helgret_reborn << '\n';
-
     io::xml::serialize(helgret_reborn, filename2);    
     
 

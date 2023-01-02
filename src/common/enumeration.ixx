@@ -92,6 +92,11 @@ export enum class HitDice
 	twelve = 12, twenty = 20, hundred = 100
 };
 
+export int hit_dice_average(HitDice hit_dice)
+{
+	return (static_cast<int>(hit_dice) + 2) / 2;
+}
+
 export enum class ArmorProtection
 {
 	none, light, medium, heavy

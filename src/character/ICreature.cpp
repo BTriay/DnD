@@ -51,46 +51,61 @@ void ICreature::set_ability_score_increase(Ability ability, int increase)
 	m_ability_score_increase[ability] = increase;
 }
 
+/*! Set the size of the creature */
 void ICreature::set_size(Size size)
 {
 	m_size = size;
 }
 
+/*! Get the size of the creature */
 Size ICreature::size() const
 {
 	return m_size;
 }
 
-void ICreature::set_hit_points_max(int hp)
+/*! Set the maximum hit points, excluding the hp from the constitution modifier */
+void ICreature::set_hit_points_without_constit(int hp)
 {
 	m_hit_points_max_without_constit = hp;
 }
 
-int ICreature::hit_points_max() const
+/*! Get the maximum hit points, excluding the hp from the constitution modifier */
+int ICreature::hit_points_without_constit() const
 {
 	return m_hit_points_max_without_constit;
 }
 
+/*! Restore the hit points to their max, excluding the hp from the constitution modifier */
 void ICreature::restore_current_hp_to_max()
 {
 	m_hit_points_current = m_hit_points_max_without_constit;
 }
 
+/*! Set the current hit points */
 void ICreature::set_current_hp(int hp)
 {
 	m_hit_points_current = hp;
 }
 
+/*! Set the current hit points */
 int ICreature::current_hit_points() const
 {
 	return m_hit_points_current;
 }
 
+/*! Lose hit points */
+void ICreature::lose_hit_points(int hit_points)
+{
+	m_hit_points_current -= hit_points;
+}
+
+/*! Take a short rest */
 void ICreature::short_rest()
 {
 
 }
 
+/*! Take a long rest */
 void ICreature::long_rest()
 {
 	restore_current_hp_to_max();
@@ -102,31 +117,37 @@ void ICreature::add_resistance(Damage resistance)
 	m_resistance.push_back(resistance);
 }
 
+/*! Get the creature's darkvision (in feet) */
 int ICreature::darkvision() const
 {
 	return m_darkvision;
 }
 
+/*! Set the creature's darkvision (in feet) */
 void ICreature::set_darkvision(int darkvision_distance)
 {
 	m_darkvision = darkvision_distance;
 }
 
+/*! Set the creature's speed on land (in feet per turn) */
 void ICreature::set_speed_land(int speed_land)
 {
 	m_speed_land = speed_land;
 }
 
+/*! Set the creature's climbing (in feet per turn) */
 void ICreature::set_speed_climb(int speed_climb)
 {
 	m_speed_climb = speed_climb;
 }
 
+/*! Set the creature's flying speed (in feet per turn) */
 void ICreature::set_speed_air(int speed_air)
 {
 	m_speed_air = speed_air;
 }
 
+/*! Set the creature's swimming speed (in feet per turn) */
 void ICreature::set_speed_water(int speed_water)
 {
 	m_speed_water = speed_water;

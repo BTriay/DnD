@@ -23,7 +23,7 @@ public:
 	const std::string race() const;
 
 private:
-	void init(int hit_points_max, int darkvision, Size size,
+	void init(int hit_points_without_constit, int darkvision, Size size,
 		int speed_land, int speed_climb = 0,
 		int speed_air = 0, int speed_water = 0);
 

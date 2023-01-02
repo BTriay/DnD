@@ -159,10 +159,10 @@ const std::string HeroicCreature::race() const
 
 /* PRIVATE MEMBER FUNCTIONS */
 
-void HeroicCreature::init(int hit_points_max, int darkvision, Size size,
+void HeroicCreature::init(int hit_points_without_constit, int darkvision, Size size,
 	int speed_land, int speed_climb, int speed_air, int speed_water)
 {
-	set_hit_points_max(hit_points_max);
+	set_hit_points_without_constit(hit_points_without_constit);
 	set_darkvision(darkvision);
 	
 	set_size(size);

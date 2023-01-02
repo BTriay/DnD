@@ -8,6 +8,7 @@ Hero::Hero(Hero&& rhs)
     rhs.m_heroic_creature = nullptr;
     m_class = rhs.m_class;
     rhs.m_class = nullptr;
+    m_hit_points_current = rhs.m_hit_points_current;
 }
 
 Hero::~Hero()
@@ -40,22 +41,38 @@ int Hero::ability_modifier(Ability ability) const
     return m_heroic_creature->ability_modifier(ability);
 }
 
+/*! Restore the hit points to their max,
+including the constitution modifier and HillDwarf bonus */
 void Hero::restore_current_hp_to_max()
 {
     // bonus specific to HillDwarf: double constitution point per level
     auto hilldwarf_additional_hp =
         m_heroic_creature->race().compare("HillDwarf") ? 0 : 1;
 
-    m_heroic_creature->set_current_hp(m_heroic_creature->hit_points_max()
-        + m_class->level() * (hilldwarf_additional_hp
-        + ability_modifier(Ability::constitution)));
+    set_current_hp(        
+        m_heroic_creature->hit_points_without_constit()
+        + (hilldwarf_additional_hp
+        + ability_modifier(Ability::constitution)) * m_class->level()    
+    );
 
+}
+
+/*! Set the current hit points */
+void Hero::set_current_hp(int hp)
+{
+    m_hit_points_current = hp;
 }
 
 /*! Get the current hit points of the hero */
 int Hero::current_hit_points() const
 {
-    return m_heroic_creature->current_hit_points();
+    return m_hit_points_current;
+}
+
+/*! Lose hit points */
+void Hero::lose_hit_points(int hit_points)
+{
+    m_hit_points_current -= hit_points;
 }
 
 HitDice Hero::hit_dice() const
@@ -81,11 +98,11 @@ int Hero::gain_level(bool add_default_hp)
     m_class->gain_level();
 
     auto extra_hp = add_default_hp ?
-        (static_cast<int>(m_class->hit_dice()) + 2) / 2 :
+        hit_dice_average(m_class->hit_dice()) :
         Die::gen(1, m_class->hit_dice());
 
-    m_heroic_creature->set_hit_points_max(m_heroic_creature->hit_points_max()
-        + extra_hp);
+    m_heroic_creature->set_hit_points_without_constit(
+        m_heroic_creature->hit_points_without_constit() + extra_hp);
 
     return extra_hp;
 }

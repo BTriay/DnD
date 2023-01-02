@@ -67,6 +67,8 @@ public:
         else if (!cclass.compare("Wizard"))
             m_class = new Wizard;
 
+        m_heroic_creature->
+            set_hit_points_without_constit(static_cast<int>(m_class->hit_dice()));
         restore_current_hp_to_max();
     }
 
@@ -83,9 +85,10 @@ public:
 
     int ability_modifier(Ability ability) const;
 
-    /*! Override ICreature's set_hit_points_max to include the constitution bonus */
     void restore_current_hp_to_max();
+    void set_current_hp(int hp);
     int current_hit_points() const;
+    void lose_hit_points(int hit_points);
 
     HitDice hit_dice() const;
     void add_skill(Skill skill);
@@ -120,12 +123,14 @@ private:
         ar& BOOST_SERIALIZATION_NVP(m_heroic_creature);
         ar& BOOST_SERIALIZATION_NVP(m_class_name);
         ar& BOOST_SERIALIZATION_NVP(m_class);
+        ar& BOOST_SERIALIZATION_NVP(m_hit_points_current);
     }
 
     std::string m_hero_name;
     HeroicCreature* m_heroic_creature;
     std::string m_class_name;
     IClass* m_class;
+    int m_hit_points_current;
 };
 
 BOOST_CLASS_VERSION(Item, serialization_versions::hero)

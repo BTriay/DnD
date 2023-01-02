@@ -42,11 +42,12 @@ public:
 	void set_size(Size size);
 	Size size() const;
 
-	void set_hit_points_max(int hp);
-	int hit_points_max() const; 
+	void set_hit_points_without_constit(int hp);
+	int hit_points_without_constit() const;
 	virtual void restore_current_hp_to_max();
-	void set_current_hp(int hp);
-	int current_hit_points() const;
+	virtual void set_current_hp(int hp);
+	virtual int current_hit_points() const;
+	virtual void lose_hit_points(int hit_points);
 
 	virtual void short_rest();
 	virtual void long_rest();
