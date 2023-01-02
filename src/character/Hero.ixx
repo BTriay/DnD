@@ -35,10 +35,11 @@ export class Hero
 {
 public:
     /*! Build a hero! */
-    Hero(const std::string& name, Race race, const std::string& cclass) :
+    Hero(const std::string& name, Race race, const std::string& cclass, 
+        AbilityScore ability_scores) :
         m_hero_name(name)
     {        
-        m_heroic_creature = new HeroicCreature{ race };
+        m_heroic_creature = new HeroicCreature{ race, ability_scores };
 
         m_class_name = cclass;
         if (!cclass.compare("Cleric"))
@@ -74,9 +75,7 @@ public:
     Hero& operator=(const Hero&) = delete; /*!< A hero shall not be copied */
     //Hero& operator=(Hero&&) = delete;
 
-    ~Hero();
-
-    void set_ability_score(Ability ability, int score);
+    ~Hero();    
     
     const std::string name() const;
     const std::string class_name() const;

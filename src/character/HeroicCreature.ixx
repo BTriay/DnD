@@ -15,7 +15,10 @@ export class HeroicCreature : public ICreature
 {
 public:
 
-	HeroicCreature(Race race = Race::HillDwarf);
+	HeroicCreature(Race race = Race::HillDwarf, 
+		AbilityScore ability_scores = 
+		{ .charisma = 8, .constitution = 8, .dexterity = 8,
+			.intelligence = 15, .strength = 15, .wisdom = 15 });
 
 	const std::string race() const;
 

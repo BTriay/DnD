@@ -26,6 +26,41 @@ export constexpr std::array<Ability, 6> abilities =
 	Ability::strength, Ability::wisdom
 };
 
+export struct AbilityScore
+{
+	bool check_scores()
+	{
+		auto res = (charisma >= 8 && charisma <= 15)
+			&& (constitution >= 8 && constitution <= 15)
+			&& (dexterity >= 8 && dexterity <= 15)
+			&& (intelligence >= 8 && intelligence <= 15)
+			&& (strength >= 8 && strength <= 15)
+			&& (wisdom >= 8 && wisdom <= 15);
+
+		auto total_cost = score_to_point(charisma)+ score_to_point(constitution)
+			+ score_to_point(dexterity)+ score_to_point(intelligence)
+			+ score_to_point(strength)+ score_to_point(wisdom);
+
+		return res && (total_cost == 27);
+	}
+
+	int score_to_point(int score)
+	{
+		if (score == 15)
+			return 9;
+		if (score == 14)
+			return 7;
+		return score - 8;
+	}
+
+	int charisma;
+	int constitution;
+	int dexterity;
+	int intelligence;
+	int strength;
+	int wisdom ;
+};
+
 export enum class Damage
 {
 	acid, bludgeoning, cold, fire, force, lighting, necrotic,

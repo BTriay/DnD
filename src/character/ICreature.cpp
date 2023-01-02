@@ -37,6 +37,7 @@ void ICreature::set_skill_score(Skill skill, int score)
 	m_skill_score[skill] = score;
 }
 
+/*! Get the ability score of the creature */
 int ICreature::ability_score_increase(Ability ability) const
 {
 	if (m_ability_score_increase.find(ability) != std::end(m_ability_score_increase))

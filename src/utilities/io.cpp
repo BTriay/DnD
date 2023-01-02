@@ -41,7 +41,9 @@ Hero io::xml::deserialize(const std::string& filename)
 {
 	auto cclass = io::xml::get_class_name(filename, "m_class_name");
 
-	Hero hero{"Aragorn", Race::Human, cclass };
+	Hero hero{ "Aragorn", Race::Human, cclass, 
+		{ .charisma = 8, .constitution = 8, .dexterity = 8, 
+		.intelligence = 15, .strength = 15, .wisdom = 15 } };
 
 	std::ifstream fs2{ filename };
 	boost::archive::xml_iarchive ia{ fs2 };

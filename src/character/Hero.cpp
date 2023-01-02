@@ -16,11 +16,6 @@ Hero::~Hero()
 	if (m_class) delete m_class;
 }
 
-void Hero::set_ability_score(Ability ability, int score)
-{
-    m_heroic_creature->set_ability_score(ability, score);
-}
-
 /*! Get the name of the hero */
 const std::string Hero::name() const
 { 

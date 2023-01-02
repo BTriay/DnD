@@ -2,8 +2,15 @@ module HeroicCreature;
 
 /* PUBLIC MEMBER FUNCTIONS */
 
-HeroicCreature::HeroicCreature(Race race) : m_race(race)
+HeroicCreature::HeroicCreature(Race race, AbilityScore ability_scores) : m_race(race)
 {
+	set_ability_score(Ability::charisma, ability_scores.charisma);
+	set_ability_score(Ability::constitution, ability_scores.constitution);
+	set_ability_score(Ability::dexterity, ability_scores.dexterity);
+	set_ability_score(Ability::intelligence, ability_scores.intelligence);
+	set_ability_score(Ability::strength, ability_scores.strength);
+	set_ability_score(Ability::wisdom, ability_scores.wisdom);
+
 	// main races
 	switch (race)
 	{
@@ -164,7 +171,6 @@ void HeroicCreature::init(int hit_points_max, int darkvision, Size size,
 	set_speed_air(speed_air);
 	set_speed_water(speed_water);
 
-	set_default_ability_scores();
 	restore_current_hp_to_max();
 }
 
