@@ -16,11 +16,6 @@ Hero::~Hero()
 	if (m_class) delete m_class;
 }
 
-void Hero::set_race_creature(HeroicCreature* race_creature)
-{
-    m_heroic_creature = race_creature;
-}
-
 void Hero::set_ability_score(Ability ability, int score)
 {
     m_heroic_creature->set_ability_score(ability, score);

@@ -15,6 +15,8 @@ import IClass;
 import Die;
 import enumeration;
 
+import Armor;
+
 // classes
 import Barbarian;
 import Bard;
@@ -67,14 +69,12 @@ public:
         restore_current_hp_to_max();
     }
 
-    Hero(const Hero& rhs) = delete;
-    Hero(Hero&& rhs);
-    Hero& operator=(const Hero&) = delete;
+    Hero(const Hero& rhs) = delete; /*!< A hero shall not be copied */
+    Hero(Hero&& rhs); /*!< But a hero may be moved */
+    Hero& operator=(const Hero&) = delete; /*!< A hero shall not be copied */
     //Hero& operator=(Hero&&) = delete;
 
     ~Hero();
-
-    void set_race_creature(HeroicCreature* race_creature);
 
     void set_ability_score(Ability ability, int score);
 
