@@ -12,7 +12,7 @@ import IClass;
 export class Barbarian : public IClass
 {
 public:
-	Barbarian() : IClass(HitDice::eight)
+	Barbarian() : IClass(HitDice::twelve)
 	{
 		std::vector<Ability> saving_throw{ Ability::constitution, Ability::strength };
 		set_saving_throw(saving_throw);

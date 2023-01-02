@@ -1,4 +1,4 @@
-module;
+ module;
 
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/archive/xml_iarchive.hpp>
@@ -12,7 +12,7 @@ import IClass;
 export class Wizard : public IClass
 {
 public:
-	Wizard() : IClass(HitDice::eight)
+	Wizard() : IClass(HitDice::six)
 	{
 		std::vector<Ability> saving_throw{ Ability::intelligence, Ability::wisdom };
 		set_saving_throw(saving_throw);

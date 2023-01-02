@@ -12,7 +12,7 @@ import IClass;
 export class Ranger : public IClass
 {
 public:
-	Ranger() : IClass(HitDice::eight)
+	Ranger() : IClass(HitDice::ten)
 	{
 		std::vector<Ability> saving_throw{ Ability::dexterity, Ability::strength };
 		set_saving_throw(saving_throw);
