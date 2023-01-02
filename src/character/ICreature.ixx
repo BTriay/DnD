@@ -129,10 +129,10 @@ private:
 	std::vector<Damage> m_resistance;
 
 
-	bool m_has_shield;
-	Armor m_armor;
-	Weapon m_weapon_1;
-	Weapon m_weapon_2;
+	bool m_has_shield; /*!< The hero is carrying a shield if true */
+	Armor m_armor; /*!< The armor carried by the hero */
+	Weapon m_weapon_1; /*!< The first weapon carried by the hero */
+	Weapon m_weapon_2; /*!< The second weapon carried by the hero */
 };
 
 BOOST_CLASS_VERSION(ICreature, serialization_versions::icreature)

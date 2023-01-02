@@ -77,26 +77,22 @@ public:
     ~Hero();
 
     void set_ability_score(Ability ability, int score);
-
-    /*! Get the name of the hero */
+    
     const std::string name() const;
-
-    std::string class_name() const;
+    const std::string class_name() const;
     const std::string race_name() const;
 
-    /*! Get the ability modifier of the hero */
     int ability_modifier(Ability ability) const;
 
     /*! Override ICreature's set_hit_points_max to include the constitution bonus */
     void restore_current_hp_to_max();
     int current_hit_points() const;
 
-    /* functions pointing to IClass */
     HitDice hit_dice() const;
-    void add_skill(Skill skill); /*!< Give a skill to the hero */
-    int level() const; /*!< Get the hero's level */
+    void add_skill(Skill skill);
+    int level() const;
 
-    void gain_level(bool add_default_hp);
+    int gain_level(bool add_default_hp);
 
     void don_armor(Armor& armor);
     void don_armor(ArmorType armor_type);

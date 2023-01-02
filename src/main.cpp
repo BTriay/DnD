@@ -23,7 +23,7 @@ int main()
     [[maybe_unused]] const auto filename = "dnd_serialization.xml";
     [[maybe_unused]] const auto filename2 = "dnd_serialization2.xml";
 
-    Hero helgret{ "Helgret", Race::HillDwarf, "Cleric"};
+    Hero helgret{ "Helgret", Race::HillDwarf, "Wizard"};
 
     helgret.set_ability_score(Ability::charisma, 10);
     helgret.set_ability_score(Ability::constitution, 13);
@@ -32,9 +32,14 @@ int main()
     helgret.set_ability_score(Ability::strength, 14);
     helgret.set_ability_score(Ability::wisdom, 15);
     helgret.add_skill(Skill::medicine);
-    helgret.gain_level(true);
-    helgret.gain_level(true);
-    helgret.gain_level(true);
+    
+    auto hp = helgret.gain_level(true);
+    std::cout << "Gained " << hp << " hp when levelling up\n";
+    hp = helgret.gain_level(false);
+    std::cout << "Gained " << hp << " hp when levelling up\n";
+    hp = helgret.gain_level(false);
+    std::cout << "Gained " << hp << " hp when levelling up\n";
+
     helgret.restore_current_hp_to_max();
 
     auto armor = armor_creator(ArmorType::chain_mail);
