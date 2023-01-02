@@ -95,12 +95,20 @@ int Hero::gain_level(bool add_default_hp)
     return extra_hp;
 }
 
+/*! Don an armor */
 void Hero::don_armor(Armor& armor)
 {
     m_heroic_creature->don_armor(armor);
 }
 
+/*! Don a regular armor of a given type */
 void Hero::don_armor(ArmorType armor_type)
 {
     m_heroic_creature->don_armor(armor_type);
+}
+
+/*! Drop off the armor */
+void Hero::doff_armor()
+{
+    m_heroic_creature->doff_armor();
 }

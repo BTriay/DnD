@@ -96,6 +96,7 @@ public:
 
     void don_armor(Armor& armor);
     void don_armor(ArmorType armor_type);
+    void doff_armor();
     
 private:
     friend class boost::serialization::access;
