@@ -12,16 +12,15 @@ import enumeration;
 export class Die
 {
 public:
+	/*! Die constructor */
 	Die(int number_dice, HitDice hit_dice, int bonus = 0):
 		m_number_dice(number_dice), m_hit_dice(hit_dice), m_bonus(bonus) {}
-	
+		
 	Die& operator=(const Die& rhs);
-
-	int roll() const
-	{
-		return gen(m_number_dice, m_hit_dice, m_bonus);
-	}
+		
+	int roll() const;
 	
+	/*! Roll a combination of dice */
 	static int gen(int number_dice, HitDice hit_dice, const int bonus = 0)
 	{
 		std::random_device dev;
@@ -51,9 +50,9 @@ private:
 		ar& BOOST_SERIALIZATION_NVP(m_bonus);
 	}
 
-	int m_number_dice;
-	HitDice m_hit_dice;
-	int m_bonus;
+	int m_number_dice; /*!< Number of dice to roll */
+	HitDice m_hit_dice; /*!< The type of dice to roll */
+	int m_bonus; /*!< The bonus of the dice */
 };
 
 BOOST_CLASS_VERSION(Die, serialization_versions::die)
