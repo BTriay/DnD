@@ -17,6 +17,7 @@ import <fstream>;
 import Hero;
 import enumeration;
 
+/*! Get the class name of the hero (e.g. Cleric) */
 std::string io::xml::get_class_name(const std::string& filename,
 	const std::string& member_name)
 {
@@ -30,6 +31,7 @@ std::string io::xml::get_class_name(const std::string& filename,
 	return tree.get<std::string>(xml_path);
 }
 
+/*! Serialize a hero */
 void io::xml::serialize(const Hero& hero, const std::string& filename)
 {
 	std::ofstream fs1{ filename };
@@ -37,6 +39,7 @@ void io::xml::serialize(const Hero& hero, const std::string& filename)
 	oa << BOOST_SERIALIZATION_NVP(hero);
 }
 
+/*! Deserialize a hero */
 Hero io::xml::deserialize(const std::string& filename)
 {
 	auto cclass = io::xml::get_class_name(filename, "m_class_name");

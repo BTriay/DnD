@@ -126,11 +126,11 @@ private:
         ar& BOOST_SERIALIZATION_NVP(m_hit_points_current);
     }
 
-    std::string m_hero_name;
-    HeroicCreature* m_heroic_creature;
-    std::string m_class_name;
-    IClass* m_class;
-    int m_hit_points_current;
+    std::string m_hero_name; /*!< The name of the hero */
+    HeroicCreature* m_heroic_creature; /*!< Pointer to HeroicCreature */
+    std::string m_class_name; /*!< The class name, e.g. Cleric. Necessary for deserialization */
+    IClass* m_class; /*!< Base pointer to the class */
+    int m_hit_points_current; /*!< Current hit points */
 };
 
 BOOST_CLASS_VERSION(Item, serialization_versions::hero)

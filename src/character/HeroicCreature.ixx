@@ -36,7 +36,7 @@ private:
 		ar& BOOST_SERIALIZATION_NVP(m_race);
 	}
 
-	Race m_race;
+	Race m_race; /*!< The race of the hero */
 };
 
 BOOST_CLASS_VERSION(HeroicCreature, serialization_versions::heroic_creature)

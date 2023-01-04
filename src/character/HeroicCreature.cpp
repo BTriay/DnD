@@ -2,6 +2,9 @@ module HeroicCreature;
 
 /* PUBLIC MEMBER FUNCTIONS */
 
+/*! HeroicCreature's constructor.
+Default parameter values are provided solely for deserialization, 
+the constructor should always be called with the relevant parameters */
 HeroicCreature::HeroicCreature(Race race, AbilityScore ability_scores) : m_race(race)
 {
 	set_ability_score(Ability::charisma, ability_scores.charisma);
@@ -117,6 +120,7 @@ HeroicCreature::HeroicCreature(Race race, AbilityScore ability_scores) : m_race(
 
 }
 
+/*! Get the race of the heroic creature */
 const std::string HeroicCreature::race() const
 {
 	switch (m_race)
@@ -159,6 +163,7 @@ const std::string HeroicCreature::race() const
 
 /* PRIVATE MEMBER FUNCTIONS */
 
+/*! Initialize the heroic creature */
 void HeroicCreature::init(int hit_points_without_constit, int darkvision, Size size,
 	int speed_land, int speed_climb, int speed_air, int speed_water)
 {

@@ -75,6 +75,7 @@ void Hero::lose_hit_points(int hit_points)
     m_hit_points_current -= hit_points;
 }
 
+/*! The hero's hit dice */
 HitDice Hero::hit_dice() const
 {
     return m_class->hit_dice(); 
