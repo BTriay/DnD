@@ -153,6 +153,67 @@ void ICreature::set_speed_water(int speed_water)
 	m_speed_water = speed_water;
 }
 
+/*! Don an armor */
+void ICreature::don_armor(Armor& armor)
+{
+	m_armor = armor;
+}
+
+/*! Don an armor */
+void ICreature::don_armor(ArmorType armor_type)
+{
+	m_armor = armor_creator(armor_type);
+}
+
+/*! Take-off the armor */
+void ICreature::doff_armor()
+{
+	m_armor = armor_creator(ArmorType::none);
+}
+
+/*! AC calculator */
+virtual int ICreature::armor_class() const
+{
+	return m_armor.armor_class(ability_modifier(Ability::dexterity))
+		+ (m_has_shield ? 2 : 0);
+}
+
+/*! Grab a shield */
+void ICreature::don_shield()
+{
+	m_has_shield = true;
+}
+
+/*! Drop the shield */
+void ICreature::doff_shield()
+{
+	m_has_shield = false;
+}
+
+/*! Add the 1st weapon */
+void ICreature::add_weapon_one(const Weapon& weapon)
+{
+	m_weapon_1 = weapon;
+}
+
+/*! Drop the 1st weapon */
+void ICreature::drop_weapon_one()
+{
+	m_weapon_1 = {};
+}
+
+/*! Add the 2nd weapon */
+void ICreature::add_weapon_two(Weapon& weapon)
+{
+	m_weapon_2 = weapon;
+}
+
+/*! Drop the 2nd weapon */
+void ICreature::drop_weapon_two()
+{
+	m_weapon_2 = {};
+}
+
 /* END OF PUBLIC MEMBER FUNCTIONS */
 
 

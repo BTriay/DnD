@@ -31,6 +31,7 @@ public:
 		restore_current_hp_to_max();
 	}
 
+	// ICreature's setup and abilities
 	int ability_score(Ability ability) const;
 	virtual int ability_modifier(Ability ability) const;
 	void set_ability_score(Ability ability, int score);
@@ -49,9 +50,6 @@ public:
 	virtual int current_hit_points() const;
 	virtual void lose_hit_points(int hit_points);
 
-	virtual void short_rest();
-	virtual void long_rest();
-
 	void add_resistance(Damage resistance);
 	
 	int darkvision() const;
@@ -61,24 +59,24 @@ public:
 	void set_speed_air(int speed_air);
 	void set_speed_water(int speed_water);
 
+	// Actions section
+	virtual void short_rest();
+	virtual void long_rest();
 
-	void don_armor(Armor& armor) { m_armor = armor; }
-	void don_armor(ArmorType armor_type) { m_armor = armor_creator(armor_type); }
-	void doff_armor() { m_armor = armor_creator(ArmorType::none); }
+	// Gear section
+	void don_armor(Armor& armor);
+	void don_armor(ArmorType armor_type);
+	void doff_armor();
 
-	virtual int armor_class() const
-	{
-		return m_armor.armor_class(ability_modifier(Ability::dexterity))
-			+ (m_has_shield ? 2 : 0);
-	}
+	virtual int armor_class() const;
 
-	void don_shield() { m_has_shield = true; }
-	void doff_shield() { m_has_shield = false; }
+	void don_shield();
+	void doff_shield();
 
-	void add_weapon_one(const Weapon& weapon) { m_weapon_1 = weapon; }
-	void drop_weapon_one() { m_weapon_1 = {}; }
-	void add_weapon_two(Weapon& weapon) { m_weapon_2 = weapon; }
-	void drop_weapon_two() { m_weapon_2 = {}; }
+	void add_weapon_one(const Weapon& weapon);
+	void drop_weapon_one();
+	void add_weapon_two(Weapon& weapon);
+	void drop_weapon_two();
 
 protected:
 	ICreature() : ICreature(1, 0, Size::medium, 0) {} // for serialization
