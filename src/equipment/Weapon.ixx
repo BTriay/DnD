@@ -21,7 +21,7 @@ public:
 	Weapon() : Weapon(WeaponType::none, WeaponProficiency::simple, WeaponReach::melee,
 		Damage::bludgeoning, Die::Die(0, HitDice::four, 3)) {}
 	
-	/*! Weapon's fully fledged constructor */
+	/*! Weapon's fully fledged constructor */ // TODO: move to protected, and make creator a friend?
 	Weapon(WeaponType model, WeaponProficiency weapon_proficiency, WeaponReach weapon_reach,
 		Damage damage, Die die, WeaponProperty weapon_property = WeaponProperty::none):
 

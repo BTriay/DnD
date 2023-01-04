@@ -5,6 +5,7 @@ int min(int a, int b)
 	return a < b ? a : b;
 }
 
+/*! The AC provided by the armor */
 int Armor::armor_class(int dexterity_modifier) const
 {
 	switch (m_type)
@@ -23,6 +24,19 @@ int Armor::armor_class(int dexterity_modifier) const
 	}
 }
 
+/*! The armor's type (light, medium, heavy) */
+ArmorProtection Armor::armor_type() const
+{
+	return m_type;
+}
+
+/*! Stealth disadvantage because of the armor */
+bool Armor::stealth_disadvantage() const
+{
+	return m_stealth_disadvantage;
+}
+
+/*! Create a non-magical armor */
 Armor armor_creator(ArmorType model)
 {
 	switch (model)
