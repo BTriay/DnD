@@ -53,6 +53,7 @@ void Hero::restore_current_hp_to_max()
         m_heroic_creature->hit_points_without_constit()
         + (hilldwarf_additional_hp
         + ability_modifier(Ability::constitution)) * m_class->level()    
+        // /* TODO */ + bonuses from the items
     );
 
 }

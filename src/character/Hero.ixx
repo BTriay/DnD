@@ -130,7 +130,7 @@ private:
     HeroicCreature* m_heroic_creature; /*!< Pointer to HeroicCreature */
     std::string m_class_name; /*!< The class name, e.g. Cleric. Necessary for deserialization */
     IClass* m_class; /*!< Base pointer to the class */
-    int m_hit_points_current; /*!< Current hit points */
+    int m_hit_points_current; /*!< Current hit points. This "overrides" the same parameter from ICreature */
 };
 
 BOOST_CLASS_VERSION(Item, serialization_versions::hero)
