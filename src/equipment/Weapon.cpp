@@ -1,6 +1,6 @@
 module Weapon;
 
-
+/*! Weapon's copy constructor */
 Weapon& Weapon::operator=(const Weapon& rhs)
 {
 	m_weapon_proficiency = rhs.m_weapon_proficiency;
@@ -12,11 +12,13 @@ Weapon& Weapon::operator=(const Weapon& rhs)
 	return *this;
 }
 
+/*! Add a property to the weapon */
 void Weapon::add_property(WeaponProperty weapon_property)
 {
 	m_weapon_property.insert(weapon_property);
 }
 
+/*! Create a non-magical weapon */
 Weapon weapon_creator(WeaponType model)
 {
 	switch (model)

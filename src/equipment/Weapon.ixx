@@ -17,9 +17,11 @@ import Die;
 export class Weapon : public Item
 {
 public:
+	/*! Weapon's default constructor, for serialization */ // TODO: move to protected?
 	Weapon() : Weapon(WeaponType::none, WeaponProficiency::simple, WeaponReach::melee,
 		Damage::bludgeoning, Die::Die(0, HitDice::four, 3)) {}
 	
+	/*! Weapon's fully fledged constructor */
 	Weapon(WeaponType model, WeaponProficiency weapon_proficiency, WeaponReach weapon_reach,
 		Damage damage, Die die, WeaponProperty weapon_property = WeaponProperty::none):
 
@@ -28,7 +30,7 @@ public:
 	{
 		m_weapon_property.insert(weapon_property);
 	}
-
+	
 	Weapon& operator=(const Weapon& rhs);
 
 	void add_property(WeaponProperty weapon_property);
@@ -46,12 +48,12 @@ private:
 		ar& BOOST_SERIALIZATION_NVP(m_weapon_property);
 	}
 
-	WeaponType m_model;
-	WeaponProficiency m_weapon_proficiency;
-	WeaponReach m_weapon_reach;
-	Damage m_damage;
-	Die m_die;
-	std::set<WeaponProperty> m_weapon_property;
+	WeaponType m_model; /*!< Weapon type: club, dagger, bow, etc. */
+	WeaponProficiency m_weapon_proficiency; /*!< Simple or martial */
+	WeaponReach m_weapon_reach; /*!< Melee or ranged */
+	Damage m_damage; /*!< Type of damage inflicted by the weapon: bludgeoning, etc */
+	Die m_die; /*!< The base damage of the weapon */
+	std::set<WeaponProperty> m_weapon_property; /*!< Finesse, heavy, etc */
 };
 
 export Weapon weapon_creator(WeaponType model);
