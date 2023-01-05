@@ -16,6 +16,8 @@ add_library(character
             ICreature.ixx
             HeroicCreature.cpp
             HeroicCreature.ixx
+            Spellcaster.cpp
+            Spellcaster.ixx
 
             ./class/IClass.cpp
             ./class/IClass.ixx
