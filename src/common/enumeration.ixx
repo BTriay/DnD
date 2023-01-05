@@ -12,6 +12,7 @@ export namespace serialization_versions
 	const auto iclass = 1;
 	const auto heroic_creature = 1;
 	const auto hero = 1;
+	const auto spellcaster = 1;
 }
 
 export enum class Ability
