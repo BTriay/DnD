@@ -172,7 +172,7 @@ void ICreature::doff_armor()
 }
 
 /*! AC calculator */
-virtual int ICreature::armor_class() const
+int ICreature::armor_class() const
 {
 	return m_armor.armor_class(ability_modifier(Ability::dexterity))
 		+ (m_has_shield ? 2 : 0);
