@@ -5,7 +5,7 @@ void Spellcaster::set_spell_slots(std::array<int, 10> spell_slots)
 	m_spell_slots = spell_slots;
 }
 
-std::array<int, 10> available_spell_slots() const
+std::array<int, 10> Spellcaster::available_spell_slots() const
 {
 	return m_spell_slots;
 }

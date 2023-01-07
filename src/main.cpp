@@ -9,6 +9,7 @@ import <string>;
 import <iostream>;
 import <fstream>;
 import <sstream>;
+import <array>;
 
 import Logger;
 import io;
@@ -31,16 +32,21 @@ int main()
         //throw std::invalid_argument("invalid ability scores total");
         std::cerr << "invalid ability scores total\n";
 
-    Hero helgret{ "Helgret", Race::HillDwarf, "Cleric", helgret_ability_scores };
+    Hero helgret{ "Helgret", Race::HillDwarf, "Druid", helgret_ability_scores };
     
     helgret.add_skill(Skill::medicine);
     
     auto hp = helgret.gain_level(true);
-    std::cout << "Gained " << hp << " hp when levelling up\n";
+    std::cout << "Gained " << hp << " hp when levelling up\n";   
     hp = helgret.gain_level(false);
     std::cout << "Gained " << hp << " hp when levelling up\n";
-    //hp = helgret.gain_level(false);
-    //std::cout << "Gained " << hp << " hp when levelling up\n\n";
+    
+    auto slots = helgret.available_spell_slots();    
+    std::cout << "slots: ";
+    for (auto& s : slots)
+        std::cout << s << "  ";
+    std::cout << '\n';
+
 
     helgret.restore_current_hp_to_max();
 
