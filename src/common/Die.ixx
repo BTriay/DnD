@@ -19,7 +19,7 @@ public:
 		
 	Die& operator=(const Die& rhs);
 		
-	int roll() const;
+	int roll(bool critical_hit = false) const;
 	
 	/*! Roll a combination of dice */
 	static int roll_normal(int number_dice, HitDice hit_dice, const int bonus = 0)
