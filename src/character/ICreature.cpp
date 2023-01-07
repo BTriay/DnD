@@ -121,11 +121,11 @@ int ICreature::attack_roll(Ability ability, DieThrowAdvantage throw_advantage) c
 AttackResult ICreature::attack_roll_vs_armor_class(Ability ability,
 	DieThrowAdvantage throw_advantage, int armor_class) const
 {
-	auto attack_roll = attack_roll(ability, throw_advantage);
+	auto attack_roll_res = attack_roll(ability, throw_advantage);
 
-	if (attack_roll == 20 || attack_roll >= armor_class + 10)
+	if (attack_roll_res == 20 || attack_roll_res >= armor_class + 10)
 		return AttackResult::CriticalHit;
-	else if (attack_roll >= armor_class)
+	else if (attack_roll_res >= armor_class)
 		return AttackResult::Hit;
 
 	return AttackResult::Miss;
