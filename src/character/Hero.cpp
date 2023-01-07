@@ -99,6 +99,9 @@ int Hero::gain_level(bool add_default_hp)
 {
     m_class->gain_level();
 
+    if (auto sc = dynamic_cast<Spellcaster*>(m_class))
+        sc->reset_spell_slots(m_class->level());
+
     auto extra_hp = add_default_hp ?
         hit_dice_average(m_class->hit_dice()) :
         Die::roll_normal(1, m_class->hit_dice());

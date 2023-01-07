@@ -31,6 +31,8 @@ import Sorcerer;
 import Warlock;
 import Wizard;
 
+import Spellcaster;
+
 export class Hero
 {
 public:
