@@ -66,6 +66,8 @@ public:
 
 	virtual int attack_roll(Ability ability, DieThrowAdvantage throw_advantage
 		= DieThrowAdvantage::Normal) const;
+	AttackResult attack_roll_vs_armor_class(Ability ability,
+		DieThrowAdvantage throw_advantage, int armor_class) const;
 
 	// Gear section
 	void don_armor(Armor& armor);
