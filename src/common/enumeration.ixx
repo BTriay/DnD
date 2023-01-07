@@ -98,6 +98,11 @@ export int hit_dice_average(HitDice hit_dice)
 	return (static_cast<int>(hit_dice) + 2) / 2;
 }
 
+export enum class DieThrowAdvantage
+{
+	Advantage, Normal, Disadvantage
+};
+
 export enum class ArmorProtection
 {
 	none, light, medium, heavy
@@ -150,4 +155,14 @@ export enum class Race
 	HalfOrc,
 	Human,
 	Tiefling
+};
+
+export enum class AttackResult
+{
+	Miss, Hit, CriticalHit
+};
+
+export enum class SpellAction
+{
+	Attack, StartConcentration, StopConcentration
 };
