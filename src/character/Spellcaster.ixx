@@ -25,16 +25,11 @@ public:
 
 	virtual void reset_spell_slots(int level) = 0;
 
+	std::array<int, 10> available_spell_slots() const;
+
 	// ****** cantrips ******
-	
-	// [int, Damage, int] /* attack_roll, damage_roll, damage_type*/ 
-	//		firebolt(int hero_level)
-	/*
-		range spell attack
-		if hit, 1d10 fire damage
-		increased to 2d10 at 5th level, etc
-	*/
-	
+
+
 	// ******* level 1 ******
 
 

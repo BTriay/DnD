@@ -5,6 +5,12 @@ void Spellcaster::set_spell_slots(std::array<int, 10> spell_slots)
 	m_spell_slots = spell_slots;
 }
 
+std::array<int, 10> available_spell_slots() const
+{
+	return m_spell_slots;
+}
+
+
 /*! 2nd-level evocation. Casting time: 1 bonus action
 * Concentration, up to 10mn
 * Use an action to make a melee spell attack. On a hit: 3d6 fire damage
