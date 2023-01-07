@@ -101,7 +101,7 @@ int Hero::gain_level(bool add_default_hp)
 
     auto extra_hp = add_default_hp ?
         hit_dice_average(m_class->hit_dice()) :
-        Die::gen(1, m_class->hit_dice());
+        Die::roll_normal(1, m_class->hit_dice());
 
     m_heroic_creature->set_hit_points_without_constit(
         m_heroic_creature->hit_points_without_constit() + extra_hp);

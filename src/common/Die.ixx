@@ -22,7 +22,7 @@ public:
 	int roll() const;
 	
 	/*! Roll a combination of dice */
-	static int gen(int number_dice, HitDice hit_dice, const int bonus = 0)
+	static int roll_normal(int number_dice, HitDice hit_dice, const int bonus = 0)
 	{
 		std::random_device dev;
 		std::mt19937 rng(dev());
@@ -39,14 +39,14 @@ public:
 	}
 
 	/*! Roll a combination of dice (normal / with _dis_advantage) */
-	static int gen(int number_dice, HitDice hit_dice, const int bonus = 0,
+	static int roll(int number_dice, HitDice hit_dice, const int bonus = 0,
 		DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal)
 	{
-		auto res1 = gen(number_dice, hit_dice, bonus);
+		auto res1 = roll_normal(number_dice, hit_dice, bonus);
 		if (throw_advantage == DieThrowAdvantage::Normal)
 			return res1;
 
-		auto res2 = gen(number_dice, hit_dice, bonus);
+		auto res2 = roll_normal(number_dice, hit_dice, bonus);
 
 		if (throw_advantage == DieThrowAdvantage::Advantage)
 			return std::max(res1, res2);
