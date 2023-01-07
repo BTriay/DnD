@@ -13,6 +13,7 @@ import <vector>;
 import enumeration;
 import Armor;
 import Weapon;
+import Die;
 
 /*!
 Class common to all the creatures of the DnD world:
@@ -62,6 +63,9 @@ public:
 	// Actions section
 	virtual void short_rest();
 	virtual void long_rest();
+
+	virtual int attack_roll(Ability ability, DieThrowAdvantage throw_advantage
+		= DieThrowAdvantage::Normal) const;
 
 	// Gear section
 	void don_armor(Armor& armor);

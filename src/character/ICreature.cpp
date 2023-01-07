@@ -111,6 +111,12 @@ void ICreature::long_rest()
 	restore_current_hp_to_max();
 }
 
+/*! Roll the die for the attack */
+int attack_roll(Ability ability, DieThrowAdvantage throw_advantage) const
+{
+	return Die::roll(1, HitDice::twenty, 0, throw_advantage) + ability_modifier(ability);
+}
+
 /*! Add resistance to the creature */
 void ICreature::add_resistance(Damage resistance)
 {
