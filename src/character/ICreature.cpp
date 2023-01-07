@@ -121,8 +121,7 @@ int ICreature::attack_roll(Ability ability, DieThrowAdvantage throw_advantage) c
 AttackResult ICreature::attack_roll_vs_armor_class(Ability ability,
 	DieThrowAdvantage throw_advantage, int armor_class) const
 {
-	auto attack_roll = Die::roll(1, HitDice::twenty, 0, throw_advantage)
-		+ ability_modifier(ability);
+	auto attack_roll = attack_roll(ability, throw_advantage);
 
 	if (attack_roll == 20 || attack_roll >= armor_class + 10)
 		return AttackResult::CriticalHit;
@@ -131,6 +130,8 @@ AttackResult ICreature::attack_roll_vs_armor_class(Ability ability,
 
 	return AttackResult::Miss;
 }
+
+
 
 /*! Add resistance to the creature */
 void ICreature::add_resistance(Damage resistance)
