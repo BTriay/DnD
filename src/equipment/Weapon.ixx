@@ -34,6 +34,7 @@ public:
 	Weapon& operator=(const Weapon& rhs);
 
 	void add_property(WeaponProperty weapon_property);
+	int damage_roll(bool critical_hit = false) const;
 
 private:
 	friend class boost::serialization::access;
