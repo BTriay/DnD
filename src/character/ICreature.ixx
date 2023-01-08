@@ -64,10 +64,11 @@ public:
 	virtual void short_rest();
 	virtual void long_rest();
 
-	virtual int attack_roll(Ability ability, DieThrowAdvantage throw_advantage
-		= DieThrowAdvantage::Normal) const;
+	virtual int attack_roll(Ability ability, int proficiency_bonus = 0, 
+		DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal) const;
 	AttackResult attack_roll_vs_armor_class(Ability ability,
-		DieThrowAdvantage throw_advantage, int armor_class) const;
+		DieThrowAdvantage throw_advantage, int proficiency_bonus,
+		int armor_class) const;
 
 	// Gear section
 	void don_armor(Armor& armor);

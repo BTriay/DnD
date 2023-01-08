@@ -112,16 +112,18 @@ void ICreature::long_rest()
 }
 
 /*! Roll the die for the attack */
-int ICreature::attack_roll(Ability ability, DieThrowAdvantage throw_advantage) const
+int ICreature::attack_roll(Ability ability, int proficiency_bonus, 
+	DieThrowAdvantage throw_advantage) const
 {
-	return Die::roll(1, HitDice::twenty, 0, throw_advantage) + ability_modifier(ability);
+	return Die::roll(1, HitDice::twenty, 0, throw_advantage) + ability_modifier(ability)
+		+ proficiency_bonus;
 }
 
 /*! Roll the die for the attack and compare to the armor class */
 AttackResult ICreature::attack_roll_vs_armor_class(Ability ability,
-	DieThrowAdvantage throw_advantage, int armor_class) const
+	DieThrowAdvantage throw_advantage, int proficiency_bonus, int armor_class) const
 {
-	auto attack_roll_res = attack_roll(ability, throw_advantage);
+	auto attack_roll_res = attack_roll(ability, proficiency_bonus, throw_advantage);
 
 	if (attack_roll_res == 20 || attack_roll_res >= armor_class + 10)
 		return AttackResult::CriticalHit;
