@@ -28,14 +28,15 @@ public:
 	std::array<int, 10> available_spell_slots() const;
 
 	// ****** cantrips ******
-
+	std::tuple<int, Damage>
+		fire_bolt_damage(int level = 2, bool critical_hit = false);
 
 	// ******* level 1 ******
 
 
 	// ******* level 2 ******
 	std::tuple<int, Damage> 
-		flame_blade(SpellAction spell_action = SpellAction::Attack,
+		flame_blade_damage(SpellAction spell_action = SpellAction::Attack,
 		int level = 2, bool critial_hit = false);
 
 protected:
