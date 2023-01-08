@@ -23,6 +23,8 @@ public:
 
 	virtual ~Spellcaster() = default;
 
+	Ability spellcasting_ability() const;
+
 	virtual void reset_spell_slots(int level) = 0;
 
 	std::array<int, 10> available_spell_slots() const;

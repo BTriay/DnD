@@ -1,5 +1,10 @@
 module Spellcaster;
 
+Ability spellcasting_ability() const
+{
+	return m_spellcasting_ability;
+}
+
 void Spellcaster::set_spell_slots(std::array<int, 10> spell_slots)
 {
 	m_spell_slots = spell_slots;
