@@ -1,6 +1,6 @@
 module Spellcaster;
 
-Ability spellcasting_ability() const
+Ability Spellcaster::spellcasting_ability() const
 {
 	return m_spellcasting_ability;
 }
