@@ -7,7 +7,6 @@ Hero::Hero(Hero&& rhs)
     m_class_name = rhs.m_class_name;
     m_class = rhs.m_class;
     rhs.m_class = nullptr;
-    m_hit_points_current = rhs.m_hit_points_current;
 }
 
 Hero::~Hero()
@@ -42,24 +41,6 @@ void Hero::restore_current_hp_to_max()
         // /* TODO */ + bonuses from the items
     );
 
-}
-
-/*! Set the current hit points */
-void Hero::set_current_hp(int hp)
-{
-    m_hit_points_current = hp;
-}
-
-/*! Get the current hit points of the hero */
-int Hero::current_hit_points() const
-{
-    return m_hit_points_current;
-}
-
-/*! Lose hit points */
-void Hero::lose_hit_points(int hit_points)
-{
-    m_hit_points_current -= hit_points;
 }
 
 /*! The hero's hit dice */

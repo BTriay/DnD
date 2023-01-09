@@ -84,10 +84,7 @@ public:
     const std::string name() const;
     const std::string class_name() const;
 
-    void restore_current_hp_to_max();
-    void set_current_hp(int hp);
-    int current_hit_points() const;
-    void lose_hit_points(int hit_points);
+    void restore_current_hp_to_max() override;
 
     HitDice hit_dice() const;
     void add_skill(Skill skill);
@@ -124,13 +121,11 @@ private:
         ar& BOOST_SERIALIZATION_NVP(m_hero_name);
         ar& BOOST_SERIALIZATION_NVP(m_class_name);
         ar& BOOST_SERIALIZATION_NVP(m_class);
-        ar& BOOST_SERIALIZATION_NVP(m_hit_points_current);
     }
 
     std::string m_hero_name; /*!< The name of the hero */
     std::string m_class_name; /*!< The class name, e.g. Cleric. Necessary for deserialization */
     IClass* m_class; /*!< Base pointer to the class */
-    int m_hit_points_current; /*!< Current hit points. This "overrides" the same parameter from ICreature */
 
     void fire_bolt(ICreature& enemy, DieThrowAdvantage throw_advantage);
     //void flame_blade(ICreature& enemy, SpellAction spell_action = SpellAction::attack, int level = 2);
