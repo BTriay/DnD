@@ -2,10 +2,9 @@ module Hero;
 
 Hero::Hero(Hero&& rhs)
 {
+    HeroicCreature::operator=(std::move(rhs));
     m_hero_name = rhs.m_hero_name;
     m_class_name = rhs.m_class_name;
-    m_heroic_creature = rhs.m_heroic_creature;
-    rhs.m_heroic_creature = nullptr;
     m_class = rhs.m_class;
     rhs.m_class = nullptr;
     m_hit_points_current = rhs.m_hit_points_current;
@@ -13,7 +12,6 @@ Hero::Hero(Hero&& rhs)
 
 Hero::~Hero()
 {
-	if (m_heroic_creature) delete m_heroic_creature;
 	if (m_class) delete m_class;
 }
 
@@ -29,28 +27,16 @@ const std::string Hero::class_name() const
     return m_class_name;
 }
 
-/*! Get the race of the hero */
-const std::string Hero::race_name() const
-{
-    return m_heroic_creature->race();
-}
-
-/*! Get the ability modifier of the hero */
-int Hero::ability_modifier(Ability ability) const
-{
-    return m_heroic_creature->ability_modifier(ability);
-}
-
 /*! Restore the hit points to their max,
 including the constitution modifier and HillDwarf bonus */
 void Hero::restore_current_hp_to_max()
 {
     // bonus specific to HillDwarf: double constitution point per level
     auto hilldwarf_additional_hp =
-        m_heroic_creature->race().compare("HillDwarf") ? 0 : 1;
+        race().compare("HillDwarf") ? 0 : 1;
 
     set_current_hp(        
-        m_heroic_creature->hit_points_without_constit()
+        hit_points_without_constit()
         + (hilldwarf_additional_hp
         + ability_modifier(Ability::constitution)) * m_class->level()    
         // /* TODO */ + bonuses from the items
@@ -106,34 +92,9 @@ int Hero::gain_level(bool add_default_hp)
         hit_dice_average(m_class->hit_dice()) :
         Die::roll_normal(1, m_class->hit_dice());
 
-    m_heroic_creature->set_hit_points_without_constit(
-        m_heroic_creature->hit_points_without_constit() + extra_hp);
+    set_hit_points_without_constit(hit_points_without_constit() + extra_hp);
 
     return extra_hp;
-}
-
-/*! Don an armor */
-void Hero::don_armor(Armor& armor)
-{
-    m_heroic_creature->don_armor(armor);
-}
-
-/*! Don a regular armor of a given type */
-void Hero::don_armor(ArmorType armor_type)
-{
-    m_heroic_creature->don_armor(armor_type);
-}
-
-/*! Drop off the armor */
-void Hero::doff_armor()
-{
-    m_heroic_creature->doff_armor();
-}
-
-/*! Armor class */
-int Hero::armor_class() const
-{
-    return m_heroic_creature->armor_class();
 }
 
 std::array<int, 10> Hero::available_spell_slots() const
@@ -159,7 +120,7 @@ void Hero::fire_bolt(ICreature& enemy, DieThrowAdvantage throw_advantage)
 
     // attack roll
     auto attack_result =
-        m_heroic_creature->attack_roll_vs_armor_class(
+        attack_roll_vs_armor_class(
             sc->spellcasting_ability(),
             throw_advantage,
             m_class->proficiency_bonus(),
