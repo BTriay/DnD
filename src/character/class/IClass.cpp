@@ -24,6 +24,21 @@ void IClass::gain_level()
 	++m_level;
 }
 
+int IClass::proficiency_bonus() const
+{
+	if (m_level <= 4)
+		return 2;
+	else if (m_level <= 8)
+		return 3;
+	else if (m_level <= 12)
+		return 4;
+	else if (m_level <= 16)
+		return 5;
+	else
+		return 6;
+}
+
+
 /* END OF PUBLIC MEMBER FUNCTIONS */
 
 /* PROTECTED MEMBER FUNCTIONS */

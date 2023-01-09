@@ -111,6 +111,30 @@ void ICreature::long_rest()
 	restore_current_hp_to_max();
 }
 
+/*! Roll the die for the attack */
+int ICreature::attack_roll(Ability ability, int proficiency_bonus, 
+	DieThrowAdvantage throw_advantage) const
+{
+	return Die::roll(1, HitDice::twenty, 0, throw_advantage) + ability_modifier(ability)
+		+ proficiency_bonus;
+}
+
+/*! Roll the die for the attack and compare to the armor class */
+AttackResult ICreature::attack_roll_vs_armor_class(Ability ability,
+	DieThrowAdvantage throw_advantage, int proficiency_bonus, int armor_class) const
+{
+	auto attack_roll_res = attack_roll(ability, proficiency_bonus, throw_advantage);
+
+	if (attack_roll_res == 20 || attack_roll_res >= armor_class + 10)
+		return AttackResult::critical_hit;
+	else if (attack_roll_res >= armor_class)
+		return AttackResult::hit;
+
+	return AttackResult::miss;
+}
+
+
+
 /*! Add resistance to the creature */
 void ICreature::add_resistance(Damage resistance)
 {
@@ -172,7 +196,7 @@ void ICreature::doff_armor()
 }
 
 /*! AC calculator */
-virtual int ICreature::armor_class() const
+int ICreature::armor_class() const
 {
 	return m_armor.armor_class(ability_modifier(Ability::dexterity))
 		+ (m_has_shield ? 2 : 0);

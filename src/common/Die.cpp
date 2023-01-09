@@ -11,7 +11,7 @@ Die& Die::operator=(const Die& rhs)
 }
 
 /*! Roll the die */
-int Die::roll() const
+int Die::roll(bool critical_hit) const
 {
-	return gen(m_number_dice, m_hit_dice, m_bonus);
+	return roll_normal(m_number_dice * (1 + 1 * critical_hit), m_hit_dice, m_bonus);
 }

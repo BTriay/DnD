@@ -18,6 +18,11 @@ void Weapon::add_property(WeaponProperty weapon_property)
 	m_weapon_property.insert(weapon_property);
 }
 
+int Weapon::damage_roll(bool critical_hit) const
+{
+	return m_die.roll(critical_hit);
+}
+
 /*! Create a non-magical weapon */
 Weapon weapon_creator(WeaponType model)
 {

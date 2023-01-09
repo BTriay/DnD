@@ -20,6 +20,7 @@ public:
 	void add_skill(Skill skill); /*!< Give a skill to the hero */
 	int level() const; /*!< Get the hero's level */
 	virtual void gain_level();
+	int proficiency_bonus() const;
 
 	//virtual int proficiency_bonus();
 

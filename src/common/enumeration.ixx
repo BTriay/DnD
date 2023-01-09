@@ -12,6 +12,7 @@ export namespace serialization_versions
 	const auto iclass = 1;
 	const auto heroic_creature = 1;
 	const auto hero = 1;
+	const auto spellcaster = 1;
 }
 
 export enum class Ability
@@ -97,6 +98,11 @@ export int hit_dice_average(HitDice hit_dice)
 	return (static_cast<int>(hit_dice) + 2) / 2;
 }
 
+export enum class DieThrowAdvantage
+{
+	Advantage, Normal, Disadvantage
+};
+
 export enum class ArmorProtection
 {
 	none, light, medium, heavy
@@ -149,4 +155,14 @@ export enum class Race
 	HalfOrc,
 	Human,
 	Tiefling
+};
+
+export enum class AttackResult
+{
+	miss, hit, critical_hit
+};
+
+export enum class SpellAction
+{
+	attack, start_concentration, stop_concentration
 };
