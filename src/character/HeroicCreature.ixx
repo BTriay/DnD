@@ -20,6 +20,12 @@ public:
 		{ .charisma = 8, .constitution = 8, .dexterity = 8,
 			.intelligence = 15, .strength = 15, .wisdom = 15 });
 
+	HeroicCreature(const HeroicCreature&) = delete;
+	HeroicCreature(HeroicCreature&&) = default;
+	HeroicCreature& operator=(HeroicCreature&&) = default;
+	HeroicCreature& operator=(const HeroicCreature&) = delete;
+	virtual ~HeroicCreature() = default;
+	
 	const std::string race() const;
 
 private:

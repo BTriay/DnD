@@ -77,7 +77,7 @@ public:
     Hero(const Hero& rhs) = delete; /*!< A hero shall not be copied */
     Hero(Hero&& rhs); /*!< But a hero may be moved */
     Hero& operator=(const Hero&) = delete; /*!< A hero shall not be copied */
-    //Hero& operator=(Hero&&) = delete;
+    Hero& operator=(Hero&&) = default;
 
     ~Hero() override;
     

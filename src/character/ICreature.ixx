@@ -32,6 +32,8 @@ public:
 		restore_current_hp_to_max();
 	}
 
+	ICreature(ICreature&&) = default;
+	ICreature& operator=(ICreature&&) = default;
 	virtual ~ICreature() = default;
 
 	// ICreature's setup and abilities

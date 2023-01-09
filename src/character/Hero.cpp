@@ -2,6 +2,7 @@ module Hero;
 
 Hero::Hero(Hero&& rhs)
 {
+    HeroicCreature::operator=(std::move(rhs));
     m_hero_name = rhs.m_hero_name;
     m_class_name = rhs.m_class_name;
     m_class = rhs.m_class;
