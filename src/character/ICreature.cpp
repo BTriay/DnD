@@ -126,11 +126,11 @@ AttackResult ICreature::attack_roll_vs_armor_class(Ability ability,
 	auto attack_roll_res = attack_roll(ability, proficiency_bonus, throw_advantage);
 
 	if (attack_roll_res == 20 || attack_roll_res >= armor_class + 10)
-		return AttackResult::CriticalHit;
+		return AttackResult::critical_hit;
 	else if (attack_roll_res >= armor_class)
-		return AttackResult::Hit;
+		return AttackResult::hit;
 
-	return AttackResult::Miss;
+	return AttackResult::miss;
 }
 
 

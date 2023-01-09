@@ -38,7 +38,7 @@ public:
 
 	// ******* level 2 ******
 	std::tuple<int, Damage> 
-		flame_blade_damage(SpellAction spell_action = SpellAction::Attack,
+		flame_blade_damage(SpellAction spell_action = SpellAction::attack,
 		int level = 2, bool critial_hit = false);
 
 protected:

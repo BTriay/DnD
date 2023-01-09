@@ -160,10 +160,10 @@ void Hero::fire_bolt(ICreature& enemy, DieThrowAdvantage throw_advantage)
             enemy.armor_class());
 
     // damage roll
-    if (attack_result != AttackResult::Miss)
+    if (attack_result != AttackResult::miss)
     {
         auto [damage, damage_type] = sc->fire_bolt_damage(level(),
-            attack_result == AttackResult::CriticalHit);
+            attack_result == AttackResult::critical_hit);
 
         std::cout << "damage inflicted by fire bolt: " << damage << '\n';
 

@@ -143,7 +143,7 @@ private:
     int m_hit_points_current; /*!< Current hit points. This "overrides" the same parameter from ICreature */
 
     void fire_bolt(ICreature& enemy, DieThrowAdvantage throw_advantage);
-    //void flame_blade(ICreature& enemy, SpellAction spell_action = SpellAction::Attack, int level = 2);
+    //void flame_blade(ICreature& enemy, SpellAction spell_action = SpellAction::attack, int level = 2);
 };
 
 BOOST_CLASS_VERSION(Item, serialization_versions::hero)

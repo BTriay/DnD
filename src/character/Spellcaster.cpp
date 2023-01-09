@@ -49,11 +49,11 @@ std::tuple<int, Damage> Spellcaster::flame_blade_damage(SpellAction spell_action
 {
 	switch (spell_action)
 	{
-	case SpellAction::StartConcentration:
+	case SpellAction::start_concentration:
 		m_spell_slots[spell_level] = m_spell_slots[spell_level] - 1;
 		return std::tuple<int, Damage>{0, Damage::fire};
 
-	case SpellAction::Attack:
+	case SpellAction::attack:
 	{
 		auto number_die = 3 + (4 - spell_level) / 2;
 		if (critical_hit)

@@ -159,10 +159,10 @@ export enum class Race
 
 export enum class AttackResult
 {
-	Miss, Hit, CriticalHit
+	miss, hit, critical_hit
 };
 
 export enum class SpellAction
 {
-	Attack, StartConcentration, StopConcentration
+	attack, start_concentration, stop_concentration
 };
