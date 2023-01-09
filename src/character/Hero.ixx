@@ -35,15 +35,14 @@ import Wizard;
 
 import Spellcaster;
 
-export class Hero
+export class Hero : public HeroicCreature
 {
 public:
     /*! Build a hero! */
     Hero(const std::string& name, Race race, const std::string& cclass, 
-        AbilityScore ability_scores) :
+        AbilityScore ability_scores) : HeroicCreature(race, ability_scores),
         m_hero_name(name)
     {        
-        m_heroic_creature = new HeroicCreature{ race, ability_scores };
 
         m_class_name = cclass;
         if (!cclass.compare("Cleric"))
@@ -71,8 +70,7 @@ public:
         else if (!cclass.compare("Wizard"))
             m_class = new Wizard;
 
-        m_heroic_creature->
-            set_hit_points_without_constit(static_cast<int>(m_class->hit_dice()));
+        set_hit_points_without_constit(static_cast<int>(m_class->hit_dice()));
         restore_current_hp_to_max();
     }
 
@@ -85,9 +83,6 @@ public:
     
     const std::string name() const;
     const std::string class_name() const;
-    const std::string race_name() const;
-
-    int ability_modifier(Ability ability) const;
 
     void restore_current_hp_to_max();
     void set_current_hp(int hp);
@@ -96,14 +91,9 @@ public:
 
     HitDice hit_dice() const;
     void add_skill(Skill skill);
+
     int level() const;
-
     int gain_level(bool add_default_hp);
-
-    void don_armor(Armor& armor);
-    void don_armor(ArmorType armor_type);
-    void doff_armor();
-    int armor_class() const;
 
     std::array<int, 10> available_spell_slots() const;
 
@@ -130,15 +120,14 @@ private:
         ar.template register_type<Warlock>();
         ar.template register_type<Wizard>();
 
+        ar& BOOST_SERIALIZATION_BASE_OBJECT_NVP(HeroicCreature);
         ar& BOOST_SERIALIZATION_NVP(m_hero_name);
-        ar& BOOST_SERIALIZATION_NVP(m_heroic_creature);
         ar& BOOST_SERIALIZATION_NVP(m_class_name);
         ar& BOOST_SERIALIZATION_NVP(m_class);
         ar& BOOST_SERIALIZATION_NVP(m_hit_points_current);
     }
 
     std::string m_hero_name; /*!< The name of the hero */
-    HeroicCreature* m_heroic_creature; /*!< Pointer to HeroicCreature */
     std::string m_class_name; /*!< The class name, e.g. Cleric. Necessary for deserialization */
     IClass* m_class; /*!< Base pointer to the class */
     int m_hit_points_current; /*!< Current hit points. This "overrides" the same parameter from ICreature */
@@ -152,7 +141,7 @@ BOOST_CLASS_VERSION(Item, serialization_versions::hero)
 export std::ostream& operator<<(std::ostream& os, const Hero& hero)
 {
     os << hero.name() << " is a " << hero.class_name() << " "
-        << hero.race_name() << " of level " << hero.level() 
+        << hero.race() << " of level " << hero.level() 
         << " and has the following abilities:\n";
     os << "\tcharisma: " << hero.ability_modifier(Ability::charisma) << '\n';
     os << "\tconstitution: " << hero.ability_modifier(Ability::constitution) << '\n';
