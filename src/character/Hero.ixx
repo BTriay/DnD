@@ -79,7 +79,7 @@ public:
     Hero& operator=(const Hero&) = delete; /*!< A hero shall not be copied */
     //Hero& operator=(Hero&&) = delete;
 
-    ~Hero();    
+    ~Hero() override;
     
     const std::string name() const;
     const std::string class_name() const;

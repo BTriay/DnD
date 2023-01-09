@@ -19,6 +19,8 @@ public:
 		set_saving_throw(saving_throw);
 	}
 
+	virtual ~Druid() = default;
+
 	void reset_spell_slots(int level) override;
 
 private:

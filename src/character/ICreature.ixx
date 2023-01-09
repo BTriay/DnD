@@ -32,6 +32,8 @@ public:
 		restore_current_hp_to_max();
 	}
 
+	virtual ~ICreature() = default;
+
 	// ICreature's setup and abilities
 	int ability_score(Ability ability) const;
 	virtual int ability_modifier(Ability ability) const;
