@@ -103,6 +103,7 @@ public:
     void don_armor(Armor& armor);
     void don_armor(ArmorType armor_type);
     void doff_armor();
+    int armor_class() const;
 
     std::array<int, 10> available_spell_slots() const;
 

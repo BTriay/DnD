@@ -130,6 +130,12 @@ void Hero::doff_armor()
     m_heroic_creature->doff_armor();
 }
 
+/*! Armor class */
+int Hero::armor_class() const
+{
+    return m_heroic_creature->armor_class();
+}
+
 std::array<int, 10> Hero::available_spell_slots() const
 {
     if (auto sc = dynamic_cast<Spellcaster*>(m_class))
