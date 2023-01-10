@@ -9,6 +9,7 @@ export module Weapon;
 
 import <stdexcept>;
 import <set>;
+import <tuple>;
 
 import enumeration;
 import Item;
@@ -40,7 +41,7 @@ public:
 	WeaponProficiency weapon_proficiency() const;
 	bool has_property(WeaponProperty weapon_property) const;
 
-	int damage_roll(bool critical_hit = false) const;
+	std::tuple<int, Damage> damage_roll(bool critical_hit = false) const;
 
 private:
 	friend class boost::serialization::access;
