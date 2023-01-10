@@ -36,6 +36,12 @@ WeaponProficiency Weapon::weapon_proficiency() const
 	return m_weapon_proficiency;
 }
 
+/*! club, dagger, etc */
+WeaponType Weapon::weapon_type() const
+{
+	return m_model;
+}
+
 /*! True if the weapon has the property */
 bool Weapon::has_property(WeaponProperty weapon_property) const
 {

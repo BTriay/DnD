@@ -39,6 +39,7 @@ public:
 	void add_versatile_die(Die die);
 	WeaponReach weapon_reach() const;
 	WeaponProficiency weapon_proficiency() const;
+	WeaponType weapon_type() const;
 	bool has_property(WeaponProperty weapon_property) const;
 
 	std::tuple<int, Damage> damage_roll(bool critical_hit = false,
