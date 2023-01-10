@@ -26,7 +26,8 @@ public:
 		Damage damage, Die die, WeaponProperty weapon_property = WeaponProperty::none):
 
 		Item(), m_model(model), m_weapon_proficiency(weapon_proficiency), 
-		m_weapon_reach(weapon_reach), m_damage(damage), m_die(die)
+		m_weapon_reach(weapon_reach), m_damage(damage), m_die(die),
+		m_versatile_die(die)
 	{
 		m_weapon_property.insert(weapon_property);
 	}
@@ -34,8 +35,11 @@ public:
 	Weapon& operator=(const Weapon& rhs);
 
 	void add_property(WeaponProperty weapon_property);
-	int damage_roll(bool critical_hit = false) const;
 	void add_versatile_die(Die die);
+	WeaponReach weapon_reach() const;
+	bool has_property(WeaponProperty weapon_property) const;
+
+	int damage_roll(bool critical_hit = false) const;
 
 private:
 	friend class boost::serialization::access;

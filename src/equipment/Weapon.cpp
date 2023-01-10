@@ -18,16 +18,28 @@ void Weapon::add_property(WeaponProperty weapon_property)
 	m_weapon_property.insert(weapon_property);
 }
 
-/*! Damage roll of the weapon */
-int Weapon::damage_roll(bool critical_hit) const
-{
-	return m_die.roll(critical_hit);
-}
-
 /*! Add the die of the weapon in case of versatile use */
 void Weapon::add_versatile_die(Die die)
 {
 	m_versatile_die = die;
+}
+
+/*! Melee or ranged weapon */
+WeaponReach Weapon::weapon_reach() const
+{
+	return m_weapon_reach;
+}
+
+/*! True if the weapon has the property */
+bool Weapon::has_property(WeaponProperty weapon_property) const
+{
+	return m_weapon_property.find(weapon_property) != std::end(m_weapon_property);
+}
+
+/*! Damage roll of the weapon */
+int Weapon::damage_roll(bool critical_hit) const
+{
+	return m_die.roll(critical_hit);
 }
 
 /*! Create a non-magical weapon */
