@@ -37,6 +37,7 @@ public:
 	void add_property(WeaponProperty weapon_property);
 	void add_versatile_die(Die die);
 	WeaponReach weapon_reach() const;
+	WeaponProficiency weapon_proficiency() const;
 	bool has_property(WeaponProperty weapon_property) const;
 
 	int damage_roll(bool critical_hit = false) const;

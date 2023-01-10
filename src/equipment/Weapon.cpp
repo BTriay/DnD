@@ -30,6 +30,12 @@ WeaponReach Weapon::weapon_reach() const
 	return m_weapon_reach;
 }
 
+/*! Simple or martial */
+WeaponProficiency Weapon::weapon_proficiency() const
+{
+	return m_weapon_proficiency;
+}
+
 /*! True if the weapon has the property */
 bool Weapon::has_property(WeaponProperty weapon_property) const
 {
