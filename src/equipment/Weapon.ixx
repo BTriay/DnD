@@ -41,7 +41,8 @@ public:
 	WeaponProficiency weapon_proficiency() const;
 	bool has_property(WeaponProperty weapon_property) const;
 
-	std::tuple<int, Damage> damage_roll(bool critical_hit = false) const;
+	std::tuple<int, Damage> damage_roll(bool critical_hit = false,
+		bool use_as_versatile_weapon = false) const;
 
 private:
 	friend class boost::serialization::access;

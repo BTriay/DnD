@@ -43,8 +43,12 @@ bool Weapon::has_property(WeaponProperty weapon_property) const
 }
 
 /*! Damage roll of the weapon */
-std::tuple<int, Damage> Weapon::damage_roll(bool critical_hit) const
+std::tuple<int, Damage> Weapon::damage_roll(bool critical_hit,
+	bool use_as_versatile_weapon) const
 {
+	if (use_as_versatile_weapon)
+		return std::tuple<int, Damage> { m_versatile_die.roll(critical_hit), m_damage };
+
 	return std::tuple<int, Damage> { m_die.roll(critical_hit), m_damage } ;
 }
 
