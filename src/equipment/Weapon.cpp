@@ -18,9 +18,16 @@ void Weapon::add_property(WeaponProperty weapon_property)
 	m_weapon_property.insert(weapon_property);
 }
 
+/*! Damage roll of the weapon */
 int Weapon::damage_roll(bool critical_hit) const
 {
 	return m_die.roll(critical_hit);
+}
+
+/*! Add the die of the weapon in case of versatile use */
+void Weapon::add_versatile_die(Die die)
+{
+	m_versatile_die = die;
 }
 
 /*! Create a non-magical weapon */
@@ -43,7 +50,7 @@ Weapon weapon_creator(WeaponType model)
 		weapon.add_property(WeaponProperty::light);
 		weapon.add_property(WeaponProperty::thrown);
 		return weapon;
-	}		
+	}
 
 	case WeaponType::great_club:
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
@@ -75,18 +82,27 @@ Weapon weapon_creator(WeaponType model)
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
 			Damage::bludgeoning, Die::Die(1, HitDice::six));
 
-	case WeaponType::quarterstaff: // missing versatile property
-		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::bludgeoning, Die::Die(1, HitDice::six));
+	case WeaponType::quarterstaff:
+	{
+		Weapon weapon{ model, WeaponProficiency::simple, WeaponReach::melee,
+			Damage::bludgeoning, Die::Die(1, HitDice::six) };
+		weapon.add_property(WeaponProperty::versatile);
+		weapon.add_versatile_die(Die::Die(1, HitDice::eight, 0));
+		return weapon;
+	}
 
 	case WeaponType::sickle:
 		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
 			Damage::slashing, Die::Die(1, HitDice::four), WeaponProperty::light);
 
-	case WeaponType::spear: // missing versatile property
-		return Weapon(model, WeaponProficiency::simple, WeaponReach::melee,
-			Damage::piercing, Die::Die(1, HitDice::six), WeaponProperty::thrown);
-	
+	case WeaponType::spear:
+	{
+		Weapon weapon{ model, WeaponProficiency::simple, WeaponReach::melee,
+			Damage::piercing, Die::Die(1, HitDice::six), WeaponProperty::thrown };
+		weapon.add_property(WeaponProperty::versatile);
+		weapon.add_versatile_die(Die::Die(1, HitDice::eight, 0));
+		return weapon;
+	}
 
 	case WeaponType::light_crossbow:
 	{
@@ -115,9 +131,14 @@ Weapon weapon_creator(WeaponType model)
 			Damage::bludgeoning, Die::Die(1, HitDice::four));
 
 
-	case WeaponType::battleaxe: // missing versatile property
-		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, HitDice::eight));
+	case WeaponType::battleaxe:
+	{
+		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
+			Damage::slashing, Die::Die(1, HitDice::eight) };
+		weapon.add_property(WeaponProperty::versatile);
+		weapon.add_versatile_die(Die::Die(1, HitDice::ten, 0));
+		return weapon;
+	}
 
 	case WeaponType::flail:
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
@@ -165,9 +186,14 @@ Weapon weapon_creator(WeaponType model)
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
 			Damage::piercing, Die::Die(1, HitDice::twelve), WeaponProperty::reach);
 
-	case WeaponType::longsword: // missing versatile property
-		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::slashing, Die::Die(1, HitDice::eight));
+	case WeaponType::longsword:
+	{
+		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
+			Damage::slashing, Die::Die(1, HitDice::eight) };
+		weapon.add_property(WeaponProperty::versatile);
+		weapon.add_versatile_die(Die::Die(1, HitDice::ten, 0));
+		return weapon;
+	}
 
 	case WeaponType::maul:
 	{
@@ -176,7 +202,7 @@ Weapon weapon_creator(WeaponType model)
 		weapon.add_property(WeaponProperty::heavy);
 		weapon.add_property(WeaponProperty::two_handed);
 		return weapon;
-	}	
+	}
 
 	case WeaponType::morningstar:
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
@@ -214,17 +240,27 @@ Weapon weapon_creator(WeaponType model)
 		return weapon;
 	}
 
-	case WeaponType::trident: // missing versatile property
-		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::piercing, Die::Die(1, HitDice::six), WeaponProperty::thrown);
+	case WeaponType::trident:
+	{
+		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
+			Damage::piercing, Die::Die(1, HitDice::six), WeaponProperty::thrown };
+		weapon.add_property(WeaponProperty::versatile);
+		weapon.add_versatile_die(Die::Die(1, HitDice::eight, 0));
+		return weapon;
+	}
 
 	case WeaponType::war_pick:
 		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
 			Damage::piercing, Die::Die(1, HitDice::eight));
 
-	case WeaponType::warhammer: // missing versatile property
-		return Weapon(model, WeaponProficiency::martial, WeaponReach::melee,
-			Damage::bludgeoning, Die::Die(1, HitDice::eight));
+	case WeaponType::warhammer:
+	{
+		Weapon weapon{ model, WeaponProficiency::martial, WeaponReach::melee,
+			Damage::bludgeoning, Die::Die(1, HitDice::eight) };
+		weapon.add_property(WeaponProperty::versatile);
+		weapon.add_versatile_die(Die::Die(1, HitDice::ten, 0));
+		return weapon;
+	}
 
 	case WeaponType::whip:
 	{

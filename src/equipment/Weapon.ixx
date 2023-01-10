@@ -19,7 +19,7 @@ export class Weapon : public Item
 public:
 	/*! Weapon's default constructor, for serialization */ // TODO: move to protected?
 	Weapon() : Weapon(WeaponType::none, WeaponProficiency::simple, WeaponReach::melee,
-		Damage::bludgeoning, Die::Die(0, HitDice::four, 3)) {}
+		Damage::bludgeoning, Die::Die(0, HitDice::four, 1)) {}
 	
 	/*! Weapon's fully fledged constructor */ // TODO: move to protected, and make creator a friend?
 	Weapon(WeaponType model, WeaponProficiency weapon_proficiency, WeaponReach weapon_reach,
@@ -35,6 +35,7 @@ public:
 
 	void add_property(WeaponProperty weapon_property);
 	int damage_roll(bool critical_hit = false) const;
+	void add_versatile_die(Die die);
 
 private:
 	friend class boost::serialization::access;
@@ -46,6 +47,7 @@ private:
 		ar& BOOST_SERIALIZATION_NVP(m_weapon_proficiency);
 		ar& BOOST_SERIALIZATION_NVP(m_weapon_reach);
 		ar& BOOST_SERIALIZATION_NVP(m_die);
+		ar& BOOST_SERIALIZATION_NVP(m_versatile_die);
 		ar& BOOST_SERIALIZATION_NVP(m_weapon_property);
 	}
 
@@ -54,6 +56,7 @@ private:
 	WeaponReach m_weapon_reach; /*!< Melee or ranged */
 	Damage m_damage; /*!< Type of damage inflicted by the weapon: bludgeoning, etc */
 	Die m_die; /*!< The base damage of the weapon */
+	Die m_versatile_die; /*!< The base damage of the weapon if used as a dual weapon */
 	std::set<WeaponProperty> m_weapon_property; /*!< Finesse, heavy, etc */
 };
 
