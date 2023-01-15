@@ -11,6 +11,7 @@ export module ICreature;
 import <map>;
 import <vector>;
 import <iostream>;
+import <algorithm>;
 import enumeration;
 import Armor;
 import Weapon;
@@ -54,7 +55,7 @@ public:
 	virtual void restore_current_hp_to_max();
 	virtual void set_current_hp(int hp);
 	virtual int current_hit_points() const;
-	virtual void lose_hit_points(int hit_points);
+	virtual void lose_hit_points(int hit_points, Damage damage_type);
 
 	void add_resistance(Damage resistance);
 	
@@ -88,9 +89,9 @@ public:
 		DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
 		int proficiency_bonus = 0); // if both are light, etc.
 
-	//void attack_unarmed(ICreature& enemy,
-	//	DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
-	//	int proficiency_bonus = 0);
+	void attack_unarmed(ICreature& enemy,
+		DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
+		int proficiency_bonus = 0);
 
 	// Gear section
 	void don_armor(Armor& armor);

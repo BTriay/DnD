@@ -115,7 +115,7 @@ void Hero::fire_bolt(ICreature& enemy, DieThrowAdvantage throw_advantage)
 
         std::cout << "damage inflicted by fire bolt: " << damage << '\n';
 
-        enemy.lose_hit_points(damage);
+        enemy.lose_hit_points(damage, damage_type);
     }
 }
 

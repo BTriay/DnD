@@ -94,8 +94,13 @@ int ICreature::current_hit_points() const
 }
 
 /*! Lose hit points */
-void ICreature::lose_hit_points(int hit_points)
+void ICreature::lose_hit_points(int hit_points, Damage damage_type)
 {
+	// the creature has resistance to this type of damage
+	if (std::find(std::begin(m_resistance), std::end(m_resistance), damage_type)
+		!= std::end(m_resistance))
+		hit_points /= 2;
+
 	m_hit_points_current -= hit_points;
 }
 
@@ -160,22 +165,40 @@ void ICreature::two_weapons_attack(ICreature& enemy, DieThrowAdvantage throw_adv
 	if (m_weapon_1.weapon_type() == WeaponType::none
 		|| m_weapon_2.weapon_type() == WeaponType::none
 		|| m_has_shield)
+	{
+		std::cout << "One none weapon or shield. Cannot yield dual attack\n";
 		return;
+	}
 
 	if (!m_weapon_1.has_property(WeaponProperty::light)
 		|| !m_weapon_2.has_property(WeaponProperty::light))
+	{
+		std::cout << "One weapon is not light. Cannot yield dual attack\n";
 		return;
-	
+	}
+
 	attack_weapon_one(enemy, throw_advantage, proficiency_bonus, true);
 	attack_weapon_two(enemy, throw_advantage, proficiency_bonus, false);
 }
 
-///*! Unarmed attack. You better have strong fists */
-//void ICreature::attack_unarmed(ICreature& enemy, DieThrowAdvantage throw_advantage,
-//	int proficiency_bonus)
-//{
-//
-//}
+/*! Unarmed attack. You better have strong fists */
+void ICreature::attack_unarmed(ICreature& enemy, DieThrowAdvantage throw_advantage,
+	int proficiency_bonus)
+{
+	auto ability = Ability::strength;
+
+	auto attack_result = attack_roll_vs_armor_class(ability, throw_advantage,
+		proficiency_bonus, enemy.armor_class());
+
+	if (attack_result != AttackResult::miss)
+	{
+		auto damage = 1 + ability_modifier(ability);
+
+		std::cout << "Damage inflicted by an unarmed attack: " << damage << '\n';
+
+		enemy.lose_hit_points(damage, Damage::bludgeoning);
+	}
+}
 
 /*! Add resistance to the creature */
 void ICreature::add_resistance(Damage resistance)
@@ -337,7 +360,7 @@ void ICreature::attack_weapon(ICreature& enemy, const Weapon& weapon,
 		if (add_ability_modifier_to_damage || ability_modifier(ability) < 0)
 			damage += ability_modifier(ability);
 
-		enemy.lose_hit_points(damage);
+		enemy.lose_hit_points(damage, damage_type);
 	}
 }
 
