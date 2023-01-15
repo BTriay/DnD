@@ -78,15 +78,15 @@ public:
 
 	void attack_weapon_one(ICreature& enemy,
 		DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
-		int proficiency_bonus = 0);
+		int proficiency_bonus = 0, bool add_ability_modifier_to_damage = true);
 
 	void attack_weapon_two(ICreature& enemy,
 		DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
-		int proficiency_bonus = 0);
+		int proficiency_bonus = 0, bool add_ability_modifier_to_damage = true);
 
-	//void two_weapons_attack(ICreature& enemy,
-	//	DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
-	//	int proficiency_bonus = 0); // if both are light, etc.
+	void two_weapons_attack(ICreature& enemy,
+		DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
+		int proficiency_bonus = 0); // if both are light, etc.
 
 	//void attack_unarmed(ICreature& enemy,
 	//	DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
@@ -166,7 +166,7 @@ private:
 
 	void attack_weapon(ICreature& enemy, const Weapon& weapon,
 		DieThrowAdvantage throw_advantage, int proficiency_bonus,
-		bool use_as_versatile);
+		bool use_as_versatile, bool add_ability_modifier_to_damage);
 };
 
 BOOST_CLASS_VERSION(ICreature, serialization_versions::icreature)

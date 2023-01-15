@@ -135,32 +135,41 @@ AttackResult ICreature::attack_roll_vs_armor_class(Ability ability,
 
 /*! Attack with the 1st weapon */
 void ICreature::attack_weapon_one(ICreature& enemy, DieThrowAdvantage throw_advantage,
-	int proficiency_bonus)
+	int proficiency_bonus, bool add_ability_modifier_to_damage)
 {
 	auto use_as_versatile = (m_weapon_2.weapon_type() == WeaponType::none && !m_has_shield);
 
-	attack_weapon(enemy, m_weapon_1, throw_advantage, proficiency_bonus, use_as_versatile);
+	attack_weapon(enemy, m_weapon_1, throw_advantage, proficiency_bonus, 
+		use_as_versatile, add_ability_modifier_to_damage);
 }
 
 /*! Attack with the 2nd weapon */
 void ICreature::attack_weapon_two(ICreature& enemy, DieThrowAdvantage throw_advantage,
-	int proficiency_bonus)
+	int proficiency_bonus, bool add_ability_modifier_to_damage)
 {
 	auto use_as_versatile = (m_weapon_1.weapon_type() == WeaponType::none && !m_has_shield);
 
-	attack_weapon(enemy, m_weapon_2, throw_advantage, proficiency_bonus, use_as_versatile);
+	attack_weapon(enemy, m_weapon_2, throw_advantage, proficiency_bonus, 
+		use_as_versatile, add_ability_modifier_to_damage);
 }
 
-///*! Two light weapons in hands, let's go violent */
-//void ICreature::two_weapons_attack(ICreature& enemy, DieThrowAdvantage throw_advantage,
-//	int proficiency_bonus)
-//{
-//	/*
-//	if two light weapons in hand, second attack doesn't have the ability modifier
-//	during the damage, unless negative
-//	*/
-//}
-//
+/*! Two light weapons in hands, let's go violent */
+void ICreature::two_weapons_attack(ICreature& enemy, DieThrowAdvantage throw_advantage,
+	int proficiency_bonus)
+{
+	if (m_weapon_1.weapon_type() == WeaponType::none
+		|| m_weapon_2.weapon_type() == WeaponType::none
+		|| m_has_shield)
+		return;
+
+	if (!m_weapon_1.has_property(WeaponProperty::light)
+		|| !m_weapon_2.has_property(WeaponProperty::light))
+		return;
+	
+	attack_weapon_one(enemy, throw_advantage, proficiency_bonus, true);
+	attack_weapon_two(enemy, throw_advantage, proficiency_bonus, false);
+}
+
 ///*! Unarmed attack. You better have strong fists */
 //void ICreature::attack_unarmed(ICreature& enemy, DieThrowAdvantage throw_advantage,
 //	int proficiency_bonus)
@@ -308,7 +317,7 @@ Ability ICreature::weapon_ability_selector(const Weapon& weapon)
 /*! Attack with the weapon passed as parameter */
 void ICreature::attack_weapon(ICreature& enemy, const Weapon& weapon,
 	DieThrowAdvantage throw_advantage, int proficiency_bonus,
-	bool use_as_versatile)
+	bool use_as_versatile, bool add_ability_modifier_to_damage)
 {
 	if (weapon.weapon_type() == WeaponType::none) return;
 
@@ -324,6 +333,9 @@ void ICreature::attack_weapon(ICreature& enemy, const Weapon& weapon,
 				use_as_versatile);
 
 		std::cout << "Damage inflicted by the weapon: " << damage << '\n';
+
+		if (add_ability_modifier_to_damage || ability_modifier(ability) < 0)
+			damage += ability_modifier(ability);
 
 		enemy.lose_hit_points(damage);
 	}
