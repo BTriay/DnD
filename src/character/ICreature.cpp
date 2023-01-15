@@ -133,7 +133,40 @@ AttackResult ICreature::attack_roll_vs_armor_class(Ability ability,
 	return AttackResult::miss;
 }
 
+/*! Attack with the 1st weapon */
+void ICreature::attack_weapon_one(ICreature& enemy, DieThrowAdvantage throw_advantage,
+	int proficiency_bonus)
+{
+	auto use_as_versatile = (m_weapon_2.weapon_type() == WeaponType::none && !m_has_shield);
 
+	attack_weapon(enemy, m_weapon_1, throw_advantage, proficiency_bonus, use_as_versatile);
+}
+
+/*! Attack with the 2nd weapon */
+void ICreature::attack_weapon_two(ICreature& enemy, DieThrowAdvantage throw_advantage,
+	int proficiency_bonus)
+{
+	auto use_as_versatile = (m_weapon_1.weapon_type() == WeaponType::none && !m_has_shield);
+
+	attack_weapon(enemy, m_weapon_2, throw_advantage, proficiency_bonus, use_as_versatile);
+}
+
+///*! Two light weapons in hands, let's go violent */
+//void ICreature::two_weapons_attack(ICreature& enemy, DieThrowAdvantage throw_advantage,
+//	int proficiency_bonus)
+//{
+//	/*
+//	if two light weapons in hand, second attack doesn't have the ability modifier
+//	during the damage, unless negative
+//	*/
+//}
+//
+///*! Unarmed attack. You better have strong fists */
+//void ICreature::attack_unarmed(ICreature& enemy, DieThrowAdvantage throw_advantage,
+//	int proficiency_bonus)
+//{
+//
+//}
 
 /*! Add resistance to the creature */
 void ICreature::add_resistance(Damage resistance)
@@ -227,7 +260,7 @@ void ICreature::drop_weapon_one()
 }
 
 /*! Add the 2nd weapon */
-void ICreature::add_weapon_two(Weapon& weapon)
+void ICreature::add_weapon_two(const Weapon& weapon)
 {
 	m_weapon_2 = weapon;
 }
@@ -242,17 +275,58 @@ void ICreature::drop_weapon_two()
 
 
 /* PROTECTED MEMBER FUNCTIONS */
-/* END OF PROTECTED MEMBER FUNCTIONS */
-
-
-/* PRIVATE MEMBER FUNCTIONS */
 
 void ICreature::set_default_ability_scores()
 {
 	for (auto& ability : abilities)
 	{
 		set_ability_score(ability, 10);
-	}	
+	}
+}
+
+/* END OF PROTECTED MEMBER FUNCTIONS */
+
+/* PRIVATE MEMBER FUNCTIONS */
+
+/*! Return the ability to use for that weapon */
+Ability ICreature::weapon_ability_selector(const Weapon& weapon)
+{
+	// no choice for ranged weapon, use dexterity
+	if (weapon.weapon_reach() == WeaponReach::ranged)
+		return Ability::dexterity;
+
+	// in case it's a melee weapon, but also has finesse:
+	if (weapon.has_property(WeaponProperty::finesse)
+		&& (ability_modifier(Ability::dexterity) > ability_modifier(Ability::strength)))
+	{
+		return Ability::dexterity;
+	}
+
+	return Ability::strength;
+}
+
+/*! Attack with the weapon passed as parameter */
+void ICreature::attack_weapon(ICreature& enemy, const Weapon& weapon,
+	DieThrowAdvantage throw_advantage, int proficiency_bonus,
+	bool use_as_versatile)
+{
+	if (weapon.weapon_type() == WeaponType::none) return;
+
+	auto ability = weapon_ability_selector(weapon);
+
+	auto attack_result = attack_roll_vs_armor_class(ability, throw_advantage,
+		proficiency_bonus, enemy.armor_class());
+
+	if (attack_result != AttackResult::miss)
+	{
+		auto [damage, damage_type] =
+			weapon.damage_roll(attack_result == AttackResult::critical_hit,
+				use_as_versatile);
+
+		std::cout << "Damage inflicted by the weapon: " << damage << '\n';
+
+		enemy.lose_hit_points(damage);
+	}
 }
 
 /* END OF PRIVATE MEMBER FUNCTIONS */

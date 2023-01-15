@@ -10,6 +10,7 @@ export module ICreature;
 
 import <map>;
 import <vector>;
+import <iostream>;
 import enumeration;
 import Armor;
 import Weapon;
@@ -70,9 +71,26 @@ public:
 
 	virtual int attack_roll(Ability ability, int proficiency_bonus = 0, 
 		DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal) const;
+
 	AttackResult attack_roll_vs_armor_class(Ability ability,
 		DieThrowAdvantage throw_advantage, int proficiency_bonus,
 		int armor_class) const;
+
+	void attack_weapon_one(ICreature& enemy,
+		DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
+		int proficiency_bonus = 0);
+
+	void attack_weapon_two(ICreature& enemy,
+		DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
+		int proficiency_bonus = 0);
+
+	//void two_weapons_attack(ICreature& enemy,
+	//	DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
+	//	int proficiency_bonus = 0); // if both are light, etc.
+
+	//void attack_unarmed(ICreature& enemy,
+	//	DieThrowAdvantage throw_advantage = DieThrowAdvantage::Normal,
+	//	int proficiency_bonus = 0);
 
 	// Gear section
 	void don_armor(Armor& armor);
@@ -86,7 +104,7 @@ public:
 
 	void add_weapon_one(const Weapon& weapon);
 	void drop_weapon_one();
-	void add_weapon_two(Weapon& weapon);
+	void add_weapon_two(const Weapon& weapon);
 	void drop_weapon_two();
 
 protected:
@@ -143,6 +161,12 @@ private:
 	Armor m_armor; /*!< The armor carried by the hero */
 	Weapon m_weapon_1; /*!< The first weapon carried by the hero */
 	Weapon m_weapon_2; /*!< The second weapon carried by the hero */
+
+	Ability weapon_ability_selector(const Weapon& weapon);
+
+	void attack_weapon(ICreature& enemy, const Weapon& weapon,
+		DieThrowAdvantage throw_advantage, int proficiency_bonus,
+		bool use_as_versatile);
 };
 
 BOOST_CLASS_VERSION(ICreature, serialization_versions::icreature)
